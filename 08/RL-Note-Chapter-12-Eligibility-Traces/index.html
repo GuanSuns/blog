@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        CS373 Week 8 · Lin Guan&#39;s Blog
+        RL Note Chapter 12 Eligibility Traces · Lin Guan&#39;s Blog
         
     </title>
     <link rel="icon" href= https://image-1252075188.cos.na-toronto.myqcloud.com/favicon.ico>
@@ -72,7 +72,7 @@
                 <a href="/blog/" >Lin Guan&#39;s Blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">CS373 Week 8</a>
+                <a href="#" class="post-name">RL Note Chapter 12 Eligibility Traces</a>
             </div>
     </div>
     
@@ -93,7 +93,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            CS373 Week 8
+            RL Note Chapter 12 Eligibility Traces
             <!-- 404 -->
             
         </h1>
@@ -111,14 +111,14 @@
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = CS373>CS373</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = Reinforcement Learning>Reinforcement Learning</a>
     
 </div>
             
             <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/blog/static/api/js/share.js"];</script>
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/03/11</span>
+                <span class="post-intro-time">2018/07/08</span>
                 <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                     <span class="iconfont-archer">&#xe604;</span>
                     <span id="busuanzi_value_page_pv"></span>
@@ -201,29 +201,47 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><img src="https://image-1252075188.cos.na-toronto.myqcloud.com/avatar.jpg" alt="Head Shot"></p>
-<h1 id="What-did-you-do-last-week"><a href="#What-did-you-do-last-week" class="headerlink" title="What did you do last week?"></a>What did you do last week?</h1><p>I went through a tough time last week, but I don’t think I survive it. I only got 55/100 in the artificial intelligence midterm and I am pretty sure I made some mistakes in the computer vision exam. The recent 3 weeks have become the darkest periods in my college life.</p>
-<h1 id="What-is-in-your-way"><a href="#What-is-in-your-way" class="headerlink" title="What is in your way?"></a>What is in your way?</h1><p>Obviously, I am enjoying my spring break. I slept for 12 hours yesterday. I will cherish these two relaxing days, because our group will continue to work on our project 2 from the next Tuesday. </p>
-<h1 id="What-will-you-do-next-week"><a href="#What-will-you-do-next-week" class="headerlink" title="What will you do next week?"></a>What will you do next week?</h1><p>Different from other students, my spring break will end on Tuesday since we will begin working on our project next Tuesday. I am still learning React, especially the project structure in React. One of my teammate from backend group told me that the project structure in Flask must consist of module “static”, “template” and so on. However, it seems that the project structure of React must be like “src” and “public”. I am going to figure this out tomorrow.</p>
-<h1 id="What-is-your-experience-of-this-class"><a href="#What-is-your-experience-of-this-class" class="headerlink" title="What is your experience of this class?"></a>What is your experience of this class?</h1><p>After taking several attendance quiz, my grade looks much better now than it was like at the beginning of this course. In addition, although I lost ten points in project 1, I get a pretty good score in the test 1. I have less pressure now in this course and I can begin fully enjoying the teamwork now.</p>
-<h1 id="What’s-my-pick-of-the-week-or-tip-of-the-week"><a href="#What’s-my-pick-of-the-week-or-tip-of-the-week" class="headerlink" title="What’s my pick-of-the-week or tip-of-the-week?"></a>What’s my pick-of-the-week or tip-of-the-week?</h1><p>My tip-of-the-week is “work hard and play hard”. If you are not working hard enough, you won’t realize how valuable your leisure is. Also, playing hard will give you a good refreshment after your hard work. </p>
-
+        <h1 id="Chapter-12-Eligibility-Traces-Note"><a href="#Chapter-12-Eligibility-Traces-Note" class="headerlink" title="Chapter 12 Eligibility Traces Note"></a>Chapter 12 Eligibility Traces Note</h1><h2 id="Big-Picture"><a href="#Big-Picture" class="headerlink" title="Big Picture"></a>Big Picture</h2><h3 id="Motivation-update-can-be-done-not-just-toward-any-n-step-return-but-toward-any-average-of-n-step-returns"><a href="#Motivation-update-can-be-done-not-just-toward-any-n-step-return-but-toward-any-average-of-n-step-returns" class="headerlink" title="Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns."></a>Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns.</h3><h3 id="Some-concepts"><a href="#Some-concepts" class="headerlink" title="Some concepts:"></a>Some concepts:</h3><ul>
+<li><strong>Compund update</strong>: average simpler component updates like average of simple n-step returns (lambda formula 12.2)</li>
+<li>Understanding lambda return: lambda=1: reduces to Monte Carlo (large variance), lambda=0: one step TD method</li>
+<li>Understanding lambda return: parameter lambda characterizes how fast the exponential weighting falls off</li>
+</ul>
+<h3 id="Off-line-lambda-return-algorithm"><a href="#Off-line-lambda-return-algorithm" class="headerlink" title="Off-line lambda-return algorithm"></a>Off-line lambda-return algorithm</h3><ul>
+<li><strong>Update</strong>: formula 12.4</li>
+<li>Udpate at the end of the episode: can be modified to <strong>n-step Truncated lambda-return method (TTD)</strong></li>
+</ul>
+<h3 id="gt-Computationally-congenial-implementation-of-lambda-return-TD-lambda"><a href="#gt-Computationally-congenial-implementation-of-lambda-return-TD-lambda" class="headerlink" title="=&gt; Computationally congenial implementation of lambda-return: TD(lambda)"></a>=&gt; Computationally congenial implementation of lambda-return: TD(lambda)</h3><ul>
+<li><strong>Improvements over off-line lambda-return algorithm</strong>:<ul>
+<li>update the weight vectors on every step</li>
+<li>its computations are equally distributed instead of all at the end</li>
+<li>can be applied to continuing problems</li>
+</ul>
+</li>
+<li>Eligibility trace: short-term memory (weight vector is a long-term memory, accumulating over the lifetime of the system)</li>
+<li>Properties:<ul>
+<li>Each update depends on the current TD error combined with the current eligibility traces of past events</li>
+<li>At each moment we look at the current TD error and assign it backward to each prior state according to how much that state contributed to the current eligibility trace at that time.</li>
+<li>TD(1) is way of implementing MC algorithm that is more general</li>
+</ul>
+</li>
+</ul>
+<h3 id="Instead-of-using-truncation-parameter-n-we-can-redoing-updates-The-online-lambda-return-algorithm"><a href="#Instead-of-using-truncation-parameter-n-we-can-redoing-updates-The-online-lambda-return-algorithm" class="headerlink" title="Instead of using truncation parameter n, we can redoing updates: The online lambda-return algorithm"></a>Instead of using truncation parameter n, we can redoing updates: The online lambda-return algorithm</h3><ul>
+<li>It’s the best performing TD algorithm currently </li>
+<li>But needs lots of computation resource</li>
+</ul>
+<h3 id="gt-Computationally-congenial-implementation-of-the-online-lambda-return-algorithm-True-Online-TD-lambda"><a href="#gt-Computationally-congenial-implementation-of-the-online-lambda-return-algorithm-True-Online-TD-lambda" class="headerlink" title="=&gt; Computationally congenial implementation of the online lambda-return algorithm: True Online TD(lambda)"></a>=&gt; Computationally congenial implementation of the online lambda-return algorithm: True Online TD(lambda)</h3><ul>
+<li>Pay attention to how it updtae the eligibility trace in the case of using function approximation (formula 12.11)</li>
+</ul>
+<h3 id="Sarsa-lambda-use-eligibility-traces-for-control"><a href="#Sarsa-lambda-use-eligibility-traces-for-control" class="headerlink" title="Sarsa(lambda): use eligibility traces for control"></a>Sarsa(lambda): use eligibility traces for control</h3>
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
         
-            <li class="next">
-                <a href= "/blog/25/CS373-Week-9/" title= CS373 Week 9 >
-                    <span>Next Post</span>
-                    <span>CS373 Week 9</span>
-                </a>
-            </li>
-        
         
             <li class="previous">
-                <a href= "/blog/04/CS373-Week-7/" title= CS373 Week 7 >
+                <a href= "/blog/09/RL-Note-Chapter-4-DP/" title= RL Reading Note: Chapter 4 DP >
                     <span>Previous Post</span>
-                    <span>CS373 Week 7</span>
+                    <span>RL Reading Note: Chapter 4 DP</span>
                 </a>
             </li>
         
@@ -280,7 +298,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-did-you-do-last-week"><span class="toc-number">1.</span> <span class="toc-text">What did you do last week?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-in-your-way"><span class="toc-number">2.</span> <span class="toc-text">What is in your way?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-will-you-do-next-week"><span class="toc-number">3.</span> <span class="toc-text">What will you do next week?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-your-experience-of-this-class"><span class="toc-number">4.</span> <span class="toc-text">What is your experience of this class?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What’s-my-pick-of-the-week-or-tip-of-the-week"><span class="toc-number">5.</span> <span class="toc-text">What’s my pick-of-the-week or tip-of-the-week?</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-12-Eligibility-Traces-Note"><span class="toc-number">1.</span> <span class="toc-text">Chapter 12 Eligibility Traces Note</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Big-Picture"><span class="toc-number">1.1.</span> <span class="toc-text">Big Picture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Motivation-update-can-be-done-not-just-toward-any-n-step-return-but-toward-any-average-of-n-step-returns"><span class="toc-number">1.1.1.</span> <span class="toc-text">Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Some-concepts"><span class="toc-number">1.1.2.</span> <span class="toc-text">Some concepts:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Off-line-lambda-return-algorithm"><span class="toc-number">1.1.3.</span> <span class="toc-text">Off-line lambda-return algorithm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-Computationally-congenial-implementation-of-lambda-return-TD-lambda"><span class="toc-number">1.1.4.</span> <span class="toc-text">=&gt; Computationally congenial implementation of lambda-return: TD(lambda)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Instead-of-using-truncation-parameter-n-we-can-redoing-updates-The-online-lambda-return-algorithm"><span class="toc-number">1.1.5.</span> <span class="toc-text">Instead of using truncation parameter n, we can redoing updates: The online lambda-return algorithm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-Computationally-congenial-implementation-of-the-online-lambda-return-algorithm-True-Online-TD-lambda"><span class="toc-number">1.1.6.</span> <span class="toc-text">=&gt; Computationally congenial implementation of the online lambda-return algorithm: True Online TD(lambda)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sarsa-lambda-use-eligibility-traces-for-control"><span class="toc-number">1.1.7.</span> <span class="toc-text">Sarsa(lambda): use eligibility traces for control</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
