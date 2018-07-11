@@ -201,16 +201,16 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="Chapter-12-Eligibility-Traces-Note"><a href="#Chapter-12-Eligibility-Traces-Note" class="headerlink" title="Chapter 12 Eligibility Traces Note"></a>Chapter 12 Eligibility Traces Note</h1><h2 id="Big-Picture"><a href="#Big-Picture" class="headerlink" title="Big Picture"></a>Big Picture</h2><h3 id="Motivation-update-can-be-done-not-just-toward-any-n-step-return-but-toward-any-average-of-n-step-returns"><a href="#Motivation-update-can-be-done-not-just-toward-any-n-step-return-but-toward-any-average-of-n-step-returns" class="headerlink" title="Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns."></a>Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns.</h3><h3 id="Some-concepts"><a href="#Some-concepts" class="headerlink" title="Some concepts:"></a>Some concepts:</h3><ul>
+        <h1 id="Chapter-12-Eligibility-Traces-Note"><a href="#Chapter-12-Eligibility-Traces-Note" class="headerlink" title="Chapter 12 Eligibility Traces Note"></a>Chapter 12 Eligibility Traces Note</h1><h2 id="1-Big-Picture"><a href="#1-Big-Picture" class="headerlink" title="1. Big Picture"></a>1. Big Picture</h2><h3 id="1-1-Motivation-update-can-be-done-not-just-toward-any-n-step-return-but-toward-any-average-of-n-step-returns"><a href="#1-1-Motivation-update-can-be-done-not-just-toward-any-n-step-return-but-toward-any-average-of-n-step-returns" class="headerlink" title="1.1. Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns."></a>1.1. Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns.</h3><h3 id="1-2-Some-concepts"><a href="#1-2-Some-concepts" class="headerlink" title="1.2. Some concepts:"></a>1.2. Some concepts:</h3><ul>
 <li><strong>Compund update</strong>: average simpler component updates like average of simple n-step returns (lambda formula 12.2)</li>
 <li>Understanding lambda return: lambda=1: reduces to Monte Carlo (large variance), lambda=0: one step TD method</li>
 <li>Understanding lambda return: parameter lambda characterizes how fast the exponential weighting falls off</li>
 </ul>
-<h3 id="Off-line-lambda-return-algorithm"><a href="#Off-line-lambda-return-algorithm" class="headerlink" title="Off-line lambda-return algorithm"></a>Off-line lambda-return algorithm</h3><ul>
+<h3 id="1-3-Off-line-lambda-return-algorithm"><a href="#1-3-Off-line-lambda-return-algorithm" class="headerlink" title="1.3. Off-line lambda-return algorithm"></a>1.3. Off-line lambda-return algorithm</h3><ul>
 <li><strong>Update</strong>: formula 12.4</li>
 <li>Udpate at the end of the episode: can be modified to <strong>n-step Truncated lambda-return method (TTD)</strong></li>
 </ul>
-<h3 id="gt-Computationally-congenial-implementation-of-lambda-return-TD-lambda"><a href="#gt-Computationally-congenial-implementation-of-lambda-return-TD-lambda" class="headerlink" title="=&gt; Computationally congenial implementation of lambda-return: TD(lambda)"></a>=&gt; Computationally congenial implementation of lambda-return: TD(lambda)</h3><ul>
+<h3 id="1-4-gt-Computationally-congenial-implementation-of-lambda-return-TD-lambda"><a href="#1-4-gt-Computationally-congenial-implementation-of-lambda-return-TD-lambda" class="headerlink" title="1.4. =&gt; Computationally congenial implementation of lambda-return: TD(lambda)"></a>1.4. =&gt; Computationally congenial implementation of lambda-return: TD(lambda)</h3><ul>
 <li><strong>Improvements over off-line lambda-return algorithm</strong>:<ul>
 <li>update the weight vectors on every step</li>
 <li>its computations are equally distributed instead of all at the end</li>
@@ -225,14 +225,14 @@
 </ul>
 </li>
 </ul>
-<h3 id="Instead-of-using-truncation-parameter-n-we-can-redoing-updates-The-online-lambda-return-algorithm"><a href="#Instead-of-using-truncation-parameter-n-we-can-redoing-updates-The-online-lambda-return-algorithm" class="headerlink" title="Instead of using truncation parameter n, we can redoing updates: The online lambda-return algorithm"></a>Instead of using truncation parameter n, we can redoing updates: The online lambda-return algorithm</h3><ul>
+<h3 id="1-5-Instead-of-using-truncation-parameter-n-we-can-redoing-updates-The-online-lambda-return-algorithm"><a href="#1-5-Instead-of-using-truncation-parameter-n-we-can-redoing-updates-The-online-lambda-return-algorithm" class="headerlink" title="1.5. Instead of using truncation parameter n, we can redoing updates: The online lambda-return algorithm"></a>1.5. Instead of using truncation parameter n, we can redoing updates: The online lambda-return algorithm</h3><ul>
 <li>It’s the best performing TD algorithm currently </li>
 <li>But needs lots of computation resource</li>
 </ul>
-<h3 id="gt-Computationally-congenial-implementation-of-the-online-lambda-return-algorithm-True-Online-TD-lambda"><a href="#gt-Computationally-congenial-implementation-of-the-online-lambda-return-algorithm-True-Online-TD-lambda" class="headerlink" title="=&gt; Computationally congenial implementation of the online lambda-return algorithm: True Online TD(lambda)"></a>=&gt; Computationally congenial implementation of the online lambda-return algorithm: True Online TD(lambda)</h3><ul>
+<h3 id="1-6-gt-Computationally-congenial-implementation-of-the-online-lambda-return-algorithm-True-Online-TD-lambda"><a href="#1-6-gt-Computationally-congenial-implementation-of-the-online-lambda-return-algorithm-True-Online-TD-lambda" class="headerlink" title="1.6. =&gt; Computationally congenial implementation of the online lambda-return algorithm: True Online TD(lambda)"></a>1.6. =&gt; Computationally congenial implementation of the online lambda-return algorithm: True Online TD(lambda)</h3><ul>
 <li>Pay attention to how it updtae the eligibility trace in the case of using function approximation (formula 12.11)</li>
 </ul>
-<h3 id="Sarsa-lambda-use-eligibility-traces-for-control"><a href="#Sarsa-lambda-use-eligibility-traces-for-control" class="headerlink" title="Sarsa(lambda): use eligibility traces for control"></a>Sarsa(lambda): use eligibility traces for control</h3>
+<h3 id="1-7-Sarsa-lambda-use-eligibility-traces-for-control"><a href="#1-7-Sarsa-lambda-use-eligibility-traces-for-control" class="headerlink" title="1.7. Sarsa(lambda): use eligibility traces for control"></a>1.7. Sarsa(lambda): use eligibility traces for control</h3>
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
@@ -305,7 +305,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-12-Eligibility-Traces-Note"><span class="toc-number">1.</span> <span class="toc-text">Chapter 12 Eligibility Traces Note</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Big-Picture"><span class="toc-number">1.1.</span> <span class="toc-text">Big Picture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Motivation-update-can-be-done-not-just-toward-any-n-step-return-but-toward-any-average-of-n-step-returns"><span class="toc-number">1.1.1.</span> <span class="toc-text">Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Some-concepts"><span class="toc-number">1.1.2.</span> <span class="toc-text">Some concepts:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Off-line-lambda-return-algorithm"><span class="toc-number">1.1.3.</span> <span class="toc-text">Off-line lambda-return algorithm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-Computationally-congenial-implementation-of-lambda-return-TD-lambda"><span class="toc-number">1.1.4.</span> <span class="toc-text">=&gt; Computationally congenial implementation of lambda-return: TD(lambda)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Instead-of-using-truncation-parameter-n-we-can-redoing-updates-The-online-lambda-return-algorithm"><span class="toc-number">1.1.5.</span> <span class="toc-text">Instead of using truncation parameter n, we can redoing updates: The online lambda-return algorithm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-Computationally-congenial-implementation-of-the-online-lambda-return-algorithm-True-Online-TD-lambda"><span class="toc-number">1.1.6.</span> <span class="toc-text">=&gt; Computationally congenial implementation of the online lambda-return algorithm: True Online TD(lambda)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sarsa-lambda-use-eligibility-traces-for-control"><span class="toc-number">1.1.7.</span> <span class="toc-text">Sarsa(lambda): use eligibility traces for control</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-12-Eligibility-Traces-Note"><span class="toc-number">1.</span> <span class="toc-text">Chapter 12 Eligibility Traces Note</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Big-Picture"><span class="toc-number">1.1.</span> <span class="toc-text">1. Big Picture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Motivation-update-can-be-done-not-just-toward-any-n-step-return-but-toward-any-average-of-n-step-returns"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1. Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Some-concepts"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2. Some concepts:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Off-line-lambda-return-algorithm"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3. Off-line lambda-return algorithm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-gt-Computationally-congenial-implementation-of-lambda-return-TD-lambda"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4. =&gt; Computationally congenial implementation of lambda-return: TD(lambda)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-Instead-of-using-truncation-parameter-n-we-can-redoing-updates-The-online-lambda-return-algorithm"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.5. Instead of using truncation parameter n, we can redoing updates: The online lambda-return algorithm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-gt-Computationally-congenial-implementation-of-the-online-lambda-return-algorithm-True-Online-TD-lambda"><span class="toc-number">1.1.6.</span> <span class="toc-text">1.6. =&gt; Computationally congenial implementation of the online lambda-return algorithm: True Online TD(lambda)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-Sarsa-lambda-use-eligibility-traces-for-control"><span class="toc-number">1.1.7.</span> <span class="toc-text">1.7. Sarsa(lambda): use eligibility traces for control</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -319,12 +319,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     
@@ -633,7 +627,22 @@ jsonContent:
     <!-- CNZZ统计  -->
     
     </div>
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 

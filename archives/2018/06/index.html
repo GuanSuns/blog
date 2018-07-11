@@ -164,16 +164,14 @@
             </a>
             <a class="content-show-full" href = "/blog/09/RL-Note-Chapter-4-DP/" >
                 <div class="abstract-content">
-                    Chapter 4 Dynamic Programming NoteBig PictureAssumption: finite MDPApplications
+                    Chapter 4 Dynamic Programming Note1. Big Picture1.1. Assumption: finite MDP1.2. Applications
 Application 1: Policy Evaluation (prediction problem)
 
 Method iterative policy evaluation: iterative methods using a sequence of approximated values
 Key concepts: expected update
 
 
-Application 2: Policy Improvement
-
-T...
+Application 2: Policy I...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -240,12 +238,6 @@ T...
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     
@@ -554,7 +546,22 @@ jsonContent:
     <!-- CNZZ统计  -->
     
     </div>
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 

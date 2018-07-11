@@ -164,8 +164,8 @@
             </a>
             <a class="content-show-full" href = "/blog/10/RL-Reading-Note-Covergent-Actor-Critic-by-Humans-COACH/" >
                 <div class="abstract-content">
-                    COACHCOACH: Interactive Learning from Policy-Dependent Human FeedbackMotivation: human feedback exhibits properties that are inconsistent with a traditional reward signal.Advantage Function: evaluate how recent behavior is different from the trainer’s desired policy
-Advantage function can success...
+                    COACHTestCOACH: Interactive Learning from Policy-Dependent Human FeedbackMotivation: human feedback exhibits properties that are inconsistent with a traditional reward signal.Advantage Function: evaluate how recent behavior is different from the trainer’s desired policy
+Advantage function can suc...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -234,12 +234,6 @@ Advantage function can success...
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     
@@ -548,7 +542,22 @@ jsonContent:
     <!-- CNZZ统计  -->
     
     </div>
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 

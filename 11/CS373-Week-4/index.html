@@ -206,7 +206,7 @@
 <h1 id="What-is-in-your-way"><a href="#What-is-in-your-way" class="headerlink" title="What is in your way?"></a>What is in your way?</h1><p>I am on my way to meet my teammates now. Yesterday, I built the initial version of our websites using Bootstrap carousel. I am completely new to HTML, CSS, and Bootstrap. But fortunately, those tools are not that difficult to learn. After reading the documentation and watching some YouTube videos, now I am able to make 2 web pages for our project.</p>
 <h1 id="What-will-you-do-next-week"><a href="#What-will-you-do-next-week" class="headerlink" title="What will you do next week?"></a>What will you do next week?</h1><p>Next week, my team and I will continue working on our first web project. Our back-end group has set up our server on AWS and they also read through all the documentation of the APIs we will use. Our front-end group is also making substantial progress. We have designed some wonderful layouts to present our data. I am looking forward to our final result.</p>
 <h1 id="What-is-your-experience-of-this-class"><a href="#What-is-your-experience-of-this-class" class="headerlink" title="What is your experience of this class?"></a>What is your experience of this class?</h1><p>Although this course somehow requires lots of efforts, I have to say that I feel really enjoyed taking this course. It is so fortuned to meet such hard-working teammates like Javier and Austen. We work together and help each other. I have never take a course that encourages that much collaboration.</p>
-<h1 id="What’s-my-pick-of-the-week-or-tip-of-the-week"><a href="#What’s-my-pick-of-the-week-or-tip-of-the-week" class="headerlink" title="What’s my pick-of-the-week or tip-of-the-week?"></a>What’s my pick-of-the-week or tip-of-the-week?</h1><p>Last week, I recommended the PyCharm by JetBrains. This week, I am going to recommend another IDE developed by the same company – Webstorm. It is the smartest JavaScript IDE I have ever used. From my perspective, the most important feature of Webstorm is its auto-indent. Sometimes, our HTML or CSS will be messed up if we copy and paste some code from the documentation. Its auto-indent perfectly solves this problem.</p>
+<h1 id="What’s-my-pick-of-the-week-or-tip-of-the-week"><a href="#What’s-my-pick-of-the-week-or-tip-of-the-week" class="headerlink" title="What’s my pick-of-the-week or tip-of-the-week?"></a>What’s my pick-of-the-week or tip-of-the-week?</h1><p>Last week, I recommended the PyCharm by JetBrains. This week, I am going to recommend another IDE developed by the same company — Webstorm. It is the smartest JavaScript IDE I have ever used. From my perspective, the most important feature of Webstorm is its auto-indent. Sometimes, our HTML or CSS will be messed up if we copy and paste some code from the documentation. Its auto-indent perfectly solves this problem.</p>
 
     </article>
     <!-- 前后页  -->
@@ -294,12 +294,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     
@@ -608,7 +602,22 @@ jsonContent:
     <!-- CNZZ统计  -->
     
     </div>
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 

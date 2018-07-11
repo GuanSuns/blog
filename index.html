@@ -175,8 +175,8 @@
             </a>
             <a class="content-show-full" href = "/blog/10/RL-Reading-Note-Covergent-Actor-Critic-by-Humans-COACH/" >
                 <div class="abstract-content">
-                    COACHCOACH: Interactive Learning from Policy-Dependent Human FeedbackMotivation: human feedback exhibits properties that are inconsistent with a traditional reward signal.Advantage Function: evaluate how recent behavior is different from the trainer’s desired policy
-Advantage function can success...
+                    COACHTestCOACH: Interactive Learning from Policy-Dependent Human FeedbackMotivation: human feedback exhibits properties that are inconsistent with a traditional reward signal.Advantage Function: evaluate how recent behavior is different from the trainer’s desired policy
+Advantage function can suc...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -206,9 +206,9 @@ Advantage function can success...
             </a>
             <a class="content-show-full" href = "/blog/08/RL-Note-Chapter-12-Eligibility-Traces/" >
                 <div class="abstract-content">
-                    Chapter 12 Eligibility Traces NoteBig PictureMotivation: update can be done not just toward any n-step return, but toward any average of n-step returns.Some concepts:
+                    Chapter 12 Eligibility Traces Note1. Big Picture1.1. Motivation: update can be done not just toward any n-step return, but toward any average of n-step returns.1.2. Some concepts:
 Compund update: average simpler component updates like average of simple n-step returns (lambda formula 12.2)
-Understanding lambda...
+Underst...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -236,16 +236,14 @@ Understanding lambda...
             </a>
             <a class="content-show-full" href = "/blog/09/RL-Note-Chapter-4-DP/" >
                 <div class="abstract-content">
-                    Chapter 4 Dynamic Programming NoteBig PictureAssumption: finite MDPApplications
+                    Chapter 4 Dynamic Programming Note1. Big Picture1.1. Assumption: finite MDP1.2. Applications
 Application 1: Policy Evaluation (prediction problem)
 
 Method iterative policy evaluation: iterative methods using a sequence of approximated values
 Key concepts: expected update
 
 
-Application 2: Policy Improvement
-
-T...
+Application 2: Policy I...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -723,12 +721,6 @@ What did you do last week?Last week, I spent most of my time preparing for the t
     
     
     
-    
-    
-    
-    
-    
-    
     <div class="total-archive"> Total : 16 </div>
     
     <div class="post-archive">
@@ -871,7 +863,22 @@ jsonContent:
     <!-- CNZZ统计  -->
     
     </div>
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 
