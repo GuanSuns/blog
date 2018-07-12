@@ -205,7 +205,8 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="RL-Reading-Note-Deep-COACH"><a href="#RL-Reading-Note-Deep-COACH" class="headerlink" title="RL Reading Note: Deep COACH"></a>RL Reading Note: Deep COACH</h1><h2 id="1-Deep-COACH-Deep-Reinforcement-Learning-from-Policy-Dependent-Human-Feedback"><a href="#1-Deep-COACH-Deep-Reinforcement-Learning-from-Policy-Dependent-Human-Feedback" class="headerlink" title="1. Deep COACH: Deep Reinforcement Learning from Policy-Dependent Human Feedback"></a>1. Deep COACH: Deep Reinforcement Learning from Policy-Dependent Human Feedback</h2><h3 id="1-1-Motivation-adjust-COACH-to-making-use-of-the-higher-dimensional-data"><a href="#1-1-Motivation-adjust-COACH-to-making-use-of-the-higher-dimensional-data" class="headerlink" title="1.1. Motivation: adjust COACH to making use of the higher dimensional data"></a>1.1. Motivation: adjust COACH to making use of the higher dimensional data</h3><h3 id="1-2-Properties"><a href="#1-2-Properties" class="headerlink" title="1.2. Properties:"></a>1.2. Properties:</h3><ul>
+        <h1 id="RL-Reading-Note-Deep-COACH"><a href="#RL-Reading-Note-Deep-COACH" class="headerlink" title="RL Reading Note: Deep COACH"></a>RL Reading Note: Deep COACH</h1><h2 id="1-Deep-COACH-Deep-Reinforcement-Learning-from-Policy-Dependent-Human-Feedback"><a href="#1-Deep-COACH-Deep-Reinforcement-Learning-from-Policy-Dependent-Human-Feedback" class="headerlink" title="1. Deep COACH: Deep Reinforcement Learning from Policy-Dependent Human Feedback"></a>1. Deep COACH: Deep Reinforcement Learning from Policy-Dependent Human Feedback</h2><h3 id="1-1-Motivation"><a href="#1-1-Motivation" class="headerlink" title="1.1. Motivation"></a>1.1. Motivation</h3><p>Adjust COACH to making use of the higher dimensional data</p>
+<h3 id="1-2-Properties"><a href="#1-2-Properties" class="headerlink" title="1.2. Properties:"></a>1.2. Properties:</h3><ul>
 <li>maximize expected sum of rewards using <strong>policy gradient</strong></li>
 <li>In favor of an <strong>eligibility Q-Networks</strong>, deep COACH extends this idea using a replay<br>buffer where the atomic elements stored are <strong>whole windows of experience</strong>, rather than individual transitions.</li>
 <li>using replay buffer creates a discrepancy between the policy being optimized at current timestep and the policy under which data sampled from the buffer was generated: use off-policy learning with <strong>importance sampling</strong>.</li>
@@ -284,7 +285,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RL-Reading-Note-Deep-COACH"><span class="toc-number">1.</span> <span class="toc-text">RL Reading Note: Deep COACH</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Deep-COACH-Deep-Reinforcement-Learning-from-Policy-Dependent-Human-Feedback"><span class="toc-number">1.1.</span> <span class="toc-text">1. Deep COACH: Deep Reinforcement Learning from Policy-Dependent Human Feedback</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Motivation-adjust-COACH-to-making-use-of-the-higher-dimensional-data"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1. Motivation: adjust COACH to making use of the higher dimensional data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Properties"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2. Properties:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Experiment-results"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3. Experiment results:</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RL-Reading-Note-Deep-COACH"><span class="toc-number">1.</span> <span class="toc-text">RL Reading Note: Deep COACH</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Deep-COACH-Deep-Reinforcement-Learning-from-Policy-Dependent-Human-Feedback"><span class="toc-number">1.1.</span> <span class="toc-text">1. Deep COACH: Deep Reinforcement Learning from Policy-Dependent Human Feedback</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Motivation"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1. Motivation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Properties"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2. Properties:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Experiment-results"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3. Experiment results:</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -298,8 +299,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
     
     
     
