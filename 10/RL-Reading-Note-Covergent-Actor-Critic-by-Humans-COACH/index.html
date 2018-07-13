@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
@@ -53,7 +53,7 @@
     <script src="/blog/scripts/main.js" defer></script>
     <!-- 百度统计  -->
     
-    <!-- 谷歌统计  -->
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 </head>
 
@@ -61,7 +61,7 @@
         <body class="post-body">
     
     
-<header class="header">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -213,12 +213,13 @@
 </ul>
 <h3 id="1-3-Advantage-Function-evaluate-how-recent-behavior-is-different-from-the-trainer’s-desired-policy"><a href="#1-3-Advantage-Function-evaluate-how-recent-behavior-is-different-from-the-trainer’s-desired-policy" class="headerlink" title="1.3. Advantage Function: evaluate how recent behavior is different from the trainer’s desired policy"></a>1.3. Advantage Function: evaluate how recent behavior is different from the trainer’s desired policy</h3><ul>
 <li>Advantage function can successfully represent threee different kinds of feedback schemes<ul>
-<li><strong>Diminishing Feedback</strong>: basic TAMER can’t catch the change with time, it has to keep giving positive feedback on good behaviors; On the contrary, COACH requires the user stops giving positive feedback after the agent learns desirable policy. </li>
-<li><strong>Differential Feedback</strong> </li>
+<li><strong>Diminishing Feedback</strong>: basic TAMER can’t catch the change with time, it has to keep giving positive feedback on good behaviors; On the contrary, COACH requires the user stops giving positive feedback after the agent learns desirable policy.</li>
+<li><strong>Differential Feedback</strong></li>
 <li><strong>Policy Shaping</strong></li>
 </ul>
 </li>
-<li>$f_{t} =A^{\pi}(s, a)= Q^{\pi}(s_t, a_t) - V^{\pi}(s_t)$</li>
+<li>Advantage function: <script type="math/tex">f_{t} =A^{\pi}(s, a)= Q^{\pi}(s_t, a_t) - V^{\pi}(s_t)</script></li>
+<li>Update Rules: policy gradient algorithm with the form<script type="math/tex; mode=display">{\theta}_{t+1} ={\theta}_t + {\alpha} f_{t+1}e_{\lambda}</script><script type="math/tex; mode=display">e_{\lambda'} = \lambda' e_{ \lambda' }+ \frac{1}{\pi_{ \theta _t}(s_{t-d}, a_{t-d})} \triangledown _{ \theta _t} \pi_{ \theta _t}(s_{t-d}, a_{t-d})</script></li>
 </ul>
 <h3 id="1-4-Comparison-to-TAMER"><a href="#1-4-Comparison-to-TAMER" class="headerlink" title="1.4. Comparison to TAMER:"></a>1.4. Comparison to TAMER:</h3><ul>
 <li>TAMER might have the <strong>forgetting</strong> of learned behavior issue</li>
@@ -235,7 +236,7 @@
 </ul>
 </li>
 <li>COACH agent:<ul>
-<li>Maintains multiple eligibility traces with different temporal decay rates: $\lambda = 0.95$ for feedback +1 and -1, $\lambda = 0.9999$ for feedback +4 </li>
+<li>Maintains multiple eligibility traces with different temporal decay rates: $\lambda = 0.95$ for feedback +1 and -1, $\lambda = 0.9999$ for feedback +4</li>
 <li>feedback-action delay d=6, which is 0.198 seconds</li>
 <li>use an actor-critic parameter-update rather than using the gradient of the policy</li>
 </ul>
@@ -684,7 +685,7 @@ jsonContent:
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
 
