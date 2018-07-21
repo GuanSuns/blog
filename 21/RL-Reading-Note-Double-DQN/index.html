@@ -259,7 +259,7 @@ network-structure"></p>
 </li>
 <li><strong>Atari Game</strong><ul>
 <li>Same low-level convolutional structure as DQN: 3 convolutional layers followed by 2 fully-connected layer.</li>
-<li>Three convolutional layers: first convolutional layer: 32 8 <em> 8 filters with stride 4; second: 64 4 </em> 4 filters with stride 2; third: 64 3 * 3 filters with stride 1.</li>
+<li>Three convolutional layers: first convolutional layer: 32 $8 \times 8$ filters with stride 4; second: 64 $4 \times 4$ filters with stride 2; third: 64 $3 \times 3$ filters with stride 1.</li>
 <li>Value and advantage streams both have a fully connected layer with 512 units.</li>
 <li>Combine value and advantage streams using equation (9).</li>
 <li><strong>Slightly lower the learning rate</strong> since it can deteriorate the performance.</li>
@@ -355,26 +355,6 @@ network-structure"></p>
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
