@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        Lin Guan&#39;s Blog
+        Deep RL from Human Preferences · Lin Guan&#39;s Blog
         
     </title>
     <link rel="icon" href= https://image-1252075188.cos.na-toronto.myqcloud.com/favicon.ico>
@@ -53,17 +53,28 @@
     <script src="/blog/scripts/main.js" defer></script>
     <!-- 百度统计  -->
     
-    <!-- 谷歌统计  -->
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 </head>
 
     
+        <body class="post-body">
     
-<header class="header">
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/blog/" >Lin Guan&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Deep RL from Human Preferences</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/blog/>Lin Guan's Blog</a>
 </header>
@@ -71,21 +82,60 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/blog/)"></div>
+    <div class="site-intro-img" style="background-image: url(/blog/intro/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            Deep RL from Human Preferences
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Deep Learning>Deep Learning</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Reinforcement Learning>Reinforcement Learning</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Preferences Learning>Preferences Learning</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/blog/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/07/22</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -153,97 +203,89 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="RL-Reading-Note-Deep-Reinforcement-Learning-from-Human-Preferences"><a href="#RL-Reading-Note-Deep-Reinforcement-Learning-from-Human-Preferences" class="headerlink" title="RL Reading Note: Deep Reinforcement Learning from Human Preferences"></a>RL Reading Note: Deep Reinforcement Learning from Human Preferences</h1><h2 id="1-Motivation"><a href="#1-Motivation" class="headerlink" title="1. Motivation"></a>1. Motivation</h2><ul>
+<li>Sometimes no reward function is available</li>
+<li>Need to decrease the number of feedback: using human feedback directly as a reward function is prohibitively expensive for RL</li>
+<li>It’s easier for humans to provide consistent comparisons than consistent absolute scores</li>
+<li>Maybe: scale human feedback up to deep RL and to learn much more complex behavior</li>
+</ul>
+<h2 id="2-Two-ways-to-evaluate-the-behavior"><a href="#2-Two-ways-to-evaluate-the-behavior" class="headerlink" title="2. Two ways to evaluate the behavior"></a>2. Two ways to evaluate the behavior</h2><ul>
+<li><p><strong>Quantitative</strong>: preferences $\succ$ can be generated by reward function r, then the agent will seek to maximize the total rewards.  <script type="math/tex">((o_0^1, a_0^1), ..., (o_{k-1}^1, a_{k-1}^1)) \succ ((o_0^2, a_0^2), ..., (o_{k-1}^2, a_{k-1}^2))</script> whenever <script type="math/tex">r(o_0^1, a_0^1) +  ... +  r(o_{k-1}^1, a_{k-1}^1)\succ r(o_0^2, a_0^2) + ... + r(o_{k-1}^2, a_{k-1}^2)</script></p>
+</li>
+<li><p><strong>Qualitative</strong>: sometimes we don’t have reward function to quantitatively evaluate the behaviors. In this case, all people can do is qualitatively evaluate how well the agent satisfies the human’s preferences.</p>
+</li>
+</ul>
+<h2 id="3-Assumptions"><a href="#3-Assumptions" class="headerlink" title="3. Assumptions"></a>3. Assumptions</h2><ul>
+<li>There is a human overseer who can express preferences between trajectory segments.</li>
+<li>it’s not assumed that people can reset the system to an arbitrary state (no random start)</li>
+</ul>
+<h2 id="4-Algorithm-asynchronous"><a href="#4-Algorithm-asynchronous" class="headerlink" title="4. Algorithm (asynchronous)"></a>4. Algorithm (asynchronous)</h2><ul>
+<li><strong>Optimize the policy</strong><ul>
+<li>Use the learned reward function $\hat{r}(o_t, a_t)$ to optimize the policy. </li>
+<li>Can use any policy gradient methods like A2C or TRPO.</li>
+<li>Normalize the rewards produced by $\hat{r}(o_t, a_t)$ to have zero mean and constant std.</li>
+</ul>
+</li>
+<li><strong>Preference Elicitation</strong><ul>
+<li>Record human judgment $(\sigma^{1}, \sigma^{2}, \mu)$</li>
+</ul>
+</li>
+<li><strong>Fitting the Reward Function</strong><ul>
+<li>Loss function:<br><img src="figure1.png" alt="figure 1"></li>
+<li>Fit an ensemble of predictors: independently normalize each of these predictors and then average the results</li>
+<li>Prevent overfitting: use $l^2$ regularization (keep validation loss between 1.1 and 1.5 times the training loss) and apply dropout.</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-Implementations-and-Experiments"><a href="#5-Implementations-and-Experiments" class="headerlink" title="5. Implementations and Experiments"></a>5. Implementations and Experiments</h2><ul>
+<li>Parameters:<ul>
+<li>Human feedbak: 1-2 sentence description</li>
+<li>Length of each trajectory segment: 1 to 2 seconds</li>
+</ul>
+</li>
+<li>Result:<ul>
+<li>Perform poorly on QBert but good on Enduro</li>
+</ul>
+</li>
+<li>Understand the result:<ul>
+<li>Training with learned reward functions tends to be <strong>less stable and higher variance</strong>, while having a <strong>comparable mean performance</strong>.</li>
+<li>By 1400 labels, the algorithm performs slightly better than if it had simply been give the true reward, perhaps because the <strong>learned reward function is slightly better shaped</strong>: the reward learning procedure assigns <strong>positive rewards</strong> to all behaviors that typically followed by high <strong>true reward</strong></li>
+<li>Human feedback works better when it serves as <strong>bonus reward</strong></li>
+<li><strong>Issue</strong>: <strong>Short clips in Qbert can be confusing and hard to evaluate</strong></li>
+<li>For continuous control tasks, predicting comparisons work much better than predicting scores</li>
+<li>Ask humans to compare longer clips is significantly more helpful per clip and significantly less helpful per frame: it is easier to compare <strong>longer clips</strong> because the provide <strong>more context</strong> than single frames.</li>
+</ul>
+</li>
+</ul>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/blog/21/RL-Reading-Note-Double-DQN/" title= RL Reading Note: Double DQN >
+                    <span>Previous Post</span>
+                    <span>RL Reading Note: Double DQN</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
     
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
-        <article class="index-post">
-            <a class="abstract-title" href = "/blog/15/CS373-Week-12/" >
-                
-                    <span>CS373 Week 12</span>
-            </a>
-            <a class="content-show-full" href = "/blog/15/CS373-Week-12/" >
-                <div class="abstract-content">
-                    
-What did you do last week?Last week was a relatively easy week. We had a group meeting right after we got our user stories. We were happy to find that those user stories are not that difficult to resolve. Hopefully this phase can take less time than all the previous phases. We always spent much ...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = CS373>CS373</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/04/15</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/blog/08/CS373-Week-11/" >
-                
-                    <span>CS373 Week 11</span>
-            </a>
-            <a class="content-show-full" href = "/blog/08/CS373-Week-11/" >
-                <div class="abstract-content">
-                    
-What did you do last week?Last week, we finished our IDB 3. I was so delighted since it was the first time that our team had got everything done before the presentation day. We went through some hard time in IDB 2 and we had several arguments over the tasks assignment and peer review. But fortun...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = CS373>CS373</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/04/08</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/blog/01/CS373-Week-10/" >
-                
-                    <span>CS373 Week 10</span>
-            </a>
-            <a class="content-show-full" href = "/blog/01/CS373-Week-10/" >
-                <div class="abstract-content">
-                    
-What did you do last week?The past week was very crucial for our group. We experienced some disputes over the peer review since I and another team member gave 3 team members a “less-satisfactory” in the peer review. Fortunately, after several meetings and discussions on Slack, we realized that m...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = CS373>CS373</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/04/01</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
-    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -278,6 +320,13 @@ What did you do last week?The past week was very crucial for our group. We exper
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RL-Reading-Note-Deep-Reinforcement-Learning-from-Human-Preferences"><span class="toc-number">1.</span> <span class="toc-text">RL Reading Note: Deep Reinforcement Learning from Human Preferences</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Motivation"><span class="toc-number">1.1.</span> <span class="toc-text">1. Motivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Two-ways-to-evaluate-the-behavior"><span class="toc-number">1.2.</span> <span class="toc-text">2. Two ways to evaluate the behavior</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Assumptions"><span class="toc-number">1.3.</span> <span class="toc-text">3. Assumptions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Algorithm-asynchronous"><span class="toc-number">1.4.</span> <span class="toc-text">4. Algorithm (asynchronous)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Implementations-and-Experiments"><span class="toc-number">1.5.</span> <span class="toc-text">5. Implementations and Experiments</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
@@ -704,7 +753,7 @@ jsonContent:
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
 
