@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        Lin Guan&#39;s Blog
+        Relevant Papers · Lin Guan&#39;s Blog
         
     </title>
     <link rel="icon" href= https://image-1252075188.cos.na-toronto.myqcloud.com/favicon.ico>
@@ -53,17 +53,28 @@
     <script src="/blog/scripts/main.js" defer></script>
     <!-- 百度统计  -->
     
-    <!-- 谷歌统计  -->
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 </head>
 
     
+        <body class="post-body">
     
-<header class="header">
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/blog/" >Lin Guan&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Relevant Papers</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/blog/>Lin Guan's Blog</a>
 </header>
@@ -71,21 +82,56 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/blog/)"></div>
+    <div class="site-intro-img" style="background-image: url(/blog/intro/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            Relevant Papers
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Reinforcement Learning>Reinforcement Learning</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/blog/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/07/23</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -153,45 +199,122 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/blog/22/Deep-RL-from-Human-Preferences/" >
-                
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="Relevant-Papers"><a href="#Relevant-Papers" class="headerlink" title="Relevant Papers"></a>Relevant Papers</h1><h2 id="1-Preference-Based-RL"><a href="#1-Preference-Based-RL" class="headerlink" title="1. Preference-Based RL"></a>1. Preference-Based RL</h2><h3 id="1-1-Motivation"><a href="#1-1-Motivation" class="headerlink" title="1.1. Motivation"></a>1.1. Motivation</h3><p>we can directly learn from an expert’s preferences instead of a hand-designed numeric reward (agent’s performance can be very sensitive to the used numeric values)</p>
+<h3 id="1-2-Problems"><a href="#1-2-Problems" class="headerlink" title="1.2. Problems:"></a>1.2. Problems:</h3><ul>
+<li><p>Do not explicit state the assumption</p>
+</li>
+<li><p>Lack coherent framework</p>
+</li>
+<li><p>How to express pairwise comparisons</p>
+</li>
+<li><p>Partial order: incomparable pairs (or difference can be infinitesimal)</p>
+</li>
+</ul>
+<h3 id="1-3-Main-approaches"><a href="#1-3-Main-approaches" class="headerlink" title="1.3. Main approaches"></a>1.3. Main approaches</h3><h4 id="1-3-1-Types-of-preferences"><a href="#1-3-1-Types-of-preferences" class="headerlink" title="1.3.1. Types of preferences"></a>1.3.1. Types of preferences</h4><ul>
+<li>state</li>
+<li>action</li>
+<li>trajectory</li>
+</ul>
+<h4 id="1-3-2-Approaches"><a href="#1-3-2-Approaches" class="headerlink" title="1.3.2. Approaches"></a>1.3.2. Approaches</h4><ul>
+<li><p>Learn a utility functions</p>
+</li>
+<li><p>Learn a policy: </p>
+<ul>
+<li>induce a distribution over a parametric policy space</li>
+<li>compare and rank policies</li>
+</ul>
+</li>
+<li><p>Learn a preference model</p>
+</li>
+</ul>
+<h3 id="1-4-Action-Preferences"><a href="#1-4-Action-Preferences" class="headerlink" title="1.4. Action Preferences"></a>1.4. Action Preferences</h3><h4 id="1-4-1-Notes"><a href="#1-4-1-Notes" class="headerlink" title="1.4.1. Notes"></a>1.4.1. Notes</h4><ul>
+<li>feedback concerning the long-term return should be preferred: but this requires expert to be really familiar with the expected long-term outcome</li>
+</ul>
+<h4 id="1-4-2-Papers"><a href="#1-4-2-Papers" class="headerlink" title="1.4.2. Papers"></a>1.4.2. Papers</h4><ul>
+<li><p>J. Fürnkranz, E. Hüllermeier, W. Cheng, and S.-H. Park. <strong>Preference-based reinforcement learning: A formal framework and a policy iteration algorithm</strong>. Machine Learning, 89 (1-2):123–156, 2012. Special Issue of Selected Papers from ECML/PKDD-11</p>
+<ul>
+<li><a href="https://link.springer.com/content/pdf/10.1007%2Fs10994-012-5313-8.pdf" target="_blank" rel="noopener">https://link.springer.com/content/pdf/10.1007%2Fs10994-012-5313-8.pdf</a></li>
+</ul>
+</li>
+<li><p>E. Hüllermeier, J. Fürnkranz, W. Cheng, and K. Brinker. <strong>Label ranking by learning pairwise preferences</strong>. Artificial Intelligence, 172(16–17):1897–1916, 2008.</p>
+<ul>
+<li><a href="http://weiweicheng.com/research/papers/cheng-ai08.pdf" target="_blank" rel="noopener">http://weiweicheng.com/research/papers/cheng-ai08.pdf</a></li>
+<li>Combined classifiers via voting or weighted voting</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-5-State-Preferences"><a href="#1-5-State-Preferences" class="headerlink" title="1.5. State Preferences"></a>1.5. State Preferences</h3><h4 id="1-5-1-Notes"><a href="#1-5-1-Notes" class="headerlink" title="1.5.1. Notes"></a>1.5.1. Notes</h4><ul>
+<li>more informative than action preferences because they define relations between parts of the global state space</li>
+<li>but also suffer from the <strong>long-term/short-term optimality problem</strong></li>
+<li>State preferences are <strong>slightly less demanding for the expert</strong> as it is not required to compare actions for a given state. However, the expert still needs to estimate the future outcome of the policy for a given state.</li>
+<li><strong>Short-term optimality</strong>: Short-term state preferences do not define a trade-off, because it is unclear whether visiting an undominated state once should be preferred over visiting a rarely dominated state multiple times.</li>
+</ul>
+<h4 id="1-5-2-Papers"><a href="#1-5-2-Papers" class="headerlink" title="1.5.2. Papers"></a>1.5.2. Papers</h4><ul>
+<li><strong>Long-term</strong>: C. Wirth and J. Fürnkranz. <strong>A policy iteration algorithm for learning from preference-based feedback</strong>. In Advances in Intelligent Data Analysis XII: 12th International Symposium (IDA-13), volume 8207 of LNCS, pages 427–437. 2013a.<ul>
+<li><a href="https://link.springer.com/content/pdf/10.1007%2F978-3-642-41398-8.pdf" target="_blank" rel="noopener">https://link.springer.com/content/pdf/10.1007%2F978-3-642-41398-8.pdf</a></li>
+</ul>
+</li>
+<li><strong>Short-term</strong>: (Optional, Robot Locomotion)M. Zucker, J. A. Bagnell, C. Atkeson, and J. Kuffner, Jr. <strong>An optimization approach to rough terrain locomotion</strong>. In Proceedings of the IEEE International Conference on Robotics and Automation (ICRA-10), pages 3589–3595. 2010.<ul>
+<li><a href="http://www.cs.cmu.edu/~cga/papers/zucker-icra10.pdf" target="_blank" rel="noopener">http://www.cs.cmu.edu/~cga/papers/zucker-icra10.pdf</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="1-6-Trajectory-Preferences"><a href="#1-6-Trajectory-Preferences" class="headerlink" title="1.6. Trajectory Preferences"></a>1.6. Trajectory Preferences</h3><h4 id="1-6-1-Notes"><a href="#1-6-1-Notes" class="headerlink" title="1.6.1. Notes"></a>1.6.1. Notes</h4><ul>
+<li>The <strong>least demanding</strong> preferences type for the expert as she can directly evaluate the outcomes of full trajectories</li>
+<li><strong>Temporal credit assignment problem</strong>: need to determine which states or actions are responsible for the encountered </li>
+<li>In practice, almost no algorithm known to the authors (PbRL Survey) is capable of dealing with preferences between trajectories with different initial states. (<strong>Deep RL from Human Preferences</strong> uses trajectory segments with different initial states)</li>
+</ul>
+<h4 id="1-6-2-Papers"><a href="#1-6-2-Papers" class="headerlink" title="1.6.2. Papers"></a>1.6.2. Papers</h4><ul>
+<li><p><strong>A Bayesian Approach for Policy Learning from Trajectory Preference Queries</strong>, NIPS 2012</p>
+<ul>
+<li><a href="http://papers.nips.cc/paper/4805-a-bayesian-approach-for-policy-learning-from-trajectory-preference-queries.pdf" target="_blank" rel="noopener">http://papers.nips.cc/paper/4805-a-bayesian-approach-for-policy-learning-from-trajectory-preference-queries.pdf</a></li>
+<li><strong>Induce a distribution over a parametric policy space</strong></li>
+<li>Generate trajectories pair using ROLLOUT</li>
+</ul>
+</li>
+<li><p>R. Busa-Fekete, B. Szörényi, P. Weng, W. Cheng, and E. Hüllermeier. <strong>Preference-based evolutionary direct policy search</strong>. In Proceedings of the ICRA Workshop on Autonomous Learning, 2013.</p>
+<ul>
+<li><a href="http://www.ecmlpkdd2013.org/wp-content/uploads/2013/09/PBRL_08-BusaFekete.pdf" target="_blank" rel="noopener">http://www.ecmlpkdd2013.org/wp-content/uploads/2013/09/PBRL_08-BusaFekete.pdf</a></li>
+<li><strong>Compare and rank policies</strong></li>
+<li>Generate trajectories pair using ROLLOUT</li>
+<li>optimization can be performed with algorithms similar to <em>evolutionary direct policy search</em> (EDPS; Heidrich Meisner and Igel 2009)</li>
+</ul>
+</li>
+<li><p><strong>Deep Reinforcement Learning from Human Preferences</strong>, Paul F. Christiano, NIPS 2017</p>
+<ul>
+<li><a href="http://papers.nips.cc/paper/7017-deep-reinforcement-learning-from-human-preferences" target="_blank" rel="noopener">http://papers.nips.cc/paper/7017-deep-reinforcement-learning-from-human-preferences</a></li>
+</ul>
+</li>
+</ul>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/blog/22/Deep-RL-from-Human-Preferences/" title= RL Reading Note: Deep RL from Human Preferences >
+                    <span>Previous Post</span>
                     <span>RL Reading Note: Deep RL from Human Preferences</span>
-            </a>
-            <a class="content-show-full" href = "/blog/22/Deep-RL-from-Human-Preferences/" >
-                <div class="abstract-content">
-                    RL Reading Note: Deep Reinforcement Learning from Human Preferences1. Motivation
-Sometimes no reward function is available
-Need to decrease the number of feedback: using human feedback directly as a reward function is prohibitively expensive for RL
-It’s easier for humans to provide consistent com...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Deep Learning>Deep Learning</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Reinforcement Learning>Reinforcement Learning</a>
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Preferences Learning>Preferences Learning</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/07/22</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
-    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -226,6 +349,13 @@ It’s easier for humans to provide consistent com...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Relevant-Papers"><span class="toc-number">1.</span> <span class="toc-text">Relevant Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Preference-Based-RL"><span class="toc-number">1.1.</span> <span class="toc-text">1. Preference-Based RL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Motivation"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1. Motivation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Problems"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2. Problems:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Main-approaches"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3. Main approaches</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-Types-of-preferences"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.3.1. Types of preferences</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-Approaches"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">1.3.2. Approaches</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Action-Preferences"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4. Action Preferences</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-Notes"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">1.4.1. Notes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-Papers"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">1.4.2. Papers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-State-Preferences"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.5. State Preferences</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-1-Notes"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">1.5.1. Notes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-2-Papers"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">1.5.2. Papers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-Trajectory-Preferences"><span class="toc-number">1.1.6.</span> <span class="toc-text">1.6. Trajectory Preferences</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-Notes"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">1.6.1. Notes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-Papers"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">1.6.2. Papers</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
@@ -686,7 +816,7 @@ jsonContent:
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
 
