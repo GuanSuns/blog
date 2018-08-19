@@ -222,7 +222,7 @@
 </ul>
 <h2 id="A-policy-Iteration-Algorithm-for-Learning-from-Preference-Based-Feedback"><a href="#A-policy-Iteration-Algorithm-for-Learning-from-Preference-Based-Feedback" class="headerlink" title="A policy Iteration Algorithm for Learning from Preference-Based Feedback **"></a>A policy Iteration Algorithm for Learning from Preference-Based Feedback **</h2><ul>
 <li>Use feedback based on <strong>complete trajectories</strong></li>
-<li>$\clubsuit$ $Pr(a|s)$ follows the estimation in “Pairwise Neural Network Classifiers with Probabilistic Outputs”: <script type="math/tex">Pr(a|s) = \frac{1}{\sum_{a' \in A(s), a' \neq a}{\frac{1}{Pr(a \succ a' |s )}}  - (|A(s)| - 2) }</script></li>
+<li>$\clubsuit$ $Pr(a|s)$ follows the estimation in “Pairwise Neural Network Classifiers with Probabilistic Outputs”:<script type="math/tex; mode=display">Pr(a|s) = \frac{1}{\sum_{a' \in A(s), a' \neq a}{\frac{1}{Pr(a \succ a' |s )}}  - (|A(s)| - 2) }</script></li>
 <li>$\clubsuit$ Use simple boosting update to improve $Pr(a \succ a’ |s)$</li>
 <li>Definition of preference: $Pr(T_1 \succ T_2 | m=p) = \frac{p}{n}$, where m is the number of <strong>decisive states</strong></li>
 <li>$Pr(s \in M) = \frac{1}{2}$, $Pr(a \succ a’ |s, T_1 \succ T_2) = \frac{n+1}{2n}$, where n is the number of <strong>overlapping states</strong> </li>
@@ -232,7 +232,7 @@
 <li>How to reuse past preferences (replay buffer): Reweighting Old Preferences.</li>
 <li>How to handle conflicting preferences</li>
 <li>How to understand human feedback: <ul>
-<li>“$a<em>t &gt; a</em>{t-1}$” might be more reasonable but hard to implement.</li>
+<li>“<script type="math/tex">a_t > a_{t-1}</script>“ might be more reasonable but hard to implement.</li>
 <li>“$a_t$ better than any other”, need to handle confiction in replay buffer.</li>
 </ul>
 </li>
@@ -322,52 +322,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
