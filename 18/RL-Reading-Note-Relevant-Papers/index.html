@@ -233,10 +233,11 @@
 <li>Use algorithms like EXP3 to solve exploration/exploitation dilemma</li>
 </ul>
 <h2 id="Preference-based-Policy-Learning"><a href="#Preference-based-Policy-Learning" class="headerlink" title="Preference-based Policy Learning *"></a>Preference-based Policy Learning *</h2><ul>
-<li>$\clubsuit$ <strong>Process</strong>: the robot demonstrates a new policy $\rightarrow$ the expert ranks the policies (human’s preferences will be added to the constraints set C)  $\rightarrow$ <strong>learn a policy return estimate J built from all constraints in C</strong> $\rightarrow$ generate new policy based on policy return estimate</li>
+<li>$\clubsuit$ <strong>Process</strong>: the robot demonstrates a new policy $\rightarrow$ the expert ranks the policies (human’s preferences will be added to the constraints set C) 88 $\rightarrow$ <strong>learn a policy return estimate J built from all constraints in C</strong> $\rightarrow$ generate new policy based on policy return estimate</li>
 <li>Use BvR to map policy into real valued vector $\mu$</li>
 <li>$\clubsuit$ Use a standard constrained convex optimization formula to learn <strong>policy return estimation</strong></li>
 <li>Can’t use gradient-like methods since the policy return estimate is not defined on the parametric representation space of the policy: use $1+\lambda - ES$ algorithm instead.</li>
+<li>Need to think about parametric representation of policies and the behavioral representation of policies.</li>
 </ul>
 <h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
 <li>How to reuse past preferences (replay buffer): Reweighting Old Preferences.</li>
@@ -247,6 +248,7 @@
 </ul>
 </li>
 <li>Under TAMER settings, no need to worry about how to elicit trajectories for comparison, but need to think about what to compare (current trajectory vs what) and the length of clips to be evaluated.</li>
+<li>Current preference learning frameworks do not intend to handle the case that human preferences might change. They only compare two specific trajectories.</li>
 <li>How to convert preferences to policy<ul>
 <li>pairwise model or something else? (pairwise might be more efficient and precise)</li>
 </ul>
@@ -332,6 +334,20 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
