@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        Papers: RL with Human Feedback · Lin Guan&#39;s Blog
+        
+    </title>
+    <link rel="icon" href= https://image-1252075188.cos.na-toronto.myqcloud.com/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/blog/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            overflow: hidden;
+            box-shadow: -0.1rem 0 0.5rem 0 rgba(0, 0, 0, 0.5);
+        }
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /blog/css/style.css?v=20180120 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/blog/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/blog/" >Lin Guan&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Papers: RL with Human Feedback</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/blog/>Lin Guan's Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(/blog/intro/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Papers: RL with Human Feedback
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Reinforcement Learning>Reinforcement Learning</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Human Feedback>Human Feedback</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/blog/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/09/02</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/blog/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="Relevant-Papers-learning-through-human-feedback"><a href="#Relevant-Papers-learning-through-human-feedback" class="headerlink" title="Relevant Papers: learning through human feedback"></a>Relevant Papers: learning through human feedback</h1><h2 id="1-Reward-Shaping"><a href="#1-Reward-Shaping" class="headerlink" title="1. Reward Shaping"></a>1. Reward Shaping</h2><h3 id="1-1-Difficulties"><a href="#1-1-Difficulties" class="headerlink" title="1.1. Difficulties"></a>1.1. Difficulties</h3><ul>
+<li>Human feedback signals may be infrequent, or occasionally inconsistent with the optimal policy.</li>
+<li>The ambiguity of translating a statement like “yes, that’s right” or “no” into a reward.</li>
+</ul>
+<h2 id="1-2-Papers"><a href="#1-2-Papers" class="headerlink" title="1.2. Papers"></a>1.2. Papers</h2><h4 id="C-L-Isbell-C-Shelton-M-Kearns-S-Singh-and-P-Stone-“A-social-reinforcement-learning-agent-”-in-Proc-of-the-5th-Intl-Conf-on-Autonomous-Agents-pp-377–384-2001"><a href="#C-L-Isbell-C-Shelton-M-Kearns-S-Singh-and-P-Stone-“A-social-reinforcement-learning-agent-”-in-Proc-of-the-5th-Intl-Conf-on-Autonomous-Agents-pp-377–384-2001" class="headerlink" title="C. L. Isbell, C. Shelton, M. Kearns, S. Singh, and P. Stone, “A social reinforcement learning agent,” in Proc. of the 5th Intl. Conf. on Autonomous Agents , pp. 377–384, 2001."></a>C. L. Isbell, C. Shelton, M. Kearns, S. Singh, and P. Stone, “A social reinforcement learning agent,” in Proc. of the 5th Intl. Conf. on Autonomous Agents , pp. 377–384, 2001.</h4><h4 id="H-S-Chang-“Reinforcement-learning-with-supervision-by-combining-multiple-learnings-and-expert-advices-”-in-Proc-of-the-American-Control-Conference-2006"><a href="#H-S-Chang-“Reinforcement-learning-with-supervision-by-combining-multiple-learnings-and-expert-advices-”-in-Proc-of-the-American-Control-Conference-2006" class="headerlink" title="H. S. Chang, “Reinforcement learning with supervision by combining multiple learnings and expert advices,” in Proc. of the American Control Conference , 2006."></a>H. S. Chang, “Reinforcement learning with supervision by combining multiple learnings and expert advices,” in Proc. of the American Control Conference , 2006.</h4><h4 id="W-B-Knox-and-P-Stone-“Tamer-Training-an-agent-manually-via-evaluative-reinforcement-”-in-Proc-of-the-7th-IEEE-ICDL-pp-292–297-2008"><a href="#W-B-Knox-and-P-Stone-“Tamer-Training-an-agent-manually-via-evaluative-reinforcement-”-in-Proc-of-the-7th-IEEE-ICDL-pp-292–297-2008" class="headerlink" title="W. B. Knox and P. Stone, “Tamer: Training an agent manually via evaluative reinforcement,” in Proc. of the 7th IEEE ICDL , pp. 292–297, 2008."></a>W. B. Knox and P. Stone, “Tamer: Training an agent manually via evaluative reinforcement,” in Proc. of the 7th IEEE ICDL , pp. 292–297, 2008.</h4><h4 id="A-Tenorio-Gonzalez-E-Morales-and-L-Villaseor-Pineda-“Dynamic-reward-shaping-training-a-robot-by-voice-”-in-Advances-in-Artificial-Intelligence–IBERAMIA-pp-483–492-2010"><a href="#A-Tenorio-Gonzalez-E-Morales-and-L-Villaseor-Pineda-“Dynamic-reward-shaping-training-a-robot-by-voice-”-in-Advances-in-Artificial-Intelligence–IBERAMIA-pp-483–492-2010" class="headerlink" title="A. Tenorio-Gonzalez, E.Morales, and L. Villaseor-Pineda, “Dynamic reward shaping: training a robot by voice,” in Advances in Artificial Intelligence–IBERAMIA , pp. 483–492, 2010."></a>A. Tenorio-Gonzalez, E.Morales, and L. Villaseor-Pineda, “Dynamic reward shaping: training a robot by voice,” in Advances in Artificial Intelligence–IBERAMIA , pp. 483–492, 2010.</h4><h4 id="P-M-Pilarski-M-R-Dawson-T-Degris-F-Fahimi-J-P-Carey-and-R-S-Sutton-“Online-human-training-of-a-myoelectric-prosthesis-controller-via-actor-critic-reinforcement-learning-”-in-Proc-of-the-IEEE-ICORR-pp-1–7-2011"><a href="#P-M-Pilarski-M-R-Dawson-T-Degris-F-Fahimi-J-P-Carey-and-R-S-Sutton-“Online-human-training-of-a-myoelectric-prosthesis-controller-via-actor-critic-reinforcement-learning-”-in-Proc-of-the-IEEE-ICORR-pp-1–7-2011" class="headerlink" title="P. M. Pilarski, M. R. Dawson, T. Degris, F. Fahimi, J. P. Carey, and R. S. Sutton, “Online human training of a myoelectric prosthesis controller via actor-critic reinforcement learning,” in Proc. of the IEEE ICORR , pp. 1–7, 2011."></a>P. M. Pilarski, M. R. Dawson, T. Degris, F. Fahimi, J. P. Carey, and R. S. Sutton, “Online human training of a myoelectric prosthesis controller via actor-critic reinforcement learning,” in Proc. of the IEEE ICORR , pp. 1–7, 2011.</h4><h4 id="A-L-Thomaz-and-C-Breazeal-“Teachable-robots-Understanding-human-teaching-behavior-to-build-more-effective-robot-learners-”-Artificial-Intelligence-vol-172-no-6-7-pp-716–737-2008"><a href="#A-L-Thomaz-and-C-Breazeal-“Teachable-robots-Understanding-human-teaching-behavior-to-build-more-effective-robot-learners-”-Artificial-Intelligence-vol-172-no-6-7-pp-716–737-2008" class="headerlink" title="A. L. Thomaz and C. Breazeal, “Teachable robots: Understanding human teaching behavior to build more effective robot learners,” Artificial Intelligence , vol. 172, no. 6-7, pp. 716–737, 2008."></a>A. L. Thomaz and C. Breazeal, “Teachable robots: Understanding human teaching behavior to build more effective robot learners,” Artificial Intelligence , vol. 172, no. 6-7, pp. 716–737, 2008.</h4><h2 id="2-Policy-Shaping"><a href="#2-Policy-Shaping" class="headerlink" title="2. Policy Shaping"></a>2. Policy Shaping</h2><h3 id="2-1-Properties"><a href="#2-1-Properties" class="headerlink" title="2.1. Properties"></a>2.1. Properties</h3><ul>
+<li>Related to work in <strong>transfer learning</strong></li>
+<li>Recent papers have observed that a <strong>more effective</strong> use of human feedback is as direct information about policies</li>
+</ul>
+<h3 id="2-2-Papers"><a href="#2-2-Papers" class="headerlink" title="2.2. Papers"></a>2.2. Papers</h3><h4 id="Shane-Griffith-Kaushik-Subramanian-Jonathan-Scholz-Charles-Isbell-and-Andrea-L-Thomaz-Policy-shaping-Integrating-human-feedback-with-reinforcement-learning-In-Advances-in-Neural-Information-Processing-Systems-2013"><a href="#Shane-Griffith-Kaushik-Subramanian-Jonathan-Scholz-Charles-Isbell-and-Andrea-L-Thomaz-Policy-shaping-Integrating-human-feedback-with-reinforcement-learning-In-Advances-in-Neural-Information-Processing-Systems-2013" class="headerlink" title="Shane Griffith, Kaushik Subramanian, Jonathan Scholz, Charles Isbell, and Andrea L Thomaz. Policy shaping: Integrating human feedback with reinforcement learning. In Advances in Neural Information Processing Systems, 2013. **"></a>Shane Griffith, Kaushik Subramanian, Jonathan Scholz, Charles Isbell, and Andrea L Thomaz. Policy shaping: Integrating human feedback with reinforcement learning. In Advances in Neural Information Processing Systems, 2013. **</h4><ul>
+<li>Define human feedback as ADVICE, the probility (s,a) is optimal is:<script type="math/tex; mode=display">\frac{C^{\Delta _{s,a}}}{C^{\Delta _{s,a}} + (1-C) ^ {\Delta _{s,a}}}</script>where $\Delta$ is the difference between the number of “right” and “wrong” labels, C is the probility that a human might make mistake.</li>
+<li>THe probability of performing s,a according to the feedback policy $\pi _ E$ is <script type="math/tex; mode=display">C^{\Delta _{s,a}} + (1-C) ^ {\sum_{j \neq a} \Delta _{s,j}}</script></li>
+<li>How to use ADVICE: BQL (a kind of Q value) + ADVICE</li>
+<li>ADVICE is <strong>more robust to noisy signal</strong> from human (inconsistent feedback)</li>
+</ul>
+<h4 id="R-Maclin-and-J-W-Shavlik-“Creating-advice-taking-reinforcement-learners-”-Machine-Learning-vol-22-no-1-3-pp-251–281-1996"><a href="#R-Maclin-and-J-W-Shavlik-“Creating-advice-taking-reinforcement-learners-”-Machine-Learning-vol-22-no-1-3-pp-251–281-1996" class="headerlink" title="R.Maclin and J.W. Shavlik, “Creating advice-taking reinforcement learners,” Machine Learning , vol. 22, no. 1-3, pp. 251–281, 1996."></a>R.Maclin and J.W. Shavlik, “Creating advice-taking reinforcement learners,” Machine Learning , vol. 22, no. 1-3, pp. 251–281, 1996.</h4><ul>
+<li>Use KBANN to incorporate knowledge, in the form of simple propositional rules, into a neural network.</li>
+<li>Advice helps prevent converging to local optimal. Good advice helphelp the agent explore states that are useful in finding the optimal plan.</li>
+</ul>
+<h4 id="L-Torrey-J-Shavlik-T-Walker-and-R-Maclin-“Transfer-learning-via-advice-taking-”-in-Advances-in-Machine-Learning-I-Studies-in-Computational-Intelligence"><a href="#L-Torrey-J-Shavlik-T-Walker-and-R-Maclin-“Transfer-learning-via-advice-taking-”-in-Advances-in-Machine-Learning-I-Studies-in-Computational-Intelligence" class="headerlink" title="L. Torrey, J. Shavlik, T. Walker, and R. Maclin, “Transfer learning via advice taking,” in Advances in Machine Learning I, Studies in Computational Intelligence *"></a>L. Torrey, J. Shavlik, T. Walker, and R. Maclin, “Transfer learning via advice taking,” in Advances in Machine Learning I, Studies in Computational Intelligence *</h4><ul>
+<li>All advice rules create constraints on problem solution (in the form of preference, Preference-KBKB)</li>
+<li>Use Inductive logic programming ILP to express first-order logic clauses (skills)</li>
+<li>Skill Trasfer: use RL to select training examples for skills -&gt;human provides mapping between skills to target task -&gt; apply advice and human advice in taget task.</li>
+<li>Robust to bad advice</li>
+</ul>
+<h2 id="3-Human-Demonstration"><a href="#3-Human-Demonstration" class="headerlink" title="3. Human Demonstration"></a>3. Human Demonstration</h2><h3 id="3-1-Properties"><a href="#3-1-Properties" class="headerlink" title="3.1. Properties"></a>3.1. Properties</h3><ul>
+<li>$\clubsuit$ The ability to acquire new behaviors through learning is fundamentally important for the development of generatl purpose agent platforms that can be used for a variety of tasks</li>
+<li>$\clubsuit$ Human teacher provide particularly noisy and suboptimal data due to differences in embodiment and limitations of human ability.</li>
+</ul>
+<h3 id="3-2-Papers"><a href="#3-2-Papers" class="headerlink" title="3.2. Papers"></a>3.2. Papers</h3><h4 id="A-Y-Ng-and-S-Russell-“Algorithms-for-inverse-reinforcement-learning-”-in-Proc-of-the-17th-ICML-2000"><a href="#A-Y-Ng-and-S-Russell-“Algorithms-for-inverse-reinforcement-learning-”-in-Proc-of-the-17th-ICML-2000" class="headerlink" title="A. Y. Ng and S. Russell, “Algorithms for inverse reinforcement learning,” in Proc. of the 17th ICML, 2000."></a>A. Y. Ng and S. Russell, “Algorithms for inverse reinforcement learning,” in Proc. of the 17th ICML, 2000.</h4><ul>
+<li>Algorithm 1: Find the function R that maximizes <script type="math/tex; mode=display">\sum_{s \in S} (Q^{\pi} (s, a_1) - max_{a \in A \setminus  a _1} Q^{\pi}(s, a))</script></li>
+<li>Algorithm 2 (Linear Function Approximation)</li>
+<li>Algorithm 3 (IRL from Sampled Trajectories)</li>
+</ul>
+<h4 id="P-Abbeel-and-A-Y-Ng-“Apprenticeship-learning-via-inverse-reinforcement-learning-”-in-Proc-of-the-21st-ICML-2004"><a href="#P-Abbeel-and-A-Y-Ng-“Apprenticeship-learning-via-inverse-reinforcement-learning-”-in-Proc-of-the-21st-ICML-2004" class="headerlink" title="P. Abbeel and A. Y. Ng, “Apprenticeship learning via inverse reinforcement learning,” in Proc. of the 21st ICML, 2004."></a>P. Abbeel and A. Y. Ng, “Apprenticeship learning via inverse reinforcement learning,” in Proc. of the 21st ICML, 2004.</h4><ul>
+<li>Motivation: the difficulty of manually specifying a reward function in the tasks like driving.</li>
+<li>? Biomechanics and cognitive science research have shown that the reward function, rather than the policy or the value function is the most succinct and robust definition of the task.</li>
+<li>Need Monte Carlo to <strong>sample trajectories</strong>.</li>
+<li>$\clubsuit$ The performance guarantees of this algorithm only depend on matching the feature expectations, not on recovering the true underlying reward function.</li>
+</ul>
+<h4 id="C-Atkeson-and-S-Schaal-“Learning-tasks-from-a-single-demonstration-”-in-Proc-of-the-IEEE-ICRA-pp-1706–1712-1997"><a href="#C-Atkeson-and-S-Schaal-“Learning-tasks-from-a-single-demonstration-”-in-Proc-of-the-IEEE-ICRA-pp-1706–1712-1997" class="headerlink" title="C. Atkeson and S. Schaal, “Learning tasks from a single demonstration,” in Proc. of the IEEE ICRA , pp. 1706–1712, 1997."></a>C. Atkeson and S. Schaal, “Learning tasks from a single demonstration,” in Proc. of the IEEE ICRA , pp. 1706–1712, 1997.</h4><h4 id="M-Taylor-H-B-Suay-and-S-Chernova-“Integrating-reinforcement-learning-with-human-demonstrations-of-varying-ability-”-in-Proc-of-the-Intl-Conf-on-AAMAS-pp-617–624-2011"><a href="#M-Taylor-H-B-Suay-and-S-Chernova-“Integrating-reinforcement-learning-with-human-demonstrations-of-varying-ability-”-in-Proc-of-the-Intl-Conf-on-AAMAS-pp-617–624-2011" class="headerlink" title="M. Taylor, H. B. Suay, and S. Chernova, “Integrating reinforcement learning with human demonstrations of varying ability,” in Proc. of the Intl. Conf. on AAMAS , pp. 617–624, 2011."></a>M. Taylor, H. B. Suay, and S. Chernova, “Integrating reinforcement learning with human demonstrations of varying ability,” in Proc. of the Intl. Conf. on AAMAS , pp. 617–624, 2011.</h4><ul>
+<li>In many domians, collecting training data may beslow, expensive, which motivates the need for ways of making RL algorithms <strong>more sample-efficient</strong>.</li>
+<li>Three ways to use human demonstration to improve independent learning: <ul>
+<li>Value Bonus: when the agent reaches a state suggested by the summarized policy, then add a constant bonus to the Q-value</li>
+<li>Extra Action: when reaching a state suggested by the summarized policy, execute the suggested action</li>
+<li>Probabilistic Policy Reuse: $\pi$-reuse Exploration </li>
+</ul>
+</li>
+</ul>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/blog/18/RL-Reading-Note-Relevant-Papers/" title= RL Reading Note: Relevant Papers >
+                    <span>Previous Post</span>
+                    <span>RL Reading Note: Relevant Papers</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:guanlin@utexas.edu" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/GuanSuns" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Relevant-Papers-learning-through-human-feedback"><span class="toc-number">1.</span> <span class="toc-text">Relevant Papers: learning through human feedback</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Reward-Shaping"><span class="toc-number">1.1.</span> <span class="toc-text">1. Reward Shaping</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Difficulties"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1. Difficulties</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-Papers"><span class="toc-number">1.2.</span> <span class="toc-text">1.2. Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#C-L-Isbell-C-Shelton-M-Kearns-S-Singh-and-P-Stone-“A-social-reinforcement-learning-agent-”-in-Proc-of-the-5th-Intl-Conf-on-Autonomous-Agents-pp-377–384-2001"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">C. L. Isbell, C. Shelton, M. Kearns, S. Singh, and P. Stone, “A social reinforcement learning agent,” in Proc. of the 5th Intl. Conf. on Autonomous Agents , pp. 377–384, 2001.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#H-S-Chang-“Reinforcement-learning-with-supervision-by-combining-multiple-learnings-and-expert-advices-”-in-Proc-of-the-American-Control-Conference-2006"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">H. S. Chang, “Reinforcement learning with supervision by combining multiple learnings and expert advices,” in Proc. of the American Control Conference , 2006.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#W-B-Knox-and-P-Stone-“Tamer-Training-an-agent-manually-via-evaluative-reinforcement-”-in-Proc-of-the-7th-IEEE-ICDL-pp-292–297-2008"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">W. B. Knox and P. Stone, “Tamer: Training an agent manually via evaluative reinforcement,” in Proc. of the 7th IEEE ICDL , pp. 292–297, 2008.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-Tenorio-Gonzalez-E-Morales-and-L-Villaseor-Pineda-“Dynamic-reward-shaping-training-a-robot-by-voice-”-in-Advances-in-Artificial-Intelligence–IBERAMIA-pp-483–492-2010"><span class="toc-number">1.2.0.4.</span> <span class="toc-text">A. Tenorio-Gonzalez, E.Morales, and L. Villaseor-Pineda, “Dynamic reward shaping: training a robot by voice,” in Advances in Artificial Intelligence–IBERAMIA , pp. 483–492, 2010.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#P-M-Pilarski-M-R-Dawson-T-Degris-F-Fahimi-J-P-Carey-and-R-S-Sutton-“Online-human-training-of-a-myoelectric-prosthesis-controller-via-actor-critic-reinforcement-learning-”-in-Proc-of-the-IEEE-ICORR-pp-1–7-2011"><span class="toc-number">1.2.0.5.</span> <span class="toc-text">P. M. Pilarski, M. R. Dawson, T. Degris, F. Fahimi, J. P. Carey, and R. S. Sutton, “Online human training of a myoelectric prosthesis controller via actor-critic reinforcement learning,” in Proc. of the IEEE ICORR , pp. 1–7, 2011.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-L-Thomaz-and-C-Breazeal-“Teachable-robots-Understanding-human-teaching-behavior-to-build-more-effective-robot-learners-”-Artificial-Intelligence-vol-172-no-6-7-pp-716–737-2008"><span class="toc-number">1.2.0.6.</span> <span class="toc-text">A. L. Thomaz and C. Breazeal, “Teachable robots: Understanding human teaching behavior to build more effective robot learners,” Artificial Intelligence , vol. 172, no. 6-7, pp. 716–737, 2008.</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Policy-Shaping"><span class="toc-number">1.3.</span> <span class="toc-text">2. Policy Shaping</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Properties"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1. Properties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Papers"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.2. Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Shane-Griffith-Kaushik-Subramanian-Jonathan-Scholz-Charles-Isbell-and-Andrea-L-Thomaz-Policy-shaping-Integrating-human-feedback-with-reinforcement-learning-In-Advances-in-Neural-Information-Processing-Systems-2013"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">Shane Griffith, Kaushik Subramanian, Jonathan Scholz, Charles Isbell, and Andrea L Thomaz. Policy shaping: Integrating human feedback with reinforcement learning. In Advances in Neural Information Processing Systems, 2013. **</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#R-Maclin-and-J-W-Shavlik-“Creating-advice-taking-reinforcement-learners-”-Machine-Learning-vol-22-no-1-3-pp-251–281-1996"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">R.Maclin and J.W. Shavlik, “Creating advice-taking reinforcement learners,” Machine Learning , vol. 22, no. 1-3, pp. 251–281, 1996.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#L-Torrey-J-Shavlik-T-Walker-and-R-Maclin-“Transfer-learning-via-advice-taking-”-in-Advances-in-Machine-Learning-I-Studies-in-Computational-Intelligence"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">L. Torrey, J. Shavlik, T. Walker, and R. Maclin, “Transfer learning via advice taking,” in Advances in Machine Learning I, Studies in Computational Intelligence *</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Human-Demonstration"><span class="toc-number">1.4.</span> <span class="toc-text">3. Human Demonstration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Properties"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.1. Properties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Papers"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.2. Papers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-Y-Ng-and-S-Russell-“Algorithms-for-inverse-reinforcement-learning-”-in-Proc-of-the-17th-ICML-2000"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">A. Y. Ng and S. Russell, “Algorithms for inverse reinforcement learning,” in Proc. of the 17th ICML, 2000.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#P-Abbeel-and-A-Y-Ng-“Apprenticeship-learning-via-inverse-reinforcement-learning-”-in-Proc-of-the-21st-ICML-2004"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">P. Abbeel and A. Y. Ng, “Apprenticeship learning via inverse reinforcement learning,” in Proc. of the 21st ICML, 2004.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-Atkeson-and-S-Schaal-“Learning-tasks-from-a-single-demonstration-”-in-Proc-of-the-IEEE-ICRA-pp-1706–1712-1997"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">C. Atkeson and S. Schaal, “Learning tasks from a single demonstration,” in Proc. of the IEEE ICRA , pp. 1706–1712, 1997.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#M-Taylor-H-B-Suay-and-S-Chernova-“Integrating-reinforcement-learning-with-human-demonstrations-of-varying-ability-”-in-Proc-of-the-Intl-Conf-on-AAMAS-pp-617–624-2011"><span class="toc-number">1.4.2.4.</span> <span class="toc-text">M. Taylor, H. B. Suay, and S. Chernova, “Integrating reinforcement learning with human demonstrations of varying ability,” in Proc. of the Intl. Conf. on AAMAS , pp. 617–624, 2011.</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 23 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/02</span><a class="archive-post-title" href= "/blog/02/Papers-RL-with-Human-Feedback/" >Papers: RL with Human Feedback</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/18</span><a class="archive-post-title" href= "/blog/18/RL-Reading-Note-Relevant-Papers/" >RL Reading Note: Relevant Papers</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/23</span><a class="archive-post-title" href= "/blog/23/Relevant-Papers/" >Relevant Papers</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/22</span><a class="archive-post-title" href= "/blog/22/Deep-RL-from-Human-Preferences/" >RL Reading Note: Deep RL from Human Preferences</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/21</span><a class="archive-post-title" href= "/blog/21/RL-Reading-Note-Double-DQN/" >RL Reading Note: Double DQN</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/11</span><a class="archive-post-title" href= "/blog/11/RL-Reading-Note-Deep-COACH/" >RL Reading Note: Deep COACH</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/11</span><a class="archive-post-title" href= "/blog/11/RL-Meeting-Note-TAMER-versus-COACH/" >RL Meeting Note: TAMER versus COACH</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/10</span><a class="archive-post-title" href= "/blog/10/RL-Reading-Note-Covergent-Actor-Critic-by-Humans-COACH/" >RL Reading Note: Covergent Actor-Critic by Humans (COACH)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/08</span><a class="archive-post-title" href= "/blog/08/RL-Note-Chapter-12-Eligibility-Traces/" >RL Reading Note: Chapter 12 Eligibility Traces</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span><a class="archive-post-title" href= "/blog/09/RL-Note-Chapter-4-DP/" >RL Reading Note: Chapter 4 DP</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/06</span><a class="archive-post-title" href= "/blog/06/Final-Entry/" >Final Entry</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/blog/15/CS373-Week-12/" >CS373 Week 12</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href= "/blog/08/CS373-Week-11/" >CS373 Week 11</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href= "/blog/01/CS373-Week-10/" >CS373 Week 10</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/25</span><a class="archive-post-title" href= "/blog/25/CS373-Week-9/" >CS373 Week 9</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/11</span><a class="archive-post-title" href= "/blog/11/CS373-Week-8/" >CS373 Week 8</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href= "/blog/04/CS373-Week-7/" >CS373 Week 7</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/25</span><a class="archive-post-title" href= "/blog/25/CS373-Week-6/" >CS373 Week 6</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/18</span><a class="archive-post-title" href= "/blog/18/CS373-Week-5/" >CS373 Week 5</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span><a class="archive-post-title" href= "/blog/11/CS373-Week-4/" >CS373 Week 4</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/04</span><a class="archive-post-title" href= "/blog/04/CS373-Week-3/" >CS373 Week 3</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/28</span><a class="archive-post-title" href= "/blog/28/CS373-Week-2/" >CS373 Week 2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/21</span><a class="archive-post-title" href= "/blog/21/CS373-Week-1/" >CS373 Week 1</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name"><a href= "#">CS373</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Deep Learning</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Reinforcement Learning</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Preferences Learning</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">COACH</a></span>
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/blog/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
+
+
