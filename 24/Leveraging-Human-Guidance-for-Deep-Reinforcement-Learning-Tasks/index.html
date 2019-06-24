@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        CS373 Week 8 · Lin Guan&#39;s Personal Website
+        Leveraging Human Guidance for Deep Reinforcement Learning Tasks · Lin Guan&#39;s Personal Website
         
     </title>
     <link rel="icon" href= https://image-1252075188.cos.na-toronto.myqcloud.com/favicon.ico>
@@ -72,7 +72,7 @@
                 <a href="/blog/" >Lin Guan&#39;s Personal Website</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">CS373 Week 8</a>
+                <a href="#" class="post-name">Leveraging Human Guidance for Deep Reinforcement Learning Tasks</a>
             </div>
     </div>
     
@@ -93,7 +93,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            CS373 Week 8
+            Leveraging Human Guidance for Deep Reinforcement Learning Tasks
             <!-- 404 -->
             
         </h1>
@@ -111,14 +111,18 @@
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = CS373>CS373</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = Human-in-the-Loop>Human-in-the-Loop</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Reinforcement Learning>Reinforcement Learning</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = IJCAI Survey 2019>IJCAI Survey 2019</a>
     
 </div>
             
             <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/blog/static/api/js/share.js"];</script>
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/03/11</span>
+                <span class="post-intro-time">2019/06/24</span>
                 <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                     <span class="iconfont-archer">&#xe604;</span>
                     <span id="busuanzi_value_page_pv"></span>
@@ -201,29 +205,73 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><img src="https://image-1252075188.cos.na-toronto.myqcloud.com/avatar.jpg" alt="Head Shot"></p>
-<h1 id="What-did-you-do-last-week"><a href="#What-did-you-do-last-week" class="headerlink" title="What did you do last week?"></a>What did you do last week?</h1><p>I went through a tough time last week, but I don’t think I survive it. I only got 55/100 in the artificial intelligence midterm and I am pretty sure I made some mistakes in the computer vision exam. The recent 3 weeks have become the darkest periods in my college life.</p>
-<h1 id="What-is-in-your-way"><a href="#What-is-in-your-way" class="headerlink" title="What is in your way?"></a>What is in your way?</h1><p>Obviously, I am enjoying my spring break. I slept for 12 hours yesterday. I will cherish these two relaxing days, because our group will continue to work on our project 2 from the next Tuesday. </p>
-<h1 id="What-will-you-do-next-week"><a href="#What-will-you-do-next-week" class="headerlink" title="What will you do next week?"></a>What will you do next week?</h1><p>Different from other students, my spring break will end on Tuesday since we will begin working on our project next Tuesday. I am still learning React, especially the project structure in React. One of my teammate from backend group told me that the project structure in Flask must consist of module “static”, “template” and so on. However, it seems that the project structure of React must be like “src” and “public”. I am going to figure this out tomorrow.</p>
-<h1 id="What-is-your-experience-of-this-class"><a href="#What-is-your-experience-of-this-class" class="headerlink" title="What is your experience of this class?"></a>What is your experience of this class?</h1><p>After taking several attendance quiz, my grade looks much better now than it was like at the beginning of this course. In addition, although I lost ten points in project 1, I get a pretty good score in the test 1. I have less pressure now in this course and I can begin fully enjoying the teamwork now.</p>
-<h1 id="What’s-my-pick-of-the-week-or-tip-of-the-week"><a href="#What’s-my-pick-of-the-week-or-tip-of-the-week" class="headerlink" title="What’s my pick-of-the-week or tip-of-the-week?"></a>What’s my pick-of-the-week or tip-of-the-week?</h1><p>My tip-of-the-week is “work hard and play hard”. If you are not working hard enough, you won’t realize how valuable your leisure is. Also, playing hard will give you a good refreshment after your hard work. </p>
+        <h1 id="Interactive-Teaching-Strategies-for-Agent-Training"><a href="#Interactive-Teaching-Strategies-for-Agent-Training" class="headerlink" title="Interactive Teaching Strategies for Agent Training"></a>Interactive Teaching Strategies for Agent Training</h1><ul>
+<li><strong>Goal</strong>: They show that using a joint decision-making approach, the amont of attention required from the teacher can be reduced compared to teacher-based approaches. </li>
+<li><strong>Approaches</strong><ul>
+<li>Joint-initiated teaching strategies: the student decides whether to ask for the teacher’s attention based on one of the student-initiated approaches for asking for advice, then the teacher decides whether to provide advice based on one of the teacher-initiated advising approaches.d</li>
+<li>Advise Important requires little attention but wastes advice budget; Correct Important requires more attention but saves advice budget for important states (better performance)</li>
+</ul>
+</li>
+<li><strong>Experimental environment</strong>: Pac-Man game<ul>
+<li>Making mistakes in Pac-Man game is particularly harmful $\rightarrow$ similar to semi-autonomous driving.</li>
+</ul>
+</li>
+<li><strong>Future directions</strong>:<ul>
+<li>Importance heuristic will likely not generalize well to domains where unrecoverable mistakes are rare</li>
+<li>methods for generalizing the teacher’s advice beyond a specific state</li>
+</ul>
+</li>
+</ul>
+<h1 id="Agent-Agnostic-Human-in-the-Loop-Reinforcement-Learning"><a href="#Agent-Agnostic-Human-in-the-Loop-Reinforcement-Learning" class="headerlink" title="Agent-Agnostic Human-in-the-Loop Reinforcement Learning"></a>Agent-Agnostic Human-in-the-Loop Reinforcement Learning</h1><p>TODO</p>
+<h1 id="Policy-Shaping-with-Human-Teacher"><a href="#Policy-Shaping-with-Human-Teacher" class="headerlink" title="Policy Shaping with Human Teacher"></a>Policy Shaping with Human Teacher</h1><ul>
+<li><strong>Goal</strong><ul>
+<li>Find out what happens when data is generated by human teachers.</li>
+<li>Understand the consequences of interpreting a teacher’s silence as an action choice evaluation.</li>
+</ul>
+</li>
+<li><strong>Interpretation of humam feedback: evaluating action choices</strong><ul>
+<li>In direct constrast to the reward shaping algorithms where human feedback is interpreted as an estimation of the sum of future discounted reward.</li>
+</ul>
+</li>
+<li><strong>Concepts mentioned in Related Work</strong><ul>
+<li>Evaluation Channel</li>
+<li>Human guidance</li>
+<li>Policy shaping</li>
+</ul>
+</li>
+<li><strong>Experiment Result</strong><ul>
+<li>Human teachers outperformed the simulated teacher because they were able to recognize many different ways of winning.</li>
+<li>When to give positive, negative, or no feedback have a significant impact on data quality.</li>
+<li>Different iterpretations of silence can increase or decrease performance (e.g. silence might be inpterpreted as ok action).</li>
+<li>It’s interesting to find that there is good performance when teachers are biased towards silence meaning bad, but the learner assumes silence to mean good, despite bias and assumptions being miss matched.</li>
+</ul>
+</li>
+</ul>
+<h1 id="A-Social-Reinforcement-Learning-Agent"><a href="#A-Social-Reinforcement-Learning-Agent" class="headerlink" title="A Social Reinforcement Learning Agent"></a>A Social Reinforcement Learning Agent</h1><ul>
+<li><strong>Robot in online chatting rooms LambdaMOO</strong>: Cobot</li>
+<li><strong>Key Ideas</strong><ul>
+<li>Reward Shaping: Having separate reward functions for each user is a way of asserting the importance of user identity to the learning process.</li>
+<li>We can maintain separate staet spaces as well, in the hopes of simplifying states and thus speeding learning.</li>
+<li>Linear Function Approximator: from RL perspective, they maintain a vector of real-valued weights indexed by the possible actions. A positive weight for some action means that the feature increases the probability of taking that action, while a negative weight decreases the probability .</li>
+</ul>
+</li>
+<li><strong>Experiment Results and Findings</strong><ul>
+<li>Learning must be quick and significant: user fickleness (preferences are not stationary) and data sparisity (inadepuate feedback).</li>
+<li>Reward is not an adepuate metric for the performance: the average cumulative reward received by Cobot actually goes down, since people tend to give less feedback as time goes by.</li>
+<li>A small group of users have highly-uniform policy, which means their preferences are independent of states (e.g. User M seemed to have a strong preference for an action called Roll-Call)</li>
+</ul>
+</li>
+</ul>
 
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
         
-            <li class="next">
-                <a href= "/blog/25/CS373-Week-9/" title= CS373 Week 9 >
-                    <span>Next Post</span>
-                    <span>CS373 Week 9</span>
-                </a>
-            </li>
-        
         
             <li class="previous">
-                <a href= "/blog/04/CS373-Week-7/" title= CS373 Week 7 >
+                <a href= "/blog/02/Papers-RL-with-Human-Feedback/" title= Papers: RL with Human Feedback >
                     <span>Previous Post</span>
-                    <span>CS373 Week 7</span>
+                    <span>Papers: RL with Human Feedback</span>
                 </a>
             </li>
         
@@ -280,7 +328,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-did-you-do-last-week"><span class="toc-number">1.</span> <span class="toc-text">What did you do last week?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-in-your-way"><span class="toc-number">2.</span> <span class="toc-text">What is in your way?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-will-you-do-next-week"><span class="toc-number">3.</span> <span class="toc-text">What will you do next week?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-your-experience-of-this-class"><span class="toc-number">4.</span> <span class="toc-text">What is your experience of this class?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#What’s-my-pick-of-the-week-or-tip-of-the-week"><span class="toc-number">5.</span> <span class="toc-text">What’s my pick-of-the-week or tip-of-the-week?</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Interactive-Teaching-Strategies-for-Agent-Training"><span class="toc-number">1.</span> <span class="toc-text">Interactive Teaching Strategies for Agent Training</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Agent-Agnostic-Human-in-the-Loop-Reinforcement-Learning"><span class="toc-number">2.</span> <span class="toc-text">Agent-Agnostic Human-in-the-Loop Reinforcement Learning</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Shaping-with-Human-Teacher"><span class="toc-number">3.</span> <span class="toc-text">Policy Shaping with Human Teacher</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Social-Reinforcement-Learning-Agent"><span class="toc-number">4.</span> <span class="toc-text">A Social Reinforcement Learning Agent</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
