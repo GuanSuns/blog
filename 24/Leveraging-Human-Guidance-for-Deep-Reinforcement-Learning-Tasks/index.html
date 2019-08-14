@@ -331,8 +331,50 @@
 </ul>
 </li>
 </ul>
-<h1 id="Reinforcement-Learning-from-Simultaneous-Human-and-MDP-Reward"><a href="#Reinforcement-Learning-from-Simultaneous-Human-and-MDP-Reward" class="headerlink" title="Reinforcement Learning from Simultaneous Human and MDP Reward"></a>Reinforcement Learning from Simultaneous Human and MDP Reward</h1><p>TODO</p>
-<h1 id="Hierarchical-Imitation-and-Reinforcement-Learning"><a href="#Hierarchical-Imitation-and-Reinforcement-Learning" class="headerlink" title="Hierarchical Imitation and Reinforcement Learning"></a>Hierarchical Imitation and Reinforcement Learning</h1>
+<h1 id="Hierarchical-Imitation-and-Reinforcement-Learning"><a href="#Hierarchical-Imitation-and-Reinforcement-Learning" class="headerlink" title="Hierarchical Imitation and Reinforcement Learning"></a>Hierarchical Imitation and Reinforcement Learning</h1><h1 id="Reinforcement-Learning-from-Simultaneous-Human-and-MDP-Reward"><a href="#Reinforcement-Learning-from-Simultaneous-Human-and-MDP-Reward" class="headerlink" title="Reinforcement Learning from Simultaneous Human and MDP Reward"></a>Reinforcement Learning from Simultaneous Human and MDP Reward</h1><ul>
+<li><strong>Combination Techniques</strong>:<ul>
+<li><strong>Reward Shaping</strong>: R’(s,a)=R(s,a)+beta*H(s,a)</li>
+<li><strong>Q augmentation</strong>: Q’(s,a) = Q(s,a) + beta*H(s,a)</li>
+<li><strong>Action Biasing</strong>: Q’(s,a) = Q(s,a) + beta*H(s,a) only during action selection</li>
+<li><strong>Control Sharing</strong>: $P(a=argmax_a[H(s,a)] ) = min(\beta , 1)$, otherwise use base RL agent’s action selection mechanism</li>
+<li>Note that $\beta$ is a predefined combination parameter and is annealed by a predefined factor after each episode .</li>
+</ul>
+</li>
+<li><p><strong>Experiment</strong></p>
+<ul>
+<li>Expect the greatest gains to come from training near the beginning of learning.</li>
+<li>Desirable characteristics: steady behavior, responsiveness to the trainer, trainer can give feedback to the MDP-only policy, traner’s influence is applied appropriately (<strong>Eligibility Module</strong>: larger influence in omre recently trained space and less in less recently)<ul>
+<li>H’s influence should increase in areas of the state-action space with recent human training but not in areas that have not been targeted with feedback and decrease in the absence of traning, leaving the set of optimal policies unchanged in the limit.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Conclusion</strong></p>
+<ul>
+<li>Sequential TAMER+RL: The more a technique directly affects action selection, the better it does. Action biasing &gt; Control sharing &gt; Q aug &gt; Sarsa &gt; Reward shaping</li>
+<li>Simultaneous TAMER+RL: human influence is more effective at the begining (compared to RL); the later training (human join traning after n episodes) group is better (using the same amount of human feedback).</li>
+</ul>
+</li>
+</ul>
+<h1 id="Policy-Shaping-Integrating-Human-Feedback-with-Reinforcement-Learning"><a href="#Policy-Shaping-Integrating-Human-Feedback-with-Reinforcement-Learning" class="headerlink" title="Policy Shaping: Integrating Human Feedback with Reinforcement Learning"></a>Policy Shaping: Integrating Human Feedback with Reinforcement Learning</h1><ul>
+<li><strong>Interpretation</strong><ul>
+<li>Define human feedback as ADVICE, the probility (s,a) is optimal is:<script type="math/tex; mode=display">\frac{C^{\Delta _{s,a}}}{C^{\Delta _{s,a}} + (1-C) ^ {\Delta _{s,a}}}</script>where $\Delta$ is the difference between the number of “right” and “wrong” labels, C is the probility that a human might make mistake.</li>
+<li>THe probability of performing s,a according to the feedback policy $\pi _ E$ is <script type="math/tex; mode=display">C^{\Delta _{s,a}} + (1-C) ^ {\sum_{j \neq a} \Delta _{s,j}}</script></li>
+</ul>
+</li>
+<li><strong>How to use ADVICE</strong><ul>
+<li>BQL (a kind of Q value) + ADVICE</li>
+</ul>
+</li>
+<li><strong>Experiment</strong><ul>
+<li>ADVICE is <strong>more robust to noisy signal</strong> from human (inconsistent feedback).</li>
+<li>Underestimation of C: reduce effectiveness.</li>
+<li>Overestimation of C: might lead to a suboptimal policy.</li>
+<li>ADVICE is better in many cases because their use of human influence parameters is not disconnected from the amount of information in the accumulated feedback.</li>
+</ul>
+</li>
+</ul>
+<h1 id="Interactive-Learning-from-Policy-Dependent-Human-Feedback"><a href="#Interactive-Learning-from-Policy-Dependent-Human-Feedback" class="headerlink" title="Interactive Learning from Policy-Dependent Human Feedback"></a>Interactive Learning from Policy-Dependent Human Feedback</h1>
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
@@ -398,7 +440,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Interactive-Teaching-Strategies-for-Agent-Training"><span class="toc-number">1.</span> <span class="toc-text">Interactive Teaching Strategies for Agent Training</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Agent-Agnostic-Human-in-the-Loop-Reinforcement-Learning"><span class="toc-number">2.</span> <span class="toc-text">Agent-Agnostic Human-in-the-Loop Reinforcement Learning</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Shaping-with-Human-Teacher"><span class="toc-number">3.</span> <span class="toc-text">Policy Shaping with Human Teacher</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reinforcement-Learning-from-Human-Preferences"><span class="toc-number">4.</span> <span class="toc-text">Reinforcement Learning from Human Preferences</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Social-Reinforcement-Learning-Agent"><span class="toc-number">5.</span> <span class="toc-text">A Social Reinforcement Learning Agent</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reinforcement-Learning-from-Simultaneous-Human-and-MDP-Reward"><span class="toc-number">6.</span> <span class="toc-text">Reinforcement Learning from Simultaneous Human and MDP Reward</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hierarchical-Imitation-and-Reinforcement-Learning"><span class="toc-number">7.</span> <span class="toc-text">Hierarchical Imitation and Reinforcement Learning</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Interactive-Teaching-Strategies-for-Agent-Training"><span class="toc-number">1.</span> <span class="toc-text">Interactive Teaching Strategies for Agent Training</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Agent-Agnostic-Human-in-the-Loop-Reinforcement-Learning"><span class="toc-number">2.</span> <span class="toc-text">Agent-Agnostic Human-in-the-Loop Reinforcement Learning</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Shaping-with-Human-Teacher"><span class="toc-number">3.</span> <span class="toc-text">Policy Shaping with Human Teacher</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reinforcement-Learning-from-Human-Preferences"><span class="toc-number">4.</span> <span class="toc-text">Reinforcement Learning from Human Preferences</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Social-Reinforcement-Learning-Agent"><span class="toc-number">5.</span> <span class="toc-text">A Social Reinforcement Learning Agent</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hierarchical-Imitation-and-Reinforcement-Learning"><span class="toc-number">6.</span> <span class="toc-text">Hierarchical Imitation and Reinforcement Learning</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reinforcement-Learning-from-Simultaneous-Human-and-MDP-Reward"><span class="toc-number">7.</span> <span class="toc-text">Reinforcement Learning from Simultaneous Human and MDP Reward</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Shaping-Integrating-Human-Feedback-with-Reinforcement-Learning"><span class="toc-number">8.</span> <span class="toc-text">Policy Shaping: Integrating Human Feedback with Reinforcement Learning</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Interactive-Learning-from-Policy-Dependent-Human-Feedback"><span class="toc-number">9.</span> <span class="toc-text">Interactive Learning from Policy-Dependent Human Feedback</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -412,12 +454,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     
@@ -864,11 +900,11 @@
     
         <span class="sidebar-tag-name"><a href= "#">Preferences Learning</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">Human-in-the-Loop</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">IJCAI Survey 2019</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">COACH</a></span>
     
