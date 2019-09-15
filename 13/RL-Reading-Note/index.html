@@ -202,8 +202,8 @@
             <main class="main post-page">
     <article class="article-entry">
         <h2 id="Hyperbolic-Discounting-and-Learning-over-Multiple-Horizons"><a href="#Hyperbolic-Discounting-and-Learning-over-Multiple-Horizons" class="headerlink" title="Hyperbolic Discounting and Learning over Multiple Horizons"></a>Hyperbolic Discounting and Learning over Multiple Horizons</h2><h2 id="Sequential-anomaly-detection-based-on-temporal-difference-learning-Principles-models-and-case-studies"><a href="#Sequential-anomaly-detection-based-on-temporal-difference-learning-Principles-models-and-case-studies" class="headerlink" title="Sequential anomaly detection based on temporal-difference learning: Principles, models and case studies"></a>Sequential anomaly detection based on temporal-difference learning: Principles, models and case studies</h2><h2 id="Deep-Online-Learning-Via-Meta-Learning-Continual-Adaptation-for-Model-Based-RL"><a href="#Deep-Online-Learning-Via-Meta-Learning-Continual-Adaptation-for-Model-Based-RL" class="headerlink" title="Deep Online Learning Via Meta-Learning: Continual Adaptation for Model-Based RL"></a>Deep Online Learning Via Meta-Learning: Continual Adaptation for Model-Based RL</h2><ul>
-<li>The primary contribution of this paper is a meta-learning for online learning (MOLe) algorithm that<br>uses expectation maximization, in conjunction with a Chinese restaurant process prior on the task<br>distribution, to learn mixtures of neural network models that are each updated with online SGD. In<br>contrast to prior multi-task and meta-learning methods, the method’s online assignment of soft task<br>probabilities allows for task specialization to emerge naturally, without requiring task delineations<br>to be specified in advance.</li>
-<li>Application to model-based RL: use MOLe to model the dynamics distribution $p(s_{t+1}|s+t, a_t, T_t)$, where the unkonwn T represents the underlying settings (e.g., state of the system,<br>external details, environmental perturbations, etc.). </li>
+<li>The primary contribution of this paper is a meta-learning for online learning (MOLe) algorithm that uses expectation maximization, in conjunction with a Chinese restaurant process prior on the task distribution, to learn mixtures of neural network models that are each updated with online SGD. In contrast to prior multi-task and meta-learning methods, the method’s online assignment of soft task probabilities allows for task specialization to emerge naturally, without requiring task delineations<br>to be specified in advance.</li>
+<li>Application to model-based RL: use MOLe to model the dynamics distribution $p(s_{t+1}|s+t, a_t, T_t)$, where the unkonwn T represents the underlying settings (e.g., state of the system, external details, environmental perturbations, etc.). </li>
 </ul>
 
     </article>
@@ -285,12 +285,6 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
     
     
     
@@ -833,23 +827,8 @@ jsonContent:
     
     <!-- CNZZ统计  -->
     
-    </div>
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</body>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </body>
 </html>
 
 
