@@ -630,6 +630,14 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-archive"> Total : 26 </div>
     
     <div class="post-archive">
@@ -786,15 +794,15 @@
     
         <span class="sidebar-tag-name"><a href= "#">CS373</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Deep Learning</a></span>
+        <span class="sidebar-tag-name"><a href= "#">Human-in-the-Loop</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Reinforcement Learning</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Preferences Learning</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">Human-in-the-Loop</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">IJCAI Survey 2019</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Deep Learning</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Preferences Learning</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
     
@@ -840,8 +848,23 @@ jsonContent:
     
     <!-- CNZZ统计  -->
     
-    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    </body>
+    </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
 </html>
 
 
