@@ -204,12 +204,19 @@
         <h2 id="Hyperbolic-Discounting-and-Learning-over-Multiple-Horizons"><a href="#Hyperbolic-Discounting-and-Learning-over-Multiple-Horizons" class="headerlink" title="Hyperbolic Discounting and Learning over Multiple Horizons"></a>Hyperbolic Discounting and Learning over Multiple Horizons</h2><h2 id="Sequential-anomaly-detection-based-on-temporal-difference-learning-Principles-models-and-case-studies"><a href="#Sequential-anomaly-detection-based-on-temporal-difference-learning-Principles-models-and-case-studies" class="headerlink" title="Sequential anomaly detection based on temporal-difference learning: Principles, models and case studies"></a>Sequential anomaly detection based on temporal-difference learning: Principles, models and case studies</h2><h2 id="Deep-Online-Learning-Via-Meta-Learning-Continual-Adaptation-for-Model-Based-RL"><a href="#Deep-Online-Learning-Via-Meta-Learning-Continual-Adaptation-for-Model-Based-RL" class="headerlink" title="Deep Online Learning Via Meta-Learning: Continual Adaptation for Model-Based RL"></a>Deep Online Learning Via Meta-Learning: Continual Adaptation for Model-Based RL</h2><ul>
 <li>The primary contribution of this paper is a meta-learning for online learning (MOLe) algorithm that uses expectation maximization, in conjunction with a Chinese restaurant process prior on the task distribution, to learn mixtures of neural network models that are each updated with online SGD. In contrast to prior multi-task and meta-learning methods, the method’s online assignment of soft task probabilities allows for task specialization to emerge naturally, without requiring task delineations<br>to be specified in advance.</li>
 <li>Application to model-based RL: use MOLe to model the dynamics distribution $p(s_{t+1}|s+t, a_t, T_t)$, where the unkonwn T represents the underlying settings (e.g., state of the system, external details, environmental perturbations, etc.). </li>
-<li><strong>Note - What is Meta-Learning:</strong> Current AI systems can master a complex skill from scratch, using an understandably large amount of time and experience. But if we want our agents to be able to acquire many skills and adapt to many environments, we cannot afford to train each skill in each setting from scratch. Instead, we need our agents to learn how to learn new tasks faster by reusing previous experience, rather than considering each new task in isolation. This approach of learning to learn, or meta-learning, is a key stepping stone towards versatile agents that can continually learn a wide variety of tasks throughout their lifetimes.</li>
+<li><strong>Note - What is Meta-Learning:</strong> Current AI systems can master a complex skill from scratch, using an understandably large amount of time and experience. But if we want our agents to be able to acquire many skills and adapt to many environments, we cannot afford to train each skill in each setting from scratch. Instead, we need our agents to <strong>learn how to learn new tasks faster by reusing previous experience, rather than considering each new task in isolation</strong>. This approach of learning to learn, or meta-learning, is a key stepping stone towards versatile agents that can continually learn a wide variety of tasks throughout their lifetimes.</li>
 </ul>
 
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/blog/23/Reading-Notes-Explainable-RL/" title= Reading Notes: Explainable RL >
+                    <span>Next Post</span>
+                    <span>Reading Notes: Explainable RL</span>
+                </a>
+            </li>
         
         
             <li class="previous">
@@ -626,7 +633,8 @@
     
     
     
-    <div class="total-archive"> Total : 26 </div>
+    
+    <div class="total-archive"> Total : 27 </div>
     
     <div class="post-archive">
     
@@ -635,6 +643,11 @@
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/23</span><a class="archive-post-title" href= "/blog/23/Reading-Notes-Explainable-RL/" >Reading Notes: Explainable RL</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -672,7 +685,7 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/23</span><a class="archive-post-title" href= "/blog/23/Relevant-Papers/" >Relevant Papers</a>
+            <span class="archive-post-date">07/23</span><a class="archive-post-title" href= "/blog/23/Relevant-Papers-Preference-Based-RL/" >Relevant Papers: Preference-based RL</a>
         </li>
     
     
@@ -782,19 +795,23 @@
     
         <span class="sidebar-tag-name"><a href= "#">CS373</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Human-in-the-Loop</a></span>
+        <span class="sidebar-tag-name"><a href= "#">Deep Learning</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Reinforcement Learning</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">IJCAI Survey 2019</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">Deep Learning</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">Preferences Learning</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Human-in-the-Loop</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">IJCAI Survey 2019</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">COACH</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Explainable RL</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">XAI</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">

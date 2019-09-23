@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        Relevant Papers: RL with Human Preferences · Lin Guan&#39;s Personal Website
+        Reading Notes: Explainable RL · Lin Guan&#39;s Personal Website
         
     </title>
     <link rel="icon" href= https://image-1252075188.cos.na-toronto.myqcloud.com/favicon.ico>
@@ -72,7 +72,7 @@
                 <a href="/blog/" >Lin Guan&#39;s Personal Website</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Relevant Papers: RL with Human Preferences</a>
+                <a href="#" class="post-name">Reading Notes: Explainable RL</a>
             </div>
     </div>
     
@@ -93,7 +93,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Relevant Papers: RL with Human Preferences
+            Reading Notes: Explainable RL
             <!-- 404 -->
             
         </h1>
@@ -111,16 +111,16 @@
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Reinforcement Learning>Reinforcement Learning</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = Explainable RL>Explainable RL</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-href = Preferences Learning>Preferences Learning</a>
+        <a class="post-tag" href="javascript:void(0);" data-href = XAI>XAI</a>
     
 </div>
             
             <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/blog/static/api/js/share.js"];</script>
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/08/18</span>
+                <span class="post-intro-time">2019/09/23</span>
                 <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                     <span class="iconfont-archer">&#xe604;</span>
                     <span id="busuanzi_value_page_pv"></span>
@@ -203,54 +203,167 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="Papers-read-recently"><a href="#Papers-read-recently" class="headerlink" title="Papers read recently"></a>Papers read recently</h1><h2 id="Label-Ranking-by-Learning-Pairwise-Preferences"><a href="#Label-Ranking-by-Learning-Pairwise-Preferences" class="headerlink" title="Label Ranking by Learning Pairwise Preferences **"></a>Label Ranking by Learning Pairwise Preferences **</h2><ul>
-<li>Learning <strong>piarwise preference</strong> (pairwise classification) $\rightarrow$ comnining predicted preferences into a ranking (can be voting, several algorithms could be used)</li>
-<li>$\clubsuit$ Pairwise comparison<br><img src="https://lh3.googleusercontent.com/DuEdIMDiCmUgvvjLv4Ij6c6DN59EEfvrIPSE6gUZ7_fJp6kBJfcXvNETqjam6_pEm_VrmmAtPE4" alt="Pairwise comparison
-" title="Pairwise comparison"></li>
-</ul>
-<h2 id="Preference-Based-Policy-Iteration-Leveraging-Preference-Learning-for-Reinforcement-Learning"><a href="#Preference-Based-Policy-Iteration-Leveraging-Preference-Learning-for-Reinforcement-Learning" class="headerlink" title="Preference-Based Policy Iteration: Leveraging Preference Learning for Reinforcement Learning"></a>Preference-Based Policy Iteration: Leveraging Preference Learning for Reinforcement Learning</h2><ul>
-<li>Use ROLLOUT to estimate state-action value: might be not efficient enough</li>
-<li>Use Q values to elicit preferences (train a label ranker)</li>
-</ul>
-<h2 id="Preference-based-Evolutionary-Direct-Policy-Search"><a href="#Preference-based-Evolutionary-Direct-Policy-Search" class="headerlink" title="Preference-based Evolutionary Direct Policy Search"></a>Preference-based Evolutionary Direct Policy Search</h2><ul>
-<li>The goal of PBR algorithm is to find the k best random variables with respect to the surrogate decision model</li>
-<li>Extension of the evolutionary direct policy search algorithm</li>
-</ul>
-<h2 id="Model-Free-Preference-based-Reinforcement-Learning"><a href="#Model-Free-Preference-based-Reinforcement-Learning" class="headerlink" title="Model-Free Preference-based Reinforcement Learning *"></a>Model-Free Preference-based Reinforcement Learning *</h2><ul>
-<li>Use trajectory preferences (leverage trajectory utility function)</li>
-<li>$\clubsuit$ Use preferences to update w (features weights vector):<br><img src="https://lh3.googleusercontent.com/qUJtwUCQzwtTI0zcK7FDJ7ZBqGQGuKCjG-mqv_4buedQPChvWNt4dRCaRUExuKdH54x7wXmXeG8" alt="
-" title="figure0"></li>
-<li>The policy update of actor critic REPS is inspired by the episodic REPS algorithm (Daniel et al., 2012).</li>
-<li>Based on the Relative Entropy Policy Search (REPS) algorithm (Peters et al., 2010): Actor Critic relative Entropy Policy Search</li>
-<li>Reweighting Old Preferences.</li>
-</ul>
-<h2 id="A-policy-Iteration-Algorithm-for-Learning-from-Preference-Based-Feedback"><a href="#A-policy-Iteration-Algorithm-for-Learning-from-Preference-Based-Feedback" class="headerlink" title="A policy Iteration Algorithm for Learning from Preference-Based Feedback **"></a>A policy Iteration Algorithm for Learning from Preference-Based Feedback **</h2><ul>
-<li>Use feedback based on <strong>complete trajectories</strong></li>
-<li>$\clubsuit$ $Pr(a|s)$ follows the estimation in “Pairwise Neural Network Classifiers with Probabilistic Outputs”:<script type="math/tex; mode=display">Pr(a|s) = \frac{1}{\sum_{a' \in A(s), a' \neq a}{\frac{1}{Pr(a \succ a' |s )}}  - (|A(s)| - 2) }</script></li>
-<li>$\clubsuit$ Use simple boosting update to improve $Pr(a \succ a’ |s)$</li>
-<li>Definition of preference: $Pr(T_1 \succ T_2 | m=p) = \frac{p}{n}$, where m is the number of <strong>decisive states</strong></li>
-<li>$Pr(s \in M) = \frac{1}{2}$, $Pr(a \succ a’ |s, T_1 \succ T_2) = \frac{n+1}{2n}$, where n is the number of <strong>overlapping states</strong> </li>
-<li>Use algorithms like EXP3 to solve exploration/exploitation dilemma</li>
-</ul>
-<h2 id="Preference-based-Policy-Learning"><a href="#Preference-based-Policy-Learning" class="headerlink" title="Preference-based Policy Learning *"></a>Preference-based Policy Learning *</h2><ul>
-<li>$\clubsuit$ <strong>Process</strong>: the robot demonstrates a new policy $\rightarrow$ the expert ranks the policies (human’s preferences will be added to the constraints set C) 88 $\rightarrow$ <strong>learn a policy return estimate J built from all constraints in C</strong> $\rightarrow$ generate new policy based on policy return estimate</li>
-<li>Use BvR to map policy into real valued vector $\mu$</li>
-<li>$\clubsuit$ Use a standard constrained convex optimization formula to learn <strong>policy return estimation</strong></li>
-<li>Can’t use gradient-like methods since the policy return estimate is not defined on the parametric representation space of the policy: use $1+\lambda - ES$ algorithm instead.</li>
-<li>Need to think about parametric representation of policies and the behavioral representation of policies.</li>
-</ul>
-<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
-<li>How to reuse past preferences (replay buffer): Reweighting Old Preferences.</li>
-<li>How to handle conflicting preferences</li>
-<li>How to understand human feedback: <ul>
-<li>“<script type="math/tex">a_t > a_{t-1}</script>“ might be more reasonable but hard to implement.</li>
-<li>“$a_t$ better than any other”, need to handle confiction in replay buffer.</li>
+        <h2 id="Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning"><a href="#Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning" class="headerlink" title="Generation of Policy-Level Explanations for Reinforcement Learning"></a>Generation of Policy-Level Explanations for Reinforcement Learning</h2><ul>
+<li><strong>Assumptions</strong><ul>
+<li>all states consist of an assignment to features</li>
+<li>Only consider the deterministic case</li>
+<li>Agent behaves similarly in a state from the set (abstract states) in a similar fashion</li>
 </ul>
 </li>
-<li>Under TAMER settings, no need to worry about how to elicit trajectories for comparison, but need to think about what to compare (current trajectory vs what) and the length of clips to be evaluated.</li>
-<li>Current preference learning frameworks do not intend to handle the case that human preferences might change. They only compare two specific trajectories.</li>
-<li>How to convert preferences to policy<ul>
-<li>pairwise model or something else? (pairwise might be more efficient and precise)</li>
+<li><strong>Methods</strong><ul>
+<li>Use the Feature Importance Ranking Measure (FIRM) to group states from an original MDP into abstract states (<strong>Interchangeability</strong>):  $I_f(c)$  represents the importance of feature f; If $f$ takes on the same value for all states s in c or its value does not influence the system’s output, then f is not important.</li>
+<li>Each abstract state represents a set of grounded states from the original MDP.</li>
+<li>Explaination: create a local explanation consisting of the set of features which are important in that state</li>
+</ul>
+</li>
+<li><strong>Generated Explaination</strong><ul>
+<li><img src="https://lh3.googleusercontent.com/KD5DZFBAUTLTgftPwqaLJ-ISIUjLOND1xJucGkcQTah72R8pislvPWpDY4ORvnfr8edxMVi1n9BI" alt="Abstract Policy Graph"></li>
+</ul>
+</li>
+<li><strong>Experiment Result</strong><ul>
+<li>Even with only 10% of the states, the prediction is correct over 93% of the time. When given 80% of the states, predictions are correct 98.7% of the time for both the stochastic and deterministic environment, which suggests that the model is able to identify genuine patterns in the policy.</li>
+<li>Errors the system makes are probably caused by the splitting order induced by APG Gen’s greedy splitting strategy.</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li>No user study</li>
+<li><strong>This algorithm provides an explaination incorporating expected future actions</strong></li>
+<li>This algorithem is compatible with most existing RL systems that learn Q-function (<strong>Probably not compatible with RL systems use deep network</strong>)</li>
+<li>Only presents a MDP of human-designed binary features to the user (not a clear explaination)</li>
+<li>It’s not actually an explaination, especially in terms of explaining the intention or motivation of an action </li>
+<li>It only considers <strong>binary boolean features</strong>.</li>
+<li>When generating the abstrat state, they use binary features to split the set of states into two parts repeatly until all features have low importance. However, when making a decision, the humans probably won’t just take one factor (feature) into consideration (In their experiment, one action only changes one feature/factor).</li>
+</ul>
+</li>
+</ul>
+<h2 id="Graying-the-black-box-Understanding-DQNs"><a href="#Graying-the-black-box-Understanding-DQNs" class="headerlink" title="Graying the black box: Understanding DQNs"></a>Graying the black box: Understanding DQNs</h2><ul>
+<li><p><strong>Methods</strong></p>
+<ul>
+<li><strong>Feature extraction</strong>: statistics from the game such as Q values estimates, generation time, the termination signal, reward and played action; also use hand-crafted features (useful)</li>
+<li><strong>t-SNE</strong>: Apply the t-SNE algorithm directly on the collected neural activations.</li>
+<li><strong>Saliency maps</strong>: display the corresponding Saliency maps</li>
+<li><strong>Analyze the policy manually</strong>: Embed states into a space where states within certain regions of this space behave similarly</li>
+</ul>
+</li>
+<li><p><strong>Semi Aggregated MDP (SAMDP)</strong></p>
+<ul>
+<li>Feature selection</li>
+<li>Aggregation via Spatio-temporal clustering: The goal of Aggregation is to find a mapping(clustering) from the MDP feature space to the <strong>AMDP</strong> state space C. Use an extension of the K-means algorithm to enforces temporal coherency along trajectories.</li>
+<li>Skill identification: at time t the agent enters an AMDP state $c_i$ at an MDP state, it chooses a skill according to its SAMDP policy.</li>
+<li>Inference: given the SAMDP states and skills, we infer the skill length, the SAMDP reward and the SAMDP probability transition matrix from observations.</li>
+<li>Model selection: there are different hyper parameter to<br>tune, such as the number of SAMDP states (K) and the window size (w) for the clustering algorithm; follow the Occams Razor principle, and aim to find the simplest model which best explains the data; use Value Mean Square Error(VMSE), measures the consistency of the model with the observations.</li>
+</ul>
+</li>
+<li><strong>Experiment Result</strong><ul>
+<li>The SAMDP algorithm managed to identify most of the policy hierarchy automatically and the clusters are consistent with the manual clusters.</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong>:<ul>
+<li><strong>Spatial abstraction</strong> aims to group states that share common attributes such as similar policy or value function; <strong>temporal abstarction</strong> aims to group states in which the agent to plan with skills (also known as options, macro-actions and temporally-extended actions)</li>
+<li>It uses hand-crafted features but lack of explanation of the reasoning behind the decision made by the DQN.</li>
+<li>It does something like summarizaion (off-line) after the training process.</li>
+<li>The t-SNE provides some high-level explaination of the policy. However, it still needs human to interpret the relation between different cluster (like figuring out which feature matters. The SAMDP does help to explain the policy but still need furture research on finding how the DQN agent balance between different factors (features).</li>
+</ul>
+</li>
+</ul>
+<h2 id="Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees"><a href="#Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees" class="headerlink" title="Distilling Deep Reinforcement Learning Policies in Soft Decision Trees"></a>Distilling Deep Reinforcement Learning Policies in Soft Decision Trees</h2><ul>
+<li><strong>Methods</strong><ul>
+<li>Soft Decision Trees (SDTs), which proposed by Frosst and Hinton in 2017, are a hybrid classification model of binary decision trees with a predetermined depth and neural networks.</li>
+<li>Distill the policy learned by a deep reinforcement learning into soft decision trees.</li>
+<li>By examining the learned filters along the traversed path from the root to leaf, one can thus under- stand which features the soft decision tree considers to assign a particular action distribution to a particular state.</li>
+</ul>
+</li>
+<li><strong>Generated Explainations</strong><ul>
+<li><img src="https://lh3.googleusercontent.com/7HfIW3dewA8HsNdU7--H_J7_8JGBZjrVEvYrkHW7NFZWPj2Psu44wC2H27xwCfLkcQaERGPfIS78" alt="Generated Explaination" title="Generated Explaination"></li>
+</ul>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li>The essence of soft decision trees is that this kind of model does not rely on hierarchical features to classify data, but <strong>instead relies on hierarchical decisions</strong>.</li>
+<li>Understanding why a particular state observation leads to a certain action distribution can be realized by examining how the input state itself is filtered along the path between the root and the chosen leaf node in the soft decision tree model</li>
+<li>Problem: there is a descrepancy between Q-values and the tree (which means the SDT fails to perfectly represent the learned policy)</li>
+<li>still require the prior-knowledge of human to understand the association amaong selected features. Still need human tofigure out the consequence/intent/motivation of an action given the saliency map (This can be a problem when the domain is complex)</li>
+<li>Problem: the depth of tree is a parameter that need to be tuned.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Particle-Swarm-Optimization-for-Generating-Interpretable-Fuzzy-Reinforcement-Learning"><a href="#Particle-Swarm-Optimization-for-Generating-Interpretable-Fuzzy-Reinforcement-Learning" class="headerlink" title="Particle Swarm Optimization for Generating Interpretable Fuzzy Reinforcement Learning"></a>Particle Swarm Optimization for Generating Interpretable Fuzzy Reinforcement Learning</h2><ul>
+<li><strong>Goals</strong><ul>
+<li>Solve prblems in domains that online learning are prohibited</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>Learn a world dynamic model g with dataset D that contains the state transitions</li>
+<li>During optimization, each particle’s position x in the PSO represents a parameterization fo the fuzzy policy $\pi [x]$</li>
+<li>Search for optimal parameters for (one half of) the fuzzy policy rule</li>
+<li>Use PSO because the population-based optimizer does not require any gradient information </li>
+</ul>
+</li>
+<li><strong>Generated Explainations</strong><ul>
+<li>Fuzzy rules: one example can be IF cart=right slope AND speed= high right THEN accelerate=positive</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong>:<ul>
+<li>Need to model the world dynamic</li>
+<li>Need to tune the number of rules (not self-adjustable)</li>
+<li>It only learns a rule-representation of the policy but can’t apply to any RL method based on Q-functions. Besides, it does not show the potential consequence of an action (it does not reflect an intelligent agent’s intent, performance, future plans, and reasoning process)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Transparency-and-Explanation-in-Deep-Reinforcement-Learning-Neural-Networks"><a href="#Transparency-and-Explanation-in-Deep-Reinforcement-Learning-Neural-Networks" class="headerlink" title="Transparency and Explanation in Deep Reinforcement Learning Neural Networks"></a>Transparency and Explanation in Deep Reinforcement Learning Neural Networks</h2><ul>
+<li><strong>Assumptions</strong><ul>
+<li>Q(s, a) can be approximated with a linear function $Q(s,a) = w^{T}s + b$ where w is the derivation of Q(s,a) with respect to the state image.</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>corporate object features and object valence, i.e. positive or negative influence in an agent’s decisions, into DRLN architectures</li>
+<li>Use Template Matching to recognize objects in the game image</li>
+<li>Use object channels to incorporate features of objects </li>
+<li>To calculate the derivation w of Q(s,a) with respect to the state image: $w = Q(s, a)-Q(s_o, a)$, $s_o$ is the state in which we mask an object with background color</li>
+</ul>
+</li>
+<li><strong>Generated Explainations</strong><ul>
+<li><img src="https://lh3.googleusercontent.com/-BY00PkI5jIaiM8NE5PKX3s1tSgEvZviyq93zESRCyJoLxfO_Lg3BPeuQV7A7erHj0FB_Mwt7Sya" alt="Object Saliency Map"></li>
+</ul>
+</li>
+<li><strong>Some Notes</strong>:<ul>
+<li><strong>Agent transparency</strong> is the quality of an interface (e.g. visual, linguistic) pertaining to its abilities to afford an operators comprehension about an intelligent agent’s intent, performance, future plans, and reasoning process</li>
+<li>Ease of transparency seems to be inversely proportional to agent sophistication</li>
+<li>“(Iyer et al. 2018) leverage these pixel-level explanations and use an object detector to produce <strong>object saliency maps</strong>, which are explanations for the behavior of deep RL agents in terms of objects. Unlike our method, their method explains a single decision without the context of potential future decisions.”</li>
+</ul>
+</li>
+</ul>
+<h2 id="Minimal-sufficient-explanations-for-factored-markov-decision-processes"><a href="#Minimal-sufficient-explanations-for-factored-markov-decision-processes" class="headerlink" title="Minimal sufficient explanations for factored markov decision processes"></a>Minimal sufficient explanations for factored markov decision processes</h2><ul>
+<li><strong>Assumptions</strong><ul>
+<li>Might need a set of explainations to justify the optimal action rather than just 1</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms</li>
+<li>$V^{\pi^{<em>}} \ge V_{MSE} \ge Q^{\pi^{</em>}(s_0, a)}$ for any action a not equals $\pi^{*}(s_0)$.</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li>Produce contrastive explanations which compare the agent’s action to a proposed alternative, but require a known factored MDP (Learning model of the environment may be more complicated than the learned policy)</li>
+<li>Problem: it uses a fixed set (3) of templates to generate explaination</li>
+<li>Need the MDP designer to provide reward functions and transition model, which will be used to genreate the optimal policy using value-iteration. (Injecting domain-specific information requires additional efforts)</li>
+<li>The format of explaination is interesting, since it indicates the potential outcome of an action (with “probability” comparing to other actions). One example is Action TakeCS343&amp;CS448 is the best action because it is likely to take you to CoursesCompleted = 6, TermNumber = Final about 0.86 times, which is as high as any other action.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Toward-Interpretable-Deep-Reinforcement-Learning-with-Linear-Model-U-Trees"><a href="#Toward-Interpretable-Deep-Reinforcement-Learning-with-Linear-Model-U-Trees" class="headerlink" title="Toward Interpretable Deep Reinforcement Learning with Linear Model U-Trees"></a>Toward Interpretable Deep Reinforcement Learning with Linear Model U-Trees</h2><ul>
+<li><strong>Methods</strong><ul>
+<li>The first mimic learning framework for Q functions in DRL: trains an interpretable (simpler) mimic model to match the predictions of a highly accurate model</li>
+<li>U-tree is a classic online reinforcement learning method which represents a Q function using a tree structure. LMUT is a U-Tree with a linear model to each leaf node</li>
+<li>Use feature influence to split the tree: evaluate the influence of a splitting feature by the total variance reduction of the Q values</li>
+</ul>
+</li>
+<li><strong>Generated Explainations</strong><ul>
+<li>Example in the mountain car: when velocity in [-0.003, -0.001] and position in [-0.42, 0.13], then Q = &lt;-31.2, -29.6, -29.4&gt;</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li>It learns a U-Tree representing the Q-function and the MDP model</li>
+<li>Very Interesting finding: <strong>The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process</strong>. Example here, the first image is often used to locate the pipes (obstacles) and the bird, while the remaining three images provide further information about the bird’s location and velocity. (<strong>As the same, explaination generated by a single state/image is not enought to represent the entire reasoning process. The first images at each row carry most information</strong>)<br><img src="https://lh3.googleusercontent.com/UvJ63KL1IV-ewbUedVKhQxonHdtzkgznG58yeznIgHmqX3RhdsfBWcktLVmn0IvmVgn6ibzUcmPr" alt="The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process"></li>
 </ul>
 </li>
 </ul>
@@ -259,18 +372,11 @@
     <!-- 前后页  -->
     <ul class="post-pager">
         
-            <li class="next">
-                <a href= "/blog/02/Papers-RL-with-Human-Feedback/" title= Papers: RL with Human Feedback >
-                    <span>Next Post</span>
-                    <span>Papers: RL with Human Feedback</span>
-                </a>
-            </li>
-        
         
             <li class="previous">
-                <a href= "/blog/23/Relevant-Papers-Preference-Based-RL/" title= Relevant Papers: Preference-based RL >
+                <a href= "/blog/13/RL-Reading-Note/" title= RL Reading Note >
                     <span>Previous Post</span>
-                    <span>Relevant Papers: Preference-based RL</span>
+                    <span>RL Reading Note</span>
                 </a>
             </li>
         
@@ -327,7 +433,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Papers-read-recently"><span class="toc-number">1.</span> <span class="toc-text">Papers read recently</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Label-Ranking-by-Learning-Pairwise-Preferences"><span class="toc-number">1.1.</span> <span class="toc-text">Label Ranking by Learning Pairwise Preferences **</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preference-Based-Policy-Iteration-Leveraging-Preference-Learning-for-Reinforcement-Learning"><span class="toc-number">1.2.</span> <span class="toc-text">Preference-Based Policy Iteration: Leveraging Preference Learning for Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preference-based-Evolutionary-Direct-Policy-Search"><span class="toc-number">1.3.</span> <span class="toc-text">Preference-based Evolutionary Direct Policy Search</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-Free-Preference-based-Reinforcement-Learning"><span class="toc-number">1.4.</span> <span class="toc-text">Model-Free Preference-based Reinforcement Learning *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-policy-Iteration-Algorithm-for-Learning-from-Preference-Based-Feedback"><span class="toc-number">1.5.</span> <span class="toc-text">A policy Iteration Algorithm for Learning from Preference-Based Feedback **</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Preference-based-Policy-Learning"><span class="toc-number">1.6.</span> <span class="toc-text">Preference-based Policy Learning *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thoughts"><span class="toc-number">1.7.</span> <span class="toc-text">Thoughts</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning"><span class="toc-number">1.</span> <span class="toc-text">Generation of Policy-Level Explanations for Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Graying-the-black-box-Understanding-DQNs"><span class="toc-number">2.</span> <span class="toc-text">Graying the black box: Understanding DQNs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees"><span class="toc-number">3.</span> <span class="toc-text">Distilling Deep Reinforcement Learning Policies in Soft Decision Trees</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Particle-Swarm-Optimization-for-Generating-Interpretable-Fuzzy-Reinforcement-Learning"><span class="toc-number">4.</span> <span class="toc-text">Particle Swarm Optimization for Generating Interpretable Fuzzy Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transparency-and-Explanation-in-Deep-Reinforcement-Learning-Neural-Networks"><span class="toc-number">5.</span> <span class="toc-text">Transparency and Explanation in Deep Reinforcement Learning Neural Networks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Minimal-sufficient-explanations-for-factored-markov-decision-processes"><span class="toc-number">6.</span> <span class="toc-text">Minimal sufficient explanations for factored markov decision processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Toward-Interpretable-Deep-Reinforcement-Learning-with-Linear-Model-U-Trees"><span class="toc-number">7.</span> <span class="toc-text">Toward Interpretable Deep Reinforcement Learning with Linear Model U-Trees</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
