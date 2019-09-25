@@ -213,10 +213,10 @@
 <li><strong>Methods</strong><ul>
 <li>Use the Feature Importance Ranking Measure (FIRM) to group states from an original MDP into abstract states (<strong>Interchangeability</strong>):  $I_f(c)$  represents the importance of feature f; If $f$ takes on the same value for all states s in c or its value does not influence the system’s output, then f is not important.</li>
 <li>Each abstract state represents a set of grounded states from the original MDP.</li>
-<li>Explaination: create a local explanation consisting of the set of features which are important in that state</li>
+<li>Explanation: create a local explanation consisting of the set of features which are important in that state</li>
 </ul>
 </li>
-<li><strong>Generated Explaination</strong><ul>
+<li><strong>Generated Explanation</strong><ul>
 <li><img src="https://lh3.googleusercontent.com/KD5DZFBAUTLTgftPwqaLJ-ISIUjLOND1xJucGkcQTah72R8pislvPWpDY4ORvnfr8edxMVi1n9BI" alt="Abstract Policy Graph"></li>
 </ul>
 </li>
@@ -227,10 +227,10 @@
 </li>
 <li><strong>Some Notes</strong><ul>
 <li>No user study</li>
-<li><strong>This algorithm provides an explaination incorporating expected future actions</strong></li>
+<li><strong>This algorithm provides an explanation incorporating expected future actions</strong></li>
 <li>This algorithem is compatible with most existing RL systems that learn Q-function (<strong>Probably not compatible with RL systems use deep network</strong>)</li>
-<li>Only presents a MDP of human-designed binary features to the user (not a clear explaination)</li>
-<li>It’s not actually an explaination, especially in terms of explaining the intention or motivation of an action </li>
+<li>Only presents a MDP of human-designed binary features to the user (not a clear explanation)</li>
+<li>It’s not actually an explanation, especially in terms of explaining the intention or motivation of an action </li>
 <li>It only considers <strong>binary boolean features</strong>.</li>
 <li>When generating the abstrat state, they use binary features to split the set of states into two parts repeatly until all features have low importance. However, when making a decision, the humans probably won’t just take one factor (feature) into consideration (In their experiment, one action only changes one feature/factor).</li>
 </ul>
@@ -264,7 +264,7 @@ Graying the black box" title="graying the black box"></li>
 <li><strong>Spatial abstraction</strong> aims to group states that share common attributes such as similar policy or value function; <strong>temporal abstarction</strong> aims to group states in which the agent to plan with skills (also known as options, macro-actions and temporally-extended actions)</li>
 <li>It uses hand-crafted features but lack of explanation of the reasoning behind the decision made by the DQN.</li>
 <li>It does something like summarizaion (off-line) after the training process.</li>
-<li>The t-SNE provides some high-level explaination of the policy. However, it still needs human to interpret the relation between different cluster (like figuring out which feature matters. The SAMDP does help to explain the policy but still need furture research on finding how the DQN agent balance between different factors (features).</li>
+<li>The t-SNE provides some high-level explanation of the policy. However, it still needs human to interpret the relation between different cluster (like figuring out which feature matters. The SAMDP does help to explain the policy but still need furture research on finding how the DQN agent balance between different factors (features).</li>
 </ul>
 </li>
 </ul>
@@ -275,8 +275,8 @@ Graying the black box" title="graying the black box"></li>
 <li>By examining the learned filters along the traversed path from the root to leaf, one can thus under- stand which features the soft decision tree considers to assign a particular action distribution to a particular state.</li>
 </ul>
 </li>
-<li><strong>Generated Explainations</strong><ul>
-<li><img src="https://lh3.googleusercontent.com/7HfIW3dewA8HsNdU7--H_J7_8JGBZjrVEvYrkHW7NFZWPj2Psu44wC2H27xwCfLkcQaERGPfIS78" alt="Generated Explaination" title="Generated Explaination"></li>
+<li><strong>Generated Explanations</strong><ul>
+<li><img src="https://lh3.googleusercontent.com/7HfIW3dewA8HsNdU7--H_J7_8JGBZjrVEvYrkHW7NFZWPj2Psu44wC2H27xwCfLkcQaERGPfIS78" alt="Generated Explanation" title="Generated Explanation"></li>
 </ul>
 </li>
 <li><strong>Some Notes</strong><ul>
@@ -300,7 +300,7 @@ Graying the black box" title="graying the black box"></li>
 <li>Use PSO because the population-based optimizer does not require any gradient information </li>
 </ul>
 </li>
-<li><strong>Generated Explainations</strong><ul>
+<li><strong>Generated Explanations</strong><ul>
 <li>Fuzzy rules: one example can be IF cart=right slope AND speed= high right THEN accelerate=positive</li>
 </ul>
 </li>
@@ -323,7 +323,7 @@ Graying the black box" title="graying the black box"></li>
 <li>To calculate the derivation w of Q(s,a) with respect to the state image: $w = Q(s, a)-Q(s_o, a)$, $s_o$ is the state in which we mask an object with background color</li>
 </ul>
 </li>
-<li><strong>Generated Explainations</strong><ul>
+<li><strong>Generated Explanations</strong><ul>
 <li><img src="https://lh3.googleusercontent.com/-BY00PkI5jIaiM8NE5PKX3s1tSgEvZviyq93zESRCyJoLxfO_Lg3BPeuQV7A7erHj0FB_Mwt7Sya" alt="Object Saliency Map"></li>
 </ul>
 </li>
@@ -336,19 +336,19 @@ Graying the black box" title="graying the black box"></li>
 </ul>
 <h2 id="Minimal-sufficient-explanations-for-factored-markov-decision-processes"><a href="#Minimal-sufficient-explanations-for-factored-markov-decision-processes" class="headerlink" title="Minimal sufficient explanations for factored markov decision processes"></a>Minimal sufficient explanations for factored markov decision processes</h2><ul>
 <li><strong>Assumptions</strong><ul>
-<li>Might need a set of explainations to justify the optimal action rather than just 1</li>
+<li>Might need a set of explanations to justify the optimal action rather than just 1</li>
 </ul>
 </li>
 <li><strong>Methods</strong><ul>
 <li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms</li>
-<li>$V^{\pi^{\star}} \ge V_{MSE} \ge Q^{\pi^{\star}}(s_0, a)$ for any action a not equals the optimal action.</li>
+<li>$V^{\pi^{\star}} \ge V_{MSE} \ge Q^{\pi^{\star}}(s_0, a)$<br>  for any action a not equals the optimal action.</li>
 </ul>
 </li>
 <li><strong>Some Notes</strong><ul>
 <li>Produce contrastive explanations which compare the agent’s action to a proposed alternative, but require a known factored MDP (Learning model of the environment may be more complicated than the learned policy)</li>
-<li>Problem: it uses a fixed set (3) of templates to generate explaination</li>
+<li>Problem: it uses a fixed set (3) of templates to generate explanation</li>
 <li>Need the MDP designer to provide reward functions and transition model, which will be used to genreate the optimal policy using value-iteration. (Injecting domain-specific information requires additional efforts)</li>
-<li>The format of explaination is interesting, since it indicates the potential outcome of an action (with “probability” comparing to other actions). One example is Action TakeCS343&amp;CS448 is the best action because it is likely to take you to CoursesCompleted = 6, TermNumber = Final about 0.86 times, which is as high as any other action.</li>
+<li>The format of explanation is interesting, since it indicates the potential outcome of an action (with “probability” comparing to other actions). One example is Action TakeCS343&amp;CS448 is the best action because it is likely to take you to CoursesCompleted = 6, TermNumber = Final about 0.86 times, which is as high as any other action.</li>
 </ul>
 </li>
 </ul>
@@ -359,13 +359,13 @@ Graying the black box" title="graying the black box"></li>
 <li>Use feature influence to split the tree: evaluate the influence of a splitting feature by the total variance reduction of the Q values</li>
 </ul>
 </li>
-<li><strong>Generated Explainations</strong><ul>
+<li><strong>Generated Explanations</strong><ul>
 <li>Example in the mountain car: when velocity in [-0.003, -0.001] and position in [-0.42, 0.13], then Q = &lt;-31.2, -29.6, -29.4&gt;</li>
 </ul>
 </li>
 <li><strong>Some Notes</strong><ul>
 <li>It learns a U-Tree representing the Q-function and the MDP model</li>
-<li>Very Interesting finding: <strong>The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process</strong>. Example here, the first image is often used to locate the pipes (obstacles) and the bird, while the remaining three images provide further information about the bird’s location and velocity. (<strong>As the same, explaination generated by a single state/image is not enought to represent the entire reasoning process. The first images at each row carry most information</strong>)<br><img src="https://lh3.googleusercontent.com/cccrGoFz-2JAkLCtv2YNtrd9GsgrkNjJVbYIH8bwj-1MWmwKapgNhNkLn55N4ifwtcdcuw9qcyMC" alt="The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process"></li>
+<li>Very Interesting finding: <strong>The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process</strong>. Example here, the first image is often used to locate the pipes (obstacles) and the bird, while the remaining three images provide further information about the bird’s location and velocity. (<strong>As the same, explanation generated by a single state/image is not enought to represent the entire reasoning process. The first images at each row carry most information</strong>)<br><img src="https://lh3.googleusercontent.com/cccrGoFz-2JAkLCtv2YNtrd9GsgrkNjJVbYIH8bwj-1MWmwKapgNhNkLn55N4ifwtcdcuw9qcyMC" alt="The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process"></li>
 </ul>
 </li>
 </ul>
@@ -390,14 +390,29 @@ Graying the black box" title="graying the black box"></li>
 </li>
 </ul>
 <h2 id="Explainable-Reinforcement-Learning-Through-a-Causal-Lens"><a href="#Explainable-Reinforcement-Learning-Through-a-Causal-Lens" class="headerlink" title="Explainable Reinforcement Learning Through a Causal Lens"></a>Explainable Reinforcement Learning Through a Causal Lens</h2><ul>
-<li><strong>Methods</strong><ul>
+<li><p><strong>Methods</strong></p>
+<ul>
 <li>Learn a high-level DAG to represent causal models which encodes cause-effect relations of events and use these to explain why new events happen</li>
 <li>Use causal models to generate contrastive explanations for why and why not problem </li>
+<li>To construct counterfactual explanations:<ul>
+<li>choose “optimal” states under which the action B (counterfactual action) will be choosed</li>
+<li>get the path (all the successors and presuccessors) to the “optimal” states</li>
+<li>compare the differences of states in the actual optimal path and the foil “optimal” path</li>
+</ul>
+</li>
+<li>When there are several available explanations, they choose the “best” explanation: the 3-tuple that has the highest combined difference of the current variable values against the optimal variable values of the head,reward and predecessor node is selected.</li>
+</ul>
+</li>
+<li><p><strong>Generated Explanation</strong></p>
+<ul>
+<li>DAG<br><img src="https://lh3.googleusercontent.com/6W00tgDAHy7IvFW_fQ4A7Xa8ayNqLVprwsTHYMvD9ty7XWa3uzguRWLvX7JZNifR6YFuRy1Gt6Ib" alt="DAG"></li>
+<li>Sample explanation: Because Barrack number (B) is 2 which is optimal: It is more desirable to do action train marine (Am) to have more Ally units (An) as the goal is to have more Destroyed Units (Du) and Destroyed buildings (Db).</li>
 </ul>
 </li>
 <li><strong>Some Notes</strong><ul>
 <li>As humans, we view the world through a causal lens, where we associate observed events and mechanisms to causal relationships [Sloman, 2005].</li>
 <li>Problem: how to learn a high level DAG (state representation）</li>
+<li>Might be useful: “Our method of selecting the ‘best’ explanation is based on notion of resolving the cognitive dissonance of the explainee [Yuan et al., 2011], in that the explanation with the <strong>most surprising</strong> fact will be selected.”</li>
 </ul>
 </li>
 </ul>
@@ -481,6 +496,20 @@ Graying the black box" title="graying the black box"></li>
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -989,11 +1018,11 @@ Graying the black box" title="graying the black box"></li>
     
         <span class="sidebar-tag-name"><a href= "#">Preferences Learning</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">Human-in-the-Loop</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">IJCAI Survey 2019</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">COACH</a></span>
     
