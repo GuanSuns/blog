@@ -335,12 +335,8 @@ Graying the black box" title="graying the black box"></li>
 </li>
 </ul>
 <h2 id="Minimal-sufficient-explanations-for-factored-markov-decision-processes"><a href="#Minimal-sufficient-explanations-for-factored-markov-decision-processes" class="headerlink" title="Minimal sufficient explanations for factored markov decision processes"></a>Minimal sufficient explanations for factored markov decision processes</h2><ul>
-<li><strong>Assumptions</strong><ul>
-<li>Might need a set of explanations to justify the optimal action rather than just 1</li>
-</ul>
-</li>
 <li><strong>Methods</strong><ul>
-<li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms</li>
+<li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms: $t(s, \pi^{\star},s<em>o) = \lambda</em>{s_o}^{\pi^{\star}}<br>\rho(s, \pi^{\star}(s))$, where $\rho$ is the reward function, $\lambda$ is the discounted frequency that visit state s starting from $s_o$ following the policy</li>
 <li>$V^{\pi^{\star}} \ge V_{MSE} \ge Q^{\pi^{\star}}(s_0, a)$<br>  for any action a not equals the optimal action.</li>
 </ul>
 </li>
@@ -416,6 +412,52 @@ Graying the black box" title="graying the black box"></li>
 </ul>
 </li>
 </ul>
+<h2 id="Rationalization-A-Neural-Machine-Translation-Approach-to-Generating-Natural-Language-Explanations"><a href="#Rationalization-A-Neural-Machine-Translation-Approach-to-Generating-Natural-Language-Explanations" class="headerlink" title="Rationalization: A Neural Machine Translation Approach to Generating Natural Language Explanations"></a>Rationalization: A Neural Machine Translation Approach to Generating Natural Language Explanations</h2><ul>
+<li><strong>Assumptions</strong><ul>
+<li>The generated rationalizations do not need to be truly representative of the algorithm’s decision-making process</li>
+<li>Hypothesize that rationalizations will be more accessible to humans that lack the significant amount of background knowledge necessary to interpret explanations and that the use of rationalizations will result in a greater sense of trust or satisfaction on the part of the user.</li>
+</ul>
+</li>
+<li><p><strong>Methods</strong></p>
+<ul>
+<li>Rationalization is a form of explanation that attempts to justify or explain an action or behavior based on how a human would explain a similar behavior.</li>
+<li>Use an encoder-decoder neural network to translate between ad-hoc representations of states and actions in an autonomous system’s environment and natural language<br><img src="https://lh3.googleusercontent.com/7ej5V_9sE-Wpfg5GAmQLPeo3KJQXmjblDCKZVvo-7PldZiYQXhGGyB7ot8u3xylfW03qXuHTBCtr" alt="method"></li>
+</ul>
+</li>
+<li><p><strong>Some Notes</strong></p>
+<ul>
+<li>Problem of current explanation methods in RL:  explanations of decisions could range from “the action had the highest Q value given this state” to “I have explored numerous possible future state-action trajectories from this point and deemed this action to be the most likely to achieve the highest expected reward”</li>
+<li>Very brute-force method to generate explanation: simply feed state-action pair into the Nerual Network and get natrual-language explanation.</li>
+<li>Only generate natural language explanations based on single transition (doesn’t make use of any information of the learned policy, like using the Q-values)</li>
+</ul>
+</li>
+</ul>
+<h2 id="HIGHLIGHTS-Summarizing-Agent-Behavior-to-People"><a href="#HIGHLIGHTS-Summarizing-Agent-Behavior-to-People" class="headerlink" title="HIGHLIGHTS: Summarizing Agent Behavior to People"></a>HIGHLIGHTS: Summarizing Agent Behavior to People</h2><ul>
+<li><strong>Methods</strong><ul>
+<li>In contrast with prior approaches which developed methods for explaining a single decision made by an agent, our approach aims to provide users with a summary that describes the agent’s behavior in diferent situations.</li>
+<li>Define <strong>important states</strong>: a state is important if diferent actions in that states can lead to substantially diferent outcomes for the agent.</li>
+<li>Choose states to be included in the summary with the following 2 criteria: <ul>
+<li>Importance: $I(s) = max<em>a (Q^{\pi}</em>{s,a} )- min<em>a (Q^{\pi}</em>{s,a})$</li>
+<li>Diversity: to convey more information to users, when adding trajectory to summary, they replace the trajectory with similar but less important states</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Generated Explanation</strong><ul>
+<li><strong>Summary</strong> : a set of trajectories (use trajectory rather than a single state-action pair)</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li>Do not learn from the past experiences but rely on new simulation</li>
+<li>Problem of the Q-value-based importance metric: sensitivity to number of possible actions and continuation of the states</li>
+<li>Only present trajectories to human which requires human knowledge to understand the behaviors</li>
+</ul>
+</li>
+</ul>
+<h2 id="Improving-Robot-Controller-Transparency-Through-Autonomous-Policy-Explanation"><a href="#Improving-Robot-Controller-Transparency-Through-Autonomous-Policy-Explanation" class="headerlink" title="Improving Robot Controller Transparency Through Autonomous Policy Explanation"></a>Improving Robot Controller Transparency Through Autonomous Policy Explanation</h2><ul>
+<li><strong>Methods</strong></li>
+<li><strong>Some Notes</strong></li>
+</ul>
 
     </article>
     <!-- 前后页  -->
@@ -482,7 +524,7 @@ Graying the black box" title="graying the black box"></li>
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning"><span class="toc-number">1.</span> <span class="toc-text">Generation of Policy-Level Explanations for Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Graying-the-black-box-Understanding-DQNs"><span class="toc-number">2.</span> <span class="toc-text">Graying the black box: Understanding DQNs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees"><span class="toc-number">3.</span> <span class="toc-text">Distilling Deep Reinforcement Learning Policies in Soft Decision Trees</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Particle-Swarm-Optimization-for-Generating-Interpretable-Fuzzy-Reinforcement-Learning"><span class="toc-number">4.</span> <span class="toc-text">Particle Swarm Optimization for Generating Interpretable Fuzzy Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transparency-and-Explanation-in-Deep-Reinforcement-Learning-Neural-Networks"><span class="toc-number">5.</span> <span class="toc-text">Transparency and Explanation in Deep Reinforcement Learning Neural Networks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Minimal-sufficient-explanations-for-factored-markov-decision-processes"><span class="toc-number">6.</span> <span class="toc-text">Minimal sufficient explanations for factored markov decision processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Toward-Interpretable-Deep-Reinforcement-Learning-with-Linear-Model-U-Trees"><span class="toc-number">7.</span> <span class="toc-text">Toward Interpretable Deep Reinforcement Learning with Linear Model U-Trees</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Contrastive-explanations-for-reinforcement-learning-in-terms-of-expected-consequences"><span class="toc-number">8.</span> <span class="toc-text">Contrastive explanations for reinforcement learning in terms of expected consequences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explainable-Reinforcement-Learning-Through-a-Causal-Lens"><span class="toc-number">9.</span> <span class="toc-text">Explainable Reinforcement Learning Through a Causal Lens</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning"><span class="toc-number">1.</span> <span class="toc-text">Generation of Policy-Level Explanations for Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Graying-the-black-box-Understanding-DQNs"><span class="toc-number">2.</span> <span class="toc-text">Graying the black box: Understanding DQNs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees"><span class="toc-number">3.</span> <span class="toc-text">Distilling Deep Reinforcement Learning Policies in Soft Decision Trees</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Particle-Swarm-Optimization-for-Generating-Interpretable-Fuzzy-Reinforcement-Learning"><span class="toc-number">4.</span> <span class="toc-text">Particle Swarm Optimization for Generating Interpretable Fuzzy Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transparency-and-Explanation-in-Deep-Reinforcement-Learning-Neural-Networks"><span class="toc-number">5.</span> <span class="toc-text">Transparency and Explanation in Deep Reinforcement Learning Neural Networks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Minimal-sufficient-explanations-for-factored-markov-decision-processes"><span class="toc-number">6.</span> <span class="toc-text">Minimal sufficient explanations for factored markov decision processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Toward-Interpretable-Deep-Reinforcement-Learning-with-Linear-Model-U-Trees"><span class="toc-number">7.</span> <span class="toc-text">Toward Interpretable Deep Reinforcement Learning with Linear Model U-Trees</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Contrastive-explanations-for-reinforcement-learning-in-terms-of-expected-consequences"><span class="toc-number">8.</span> <span class="toc-text">Contrastive explanations for reinforcement learning in terms of expected consequences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explainable-Reinforcement-Learning-Through-a-Causal-Lens"><span class="toc-number">9.</span> <span class="toc-text">Explainable Reinforcement Learning Through a Causal Lens</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rationalization-A-Neural-Machine-Translation-Approach-to-Generating-Natural-Language-Explanations"><span class="toc-number">10.</span> <span class="toc-text">Rationalization: A Neural Machine Translation Approach to Generating Natural Language Explanations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HIGHLIGHTS-Summarizing-Agent-Behavior-to-People"><span class="toc-number">11.</span> <span class="toc-text">HIGHLIGHTS: Summarizing Agent Behavior to People</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Improving-Robot-Controller-Transparency-Through-Autonomous-Policy-Explanation"><span class="toc-number">12.</span> <span class="toc-text">Improving Robot Controller Transparency Through Autonomous Policy Explanation</span></a></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -496,18 +538,6 @@ Graying the black box" title="graying the black box"></li>
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1070,23 +1100,8 @@ jsonContent:
     
     <!-- CNZZ统计  -->
     
-    </div>
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</body>
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    </body>
 </html>
 
 
