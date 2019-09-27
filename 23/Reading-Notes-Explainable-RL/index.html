@@ -336,7 +336,8 @@ Graying the black box" title="graying the black box"></li>
 </ul>
 <h2 id="Minimal-sufficient-explanations-for-factored-markov-decision-processes"><a href="#Minimal-sufficient-explanations-for-factored-markov-decision-processes" class="headerlink" title="Minimal sufficient explanations for factored markov decision processes"></a>Minimal sufficient explanations for factored markov decision processes</h2><ul>
 <li><strong>Methods</strong><ul>
-<li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms: $t(s, \pi^{\star},s<em>o) = \lambda</em>{s_o}^{\pi^{\star}}<br>\rho(s, \pi^{\star}(s))$, where $\rho$ is the reward function, $\lambda$ is the discounted frequency that visit state s starting from $s_o$ following the policy</li>
+<li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms: <script type="math/tex">t(s, \pi^{\star},s_o) = \lambda_{s_o}^{\pi^{\star}}  
+\rho(s, \pi^{\star}(s))</script> where $\rho$ is the reward function, $\lambda$ is the discounted frequency that visit state s starting from $s_o$ following the policy</li>
 <li>$V^{\pi^{\star}} \ge V_{MSE} \ge Q^{\pi^{\star}}(s_0, a)$<br>  for any action a not equals the optimal action.</li>
 <li>Use factored MDPs to compute $V^{\pi^{\star}}$ so that this method can be adapted to large state space.</li>
 </ul>
@@ -442,7 +443,7 @@ Graying the black box" title="graying the black box"></li>
 <li>In contrast with prior approaches which developed methods for explaining a single decision made by an agent, our approach aims to provide users with a summary that describes the agent’s behavior in diferent situations.</li>
 <li>Define <strong>important states</strong>: a state is important if diferent actions in that states can lead to substantially diferent outcomes for the agent.</li>
 <li>Choose states to be included in the summary with the following 2 criteria: <ul>
-<li>Importance: $I(s) = max<em>a (Q^{\pi}</em>{s,a} )- min<em>a (Q^{\pi}</em>{s,a})$</li>
+<li>Importance: <script type="math/tex">I(s) = max_a (Q^{\pi}_{s,a} )- min_a (Q^{\pi}_{s,a})</script></li>
 <li>Diversity: to convey more information to users, when adding trajectory to summary, they replace the trajectory with similar but less important states</li>
 </ul>
 </li>
@@ -561,6 +562,22 @@ Graying the black box" title="graying the black box"></li>
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -1067,11 +1084,11 @@ Graying the black box" title="graying the black box"></li>
     
         <span class="sidebar-tag-name"><a href= "#">Preferences Learning</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">Human-in-the-Loop</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">IJCAI Survey 2019</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">COACH</a></span>
     
