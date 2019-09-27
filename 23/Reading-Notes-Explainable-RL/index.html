@@ -283,7 +283,7 @@ Graying the black box" title="graying the black box"></li>
 <li>The essence of soft decision trees is that this kind of model does not rely on hierarchical features to classify data, but <strong>instead relies on hierarchical decisions</strong>.</li>
 <li>Understanding why a particular state observation leads to a certain action distribution can be realized by examining how the input state itself is filtered along the path between the root and the chosen leaf node in the soft decision tree model</li>
 <li>Problem: there is a descrepancy between Q-values and the tree (which means the SDT fails to perfectly represent the learned policy)</li>
-<li>still require the prior-knowledge of human to understand the association amaong selected features. Still need human tofigure out the consequence/intent/motivation of an action given the saliency map (This can be a problem when the domain is complex)</li>
+<li>still require the prior-knowledge of human to understand the association amaong selected features. Still need human to figure out the consequence/intent/motivation of an action given the saliency map (This can be a problem when the domain is complex)</li>
 <li>Problem: the depth of tree is a parameter that need to be tuned.</li>
 </ul>
 </li>
@@ -338,13 +338,18 @@ Graying the black box" title="graying the black box"></li>
 <li><strong>Methods</strong><ul>
 <li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms: $t(s, \pi^{\star},s<em>o) = \lambda</em>{s_o}^{\pi^{\star}}<br>\rho(s, \pi^{\star}(s))$, where $\rho$ is the reward function, $\lambda$ is the discounted frequency that visit state s starting from $s_o$ following the policy</li>
 <li>$V^{\pi^{\star}} \ge V_{MSE} \ge Q^{\pi^{\star}}(s_0, a)$<br>  for any action a not equals the optimal action.</li>
+<li>Use factored MDPs to compute $V^{\pi^{\star}}$ so that this method can be adapted to large state space.</li>
 </ul>
 </li>
 <li><strong>Some Notes</strong><ul>
 <li>Produce contrastive explanations which compare the agent’s action to a proposed alternative, but require a known factored MDP (Learning model of the environment may be more complicated than the learned policy)</li>
 <li>Problem: it uses a fixed set (3) of templates to generate explanation</li>
 <li>Need the MDP designer to provide reward functions and transition model, which will be used to genreate the optimal policy using value-iteration. (Injecting domain-specific information requires additional efforts)</li>
+<li>Doubt that it’s actually applicable to the domains with large state space, since in the worst case it will need to include all the terms in the MSE (it depends on how substantially the optimal action is different from the other actions)</li>
+<li>Problem: “While our approach does not explicitly indicate whether an action is chosen because it leads to a dead-end or is optimal because it is the only action that avoids a dead-end, this information is implicit in the MSE since a dead-end would be a scenario with low reward, and the optimal action would have a low frequency of reaching it.” (it only tells you why, but not “why not” since it is unaware of how bad the other actions are.)</li>
 <li>The format of explanation is interesting, since it indicates the potential outcome of an action (with “probability” comparing to other actions). One example is Action TakeCS343&amp;CS448 is the best action because it is likely to take you to CoursesCompleted = 6, TermNumber = Final about 0.86 times, which is as high as any other action.</li>
+<li>Might extend the work to partially observable MDPs in which explanations is to cater for the obser- vation function rather than having a single known current state for which the optimal policy has been computed</li>
+<li>Might have problem when there is only 1 goal state with reward</li>
 </ul>
 </li>
 </ul>
@@ -455,8 +460,26 @@ Graying the black box" title="graying the black box"></li>
 </li>
 </ul>
 <h2 id="Improving-Robot-Controller-Transparency-Through-Autonomous-Policy-Explanation"><a href="#Improving-Robot-Controller-Transparency-Through-Autonomous-Policy-Explanation" class="headerlink" title="Improving Robot Controller Transparency Through Autonomous Policy Explanation"></a>Improving Robot Controller Transparency Through Autonomous Policy Explanation</h2><ul>
-<li><strong>Methods</strong></li>
-<li><strong>Some Notes</strong></li>
+<li><strong>Methods</strong><ul>
+<li>Simultaneously learn a domain model and the policy</li>
+<li>Use code-level heuristic (self-modifying code) to inspect state-related variables and reduce the amount of unnecessary program variables/functions included (which constitue the elements of the feature vectors of the MDP) </li>
+<li>Grounding State Region: use communicable predicates (boolean logic) that precisely cover the target states to decribe states and use Quine-McCluskey algorithm to minimize the size of disjunctive normal form (DNF) clauses. One example is “The robot is idle and the widget is not present or the robot is active”</li>
+<li>Identifying Conditions for Actions (answer “when will you do” questions): identify Dominant-action State Region (find states in which most frequent action executed is $a$) and then compute the  relevant state region.</li>
+<li>Explaining Differences in Expectation (answer “why don’t you”): it is answered using this template “I didn’t {action} because {difference between current state and states where action is executed}. I {action} when {action region description}”</li>
+<li>Situational Behavior: can return “I perform no action under those conditions”</li>
+</ul>
+</li>
+<li><strong>Generated Explanation</strong><ul>
+<li>CartPole: “I move left when the cart is not at the far left and the pole is falling left. I move right when the cart is at the far left or when the cart is in the middle and the pole is falling right or when the cart is in the far right and the pole is stabilizing left.”</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li>Evaluation metrics: faithfulness to the underlying model, succinctness/minimization fo information transferred, legibility/ability to be interpreted by a human</li>
+<li>Three primary predicate types may be necessary for expressing knowledge related to behavioral inquiries: general, robot-specific and domain-specific</li>
+<li>Problem in identifying dominant-action state region: it has to iterate thorugh the entire state space, which can be a problem when the state space is large.</li>
+<li>The predicate used to describe the states are human crafted, which means it requires human to have prior-knowledge of this domain and it might not be applicable to some domains that can’t be described by predicate easily (for example, in the pacman, we can’t say “IF there is a ghost” or “IF there is a ghost within d steps” because the first one is too general and $d$ is hard to specify in the second one)</li>
+</ul>
+</li>
 </ul>
 
     </article>
@@ -538,10 +561,6 @@ Graying the black box" title="graying the black box"></li>
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
     
     
     
@@ -1100,8 +1119,23 @@ jsonContent:
     
     <!-- CNZZ统计  -->
     
-    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    </body>
+    </div>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
 </html>
 
 
