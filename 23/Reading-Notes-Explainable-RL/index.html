@@ -203,51 +203,29 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning"><a href="#Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning" class="headerlink" title="Generation of Policy-Level Explanations for Reinforcement Learning"></a>Generation of Policy-Level Explanations for Reinforcement Learning</h2><ul>
-<li><strong>Assumptions</strong><ul>
-<li>all states consist of an assignment to features</li>
-<li>Only consider the deterministic case</li>
-<li>Agent behaves similarly in a state from the set (abstract states) in a similar fashion</li>
+        <h1 id="Explainable-RL-Papers-Summary"><a href="#Explainable-RL-Papers-Summary" class="headerlink" title="Explainable RL Papers Summary"></a>Explainable RL Papers Summary</h1><p>There are several methods to enhance the interpretability of machine learning. People typically categorize interpretability methods by the way they generate explanations (model-based vs model-agnostic).</p>
+<ul>
+<li><strong>Model-Agnostic</strong>: model-agnostic methods treat the model to be explained as a black box. In this setting, an interpretable model is trained to approximate the prediction. We can further categorize the model-agnostic methods into <strong>global-surrogate</strong> methods and <strong>local-surrogate</strong> methods.<br><img src="https://lh3.googleusercontent.com/qSAI5P3YWlfjO47uYBKRtwC66fLonNENditlgXDQsxU8EgzwjoKdLXfbPdaNkk3EBV7Dc8wiOpzM" alt="global vs local"></li>
+<li><strong>Model-Specific</strong>:   in model-specific methods, explanations are typically generated from the model itself, e.g. by looking at the weight of each feature, by investigating the feature importance or by extracting rules from decision trees).</li>
+</ul>
+<p>Different from explaining a classifier, in the setting of reinforcement learning, we have much more things to explain such as the policy, the expected consequence of a decision, the reasoning behind a behavior trajectory (rather than just explain the features that affect the final prediction as in classification tasks). At the same time, we can get much more information from the RL model such as the Q-values and the predicted actions (rather than just 1 single prediction as in classification tasks). Therefore, for explanation-generating methods in RL, it might be better to categorize them by different types of explanation they generate: Example-Based Explanations (like contrastive/counterfactual examples), Graph-Based Explanations, Feature-Based Explanations (like saliency map), Rule-Based Explanations.</p>
+<h2 id="Graph-Based-Explanations"><a href="#Graph-Based-Explanations" class="headerlink" title="Graph-Based Explanations"></a>Graph-Based Explanations</h2><p>Graph-based methods generate a graph that represents the relation between different states, where each node is usually a set of states with similarity at some level of abstraction. Several models can be used to achieve the expected level of state abstraction, such as SMDP, AMDP, factored MDP.</p>
+<h3 id="Zahavy-Tom-Nir-Ben-Zrihem-and-Shie-Mannor-“Graying-the-black-box-Understanding-DQNs-”-International-Conference-on-Machine-Learning-2016"><a href="#Zahavy-Tom-Nir-Ben-Zrihem-and-Shie-Mannor-“Graying-the-black-box-Understanding-DQNs-”-International-Conference-on-Machine-Learning-2016" class="headerlink" title="Zahavy, Tom, Nir Ben-Zrihem, and Shie Mannor. “Graying the black box: Understanding DQNs.” International Conference on Machine Learning. 2016"></a>Zahavy, Tom, Nir Ben-Zrihem, and Shie Mannor. “Graying the black box: Understanding DQNs.” <em>International Conference on Machine Learning</em>. 2016</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>Visualize (explain) the policy learned by DQN by aggregating the state space in a hierarchical fashion with features using Semi Aggregated Markov Decision Process (SAMDP)</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
-<li>Use the Feature Importance Ranking Measure (FIRM) to group states from an original MDP into abstract states (<strong>Interchangeability</strong>):  $I_f(c)$  represents the importance of feature f; If $f$ takes on the same value for all states s in c or its value does not influence the system’s output, then f is not important.</li>
-<li>Each abstract state represents a set of grounded states from the original MDP.</li>
-<li>Explanation: create a local explanation consisting of the set of features which are important in that state</li>
-</ul>
-</li>
-<li><strong>Generated Explanation</strong><ul>
-<li><img src="https://lh3.googleusercontent.com/KD5DZFBAUTLTgftPwqaLJ-ISIUjLOND1xJucGkcQTah72R8pislvPWpDY4ORvnfr8edxMVi1n9BI" alt="Abstract Policy Graph"></li>
-</ul>
-</li>
-<li><strong>Experiment Result</strong><ul>
-<li>Even with only 10% of the states, the prediction is correct over 93% of the time. When given 80% of the states, predictions are correct 98.7% of the time for both the stochastic and deterministic environment, which suggests that the model is able to identify genuine patterns in the policy.</li>
-<li>Errors the system makes are probably caused by the splitting order induced by APG Gen’s greedy splitting strategy.</li>
-</ul>
-</li>
-<li><strong>Some Notes</strong><ul>
-<li>No user study</li>
-<li><strong>This algorithm provides an explanation incorporating expected future actions</strong></li>
-<li>This algorithem is compatible with most existing RL systems that learn Q-function (<strong>Probably not compatible with RL systems use deep network</strong>)</li>
-<li>Only presents a MDP of human-designed binary features to the user (not a clear explanation)</li>
-<li>It’s not actually an explanation, especially in terms of explaining the intention or motivation of an action </li>
-<li>It only considers <strong>binary boolean features</strong>.</li>
-<li>When generating the abstrat state, they use binary features to split the set of states into two parts repeatly until all features have low importance. However, when making a decision, the humans probably won’t just take one factor (feature) into consideration (In their experiment, one action only changes one feature/factor).</li>
-</ul>
-</li>
-</ul>
-<h2 id="Graying-the-black-box-Understanding-DQNs"><a href="#Graying-the-black-box-Understanding-DQNs" class="headerlink" title="Graying the black box: Understanding DQNs"></a>Graying the black box: Understanding DQNs</h2><ul>
 <li><p><strong>Methods</strong></p>
 <ul>
 <li><strong>Feature extraction</strong>: statistics from the game such as Q values estimates, generation time, the termination signal, reward and played action; also use hand-crafted features (useful)</li>
-<li><strong>t-SNE</strong>: Apply the t-SNE algorithm directly on the collected neural activations.</li>
+<li><strong>t-SNE</strong>: Apply the t-SNE algorithm directly on the collected <strong>neural activations</strong>.</li>
 <li><strong>Saliency maps</strong>: display the corresponding Saliency maps</li>
-<li><strong>Analyze the policy manually</strong>: Embed states into a space where states within certain regions of this space behave similarly</li>
+<li><strong>Analyze the policy manually</strong>: Embed states into space where states within certain regions of this space behave similarly</li>
 </ul>
 </li>
 <li><p><strong>Semi Aggregated MDP (SAMDP)</strong></p>
 <ul>
-<li>Feature selection</li>
+<li>Feature selection: most features are handcrafted features</li>
 <li>Aggregation via Spatio-temporal clustering: The goal of Aggregation is to find a mapping(clustering) from the MDP feature space to the <strong>AMDP</strong> state space C. Use an extension of the K-means algorithm to enforces temporal coherency along trajectories.</li>
 <li>Skill identification: at time t the agent enters an AMDP state $c_i$ at an MDP state, it chooses a skill according to its SAMDP policy.</li>
 <li>Inference: given the SAMDP states and skills, we infer the skill length, the SAMDP reward and the SAMDP probability transition matrix from observations.</li>
@@ -255,154 +233,77 @@
 </ul>
 </li>
 <li><strong>Generated Explanation</strong><br><img src="https://lh3.googleusercontent.com/aqQ592BoIOpNbByvnMyUJ2D75PFotUGxdm2eoxjQGcyYGALhLD15njXq-bw1q88QDiCZpQ8UXvCH" alt="
-Graying the black box" title="graying the black box"></li>
+Graying the black box" title="graying the black box"><br><img src="https://lh3.googleusercontent.com/n8Lwsn7vNQFdj0yUqT-YWslcgiPUQsHiXvXewK--_DAtl88IEYcQJoIQjPMxqabfwS1tn_SzbxHM" alt="graying the black box"></li>
 <li><strong>Experiment Result</strong><ul>
 <li>The SAMDP algorithm managed to identify most of the policy hierarchy automatically and the clusters are consistent with the manual clusters.</li>
 </ul>
 </li>
 <li><strong>Some Notes</strong>:<ul>
-<li><strong>Spatial abstraction</strong> aims to group states that share common attributes such as similar policy or value function; <strong>temporal abstarction</strong> aims to group states in which the agent to plan with skills (also known as options, macro-actions and temporally-extended actions)</li>
-<li>It uses hand-crafted features but lack of explanation of the reasoning behind the decision made by the DQN.</li>
-<li>It does something like summarizaion (off-line) after the training process.</li>
-<li>The t-SNE provides some high-level explanation of the policy. However, it still needs human to interpret the relation between different cluster (like figuring out which feature matters. The SAMDP does help to explain the policy but still need furture research on finding how the DQN agent balance between different factors (features).</li>
+<li>Features captured by SAMDP: <strong>Spatial abstraction</strong> aims to group states that share common attributes such as similar policy or value function; <strong>temporal abstraction</strong> aims to group states in which the agent to plan with skills (also known as options, macro-actions and temporally-extended actions)</li>
+<li>It generates something like policy summary after the training process.</li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>The t-SNE and SAMDP graph provide some high-level explanation (visualized summary) of the policy. However, it still needs human with prior knowledge to interpret the relation between different cluster (like figuring out which feature matters at a state). </li>
+<li>This method is able to show the expected consequence of an action by showing two connected nodes (states) in the SAMDP. However, it doesn’t reflect the entire reasoning process like how the DQN agent balances between different factors (features). For example, it won’t tell the human the Pacman wants to eat more dots while keeping itself from the ghost).</li>
+<li>The human might find it hard to understand why some states are grouped together. It simply groups states similar to each other in the abstraction space and use the center one to represent the group. However, without necessary knowledge to understand the original state representation (like the raw image), they might find it hard to why those states are grouped together since states with similar abstract representation might look different in the original representation due to too many trivial elements in the original/grounded presentation (like walls in the Pacman are irrelevant features since they rarely affect the decision making) One way to improve this is to find a representation/abstraction of a state with only those features matter (for example, extract some rules), and then present it to the human.</li>
 </ul>
 </li>
 </ul>
-<h2 id="Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees"><a href="#Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees" class="headerlink" title="Distilling Deep Reinforcement Learning Policies in Soft Decision Trees"></a>Distilling Deep Reinforcement Learning Policies in Soft Decision Trees</h2><ul>
-<li><strong>Methods</strong><ul>
-<li>Soft Decision Trees (SDTs), which proposed by Frosst and Hinton in 2017, are a hybrid classification model of binary decision trees with a predetermined depth and neural networks.</li>
-<li>Distill the policy learned by a deep reinforcement learning into soft decision trees.</li>
-<li>By examining the learned filters along the traversed path from the root to leaf, one can thus under- stand which features the soft decision tree considers to assign a particular action distribution to a particular state.</li>
+<h3 id="Topin-Nicholay-and-Manuela-Veloso-“Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning-”-AAAI-2019"><a href="#Topin-Nicholay-and-Manuela-Veloso-“Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning-”-AAAI-2019" class="headerlink" title="Topin, Nicholay, and Manuela Veloso. “Generation of Policy-Level Explanations for Reinforcement Learning.” AAAI (2019)"></a>Topin, Nicholay, and Manuela Veloso. “Generation of Policy-Level Explanations for Reinforcement Learning.” <em>AAAI</em> (2019)</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>Current work in explainable RL focuses on explaining only a single decision in terms of features, which makes it unsuitable for explaining a sequence of decisions. So they introduce a representation that concisely summarizes a policy so that individual decisions can be explained in the context of expected future transition.</li>
 </ul>
 </li>
-<li><strong>Generated Explanations</strong><ul>
-<li><img src="https://lh3.googleusercontent.com/7HfIW3dewA8HsNdU7--H_J7_8JGBZjrVEvYrkHW7NFZWPj2Psu44wC2H27xwCfLkcQaERGPfIS78" alt="Generated Explanation" title="Generated Explanation"></li>
-</ul>
-</li>
-<li><strong>Some Notes</strong><ul>
-<li>The essence of soft decision trees is that this kind of model does not rely on hierarchical features to classify data, but <strong>instead relies on hierarchical decisions</strong>.</li>
-<li>Understanding why a particular state observation leads to a certain action distribution can be realized by examining how the input state itself is filtered along the path between the root and the chosen leaf node in the soft decision tree model</li>
-<li>Problem: there is a descrepancy between Q-values and the tree (which means the SDT fails to perfectly represent the learned policy)</li>
-<li>still require the prior-knowledge of human to understand the association amaong selected features. Still need human to figure out the consequence/intent/motivation of an action given the saliency map (This can be a problem when the domain is complex)</li>
-<li>Problem: the depth of tree is a parameter that need to be tuned.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Particle-Swarm-Optimization-for-Generating-Interpretable-Fuzzy-Reinforcement-Learning"><a href="#Particle-Swarm-Optimization-for-Generating-Interpretable-Fuzzy-Reinforcement-Learning" class="headerlink" title="Particle Swarm Optimization for Generating Interpretable Fuzzy Reinforcement Learning"></a>Particle Swarm Optimization for Generating Interpretable Fuzzy Reinforcement Learning</h2><ul>
-<li><strong>Goals</strong><ul>
-<li>Solve prblems in domains that online learning are prohibited</li>
-</ul>
-</li>
-<li><strong>Methods</strong><ul>
-<li>Learn a world dynamic model g with dataset D that contains the state transitions</li>
-<li>During optimization, each particle’s position x in the PSO represents a parameterization fo the fuzzy policy $\pi [x]$</li>
-<li>Search for optimal parameters for (one half of) the fuzzy policy rule</li>
-<li>Use PSO because the population-based optimizer does not require any gradient information </li>
-</ul>
-</li>
-<li><strong>Generated Explanations</strong><ul>
-<li>Fuzzy rules: one example can be IF cart=right slope AND speed= high right THEN accelerate=positive</li>
-</ul>
-</li>
-<li><strong>Some Notes</strong>:<ul>
-<li>Need to model the world dynamic</li>
-<li>Need to tune the number of rules (not self-adjustable)</li>
-<li>It only learns a rule-representation of the policy but can’t apply to any RL method based on Q-functions. Besides, it does not show the potential consequence of an action (it does not reflect an intelligent agent’s intent, performance, future plans, and reasoning process)</li>
-</ul>
-</li>
-</ul>
-<h2 id="Transparency-and-Explanation-in-Deep-Reinforcement-Learning-Neural-Networks"><a href="#Transparency-and-Explanation-in-Deep-Reinforcement-Learning-Neural-Networks" class="headerlink" title="Transparency and Explanation in Deep Reinforcement Learning Neural Networks"></a>Transparency and Explanation in Deep Reinforcement Learning Neural Networks</h2><ul>
 <li><strong>Assumptions</strong><ul>
-<li>Q(s, a) can be approximated with a linear function $Q(s,a) = w^{T}s + b$ where w is the derivation of Q(s,a) with respect to the state image.</li>
+<li>Only consider the deterministic case</li>
+<li>Agent behaves similarly in a state from the set (abstract states) in a similar fashion</li>
 </ul>
 </li>
 <li><strong>Methods</strong><ul>
-<li>corporate object features and object valence, i.e. positive or negative influence in an agent’s decisions, into DRLN architectures</li>
-<li>Use Template Matching to recognize objects in the game image</li>
-<li>Use object channels to incorporate features of objects </li>
-<li>To calculate the derivation w of Q(s,a) with respect to the state image: $w = Q(s, a)-Q(s_o, a)$, $s_o$ is the state in which we mask an object with background color</li>
-</ul>
-</li>
-<li><strong>Generated Explanations</strong><ul>
-<li><img src="https://lh3.googleusercontent.com/-BY00PkI5jIaiM8NE5PKX3s1tSgEvZviyq93zESRCyJoLxfO_Lg3BPeuQV7A7erHj0FB_Mwt7Sya" alt="Object Saliency Map"></li>
-</ul>
-</li>
-<li><strong>Some Notes</strong>:<ul>
-<li><strong>Agent transparency</strong> is the quality of an interface (e.g. visual, linguistic) pertaining to its abilities to afford an operators comprehension about an intelligent agent’s intent, performance, future plans, and reasoning process</li>
-<li>Ease of transparency seems to be inversely proportional to agent sophistication</li>
-<li>“(Iyer et al. 2018) leverage these pixel-level explanations and use an object detector to produce <strong>object saliency maps</strong>, which are explanations for the behavior of deep RL agents in terms of objects. Unlike our method, their method explains a single decision without the context of potential future decisions.”</li>
-</ul>
-</li>
-</ul>
-<h2 id="Minimal-sufficient-explanations-for-factored-markov-decision-processes"><a href="#Minimal-sufficient-explanations-for-factored-markov-decision-processes" class="headerlink" title="Minimal sufficient explanations for factored markov decision processes"></a>Minimal sufficient explanations for factored markov decision processes</h2><ul>
-<li><strong>Methods</strong><ul>
-<li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms: <script type="math/tex">t(s, \pi^{\star},s_o) = \lambda_{s_o}^{\pi^{\star}}  
-\rho(s, \pi^{\star}(s))</script> where $\rho$ is the reward function, $\lambda$ is the discounted frequency that visit state s starting from $s_o$ following the policy</li>
-<li>$V^{\pi^{\star}} \ge V_{MSE} \ge Q^{\pi^{\star}}(s_0, a)$<br>  for any action a not equals the optimal action.</li>
-<li>Use factored MDPs to compute $V^{\pi^{\star}}$ so that this method can be adapted to large state space.</li>
-</ul>
-</li>
-<li><strong>Some Notes</strong><ul>
-<li>Produce contrastive explanations which compare the agent’s action to a proposed alternative, but require a known factored MDP (Learning model of the environment may be more complicated than the learned policy)</li>
-<li>Problem: it uses a fixed set (3) of templates to generate explanation</li>
-<li>Need the MDP designer to provide reward functions and transition model, which will be used to genreate the optimal policy using value-iteration. (Injecting domain-specific information requires additional efforts)</li>
-<li>Doubt that it’s actually applicable to the domains with large state space, since in the worst case it will need to include all the terms in the MSE (it depends on how substantially the optimal action is different from the other actions)</li>
-<li>Problem: “While our approach does not explicitly indicate whether an action is chosen because it leads to a dead-end or is optimal because it is the only action that avoids a dead-end, this information is implicit in the MSE since a dead-end would be a scenario with low reward, and the optimal action would have a low frequency of reaching it.” (it only tells you why, but not “why not” since it is unaware of how bad the other actions are.)</li>
-<li>The format of explanation is interesting, since it indicates the potential outcome of an action (with “probability” comparing to other actions). One example is Action TakeCS343&amp;CS448 is the best action because it is likely to take you to CoursesCompleted = 6, TermNumber = Final about 0.86 times, which is as high as any other action.</li>
-<li>Might extend the work to partially observable MDPs in which explanations is to cater for the obser- vation function rather than having a single known current state for which the optimal policy has been computed</li>
-<li>Might have problem when there is only 1 goal state with reward</li>
-</ul>
-</li>
-</ul>
-<h2 id="Toward-Interpretable-Deep-Reinforcement-Learning-with-Linear-Model-U-Trees"><a href="#Toward-Interpretable-Deep-Reinforcement-Learning-with-Linear-Model-U-Trees" class="headerlink" title="Toward Interpretable Deep Reinforcement Learning with Linear Model U-Trees"></a>Toward Interpretable Deep Reinforcement Learning with Linear Model U-Trees</h2><ul>
-<li><strong>Methods</strong><ul>
-<li>The first mimic learning framework for Q functions in DRL: trains an interpretable (simpler) mimic model to match the predictions of a highly accurate model</li>
-<li>U-tree is a classic online reinforcement learning method which represents a Q function using a tree structure. LMUT is a U-Tree with a linear model to each leaf node</li>
-<li>Use feature influence to split the tree: evaluate the influence of a splitting feature by the total variance reduction of the Q values</li>
-</ul>
-</li>
-<li><strong>Generated Explanations</strong><ul>
-<li>Example in the mountain car: when velocity in [-0.003, -0.001] and position in [-0.42, 0.13], then Q = &lt;-31.2, -29.6, -29.4&gt;</li>
-</ul>
-</li>
-<li><strong>Some Notes</strong><ul>
-<li>It learns a U-Tree representing the Q-function and the MDP model</li>
-<li>Very Interesting finding: <strong>The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process</strong>. Example here, the first image is often used to locate the pipes (obstacles) and the bird, while the remaining three images provide further information about the bird’s location and velocity. (<strong>As the same, explanation generated by a single state/image is not enought to represent the entire reasoning process. The first images at each row carry most information</strong>)<br><img src="https://lh3.googleusercontent.com/cccrGoFz-2JAkLCtv2YNtrd9GsgrkNjJVbYIH8bwj-1MWmwKapgNhNkLn55N4ifwtcdcuw9qcyMC" alt="The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process"></li>
-</ul>
-</li>
-</ul>
-<h2 id="Contrastive-explanations-for-reinforcement-learning-in-terms-of-expected-consequences"><a href="#Contrastive-explanations-for-reinforcement-learning-in-terms-of-expected-consequences" class="headerlink" title="Contrastive explanations for reinforcement learning in terms of expected consequences"></a>Contrastive explanations for reinforcement learning in terms of expected consequences</h2><ul>
-<li><strong>Methods</strong><ul>
-<li>The world dynamic (transition function) must be learned first</li>
-<li>Given the learned policy and the foil poliy from the user’s question, then through the simulation of future states with T, information can be gathered about state consequences.</li>
-<li>To show the consequence of the foil poicy, it increases the values of the Q values at some specifc states (by training a foil Q-function and add it to the original Q function) and the do the simulation based on the transition model.</li>
-<li>Use state transformation k to transform a state to a set of explainable boolean variables</li>
+<li>Use the Feature Importance Ranking Measure (FIRM) to group states from an original MDP into abstract states (with <strong>Interchangeability</strong>):  $I_f(c)$  represents the importance of feature f; If $f$ takes on the same value for all states $s$ in $c$ or its value does not influence the system’s output, then f is not important.</li>
+<li>Each abstract state represents a set of grounded states from the original MDP.</li>
+<li>Generate explanation: create a local explanation consisting of the set of features which are important in that state</li>
 </ul>
 </li>
 <li><strong>Generated Explanation</strong><ul>
-<li>“For the next n actions I will mostly perform a. During these actions, I will come across situations with any c in the path. This will cause me [positive effects] but also [negative effects]” </li>
+<li><img src="https://lh3.googleusercontent.com/KD5DZFBAUTLTgftPwqaLJ-ISIUjLOND1xJucGkcQTah72R8pislvPWpDY4ORvnfr8edxMVi1n9BI" alt="Abstract Policy Graph"></li>
+</ul>
+</li>
+<li><strong>Experiment Result</strong><ul>
+<li>In a toy problem, evaluate the algorithm’s ability to identify the important feature. Even with only 10% of the states, the prediction is correct over 93% of the time. When given 80% of the states, predictions are correct 98.7% of the time for both the stochastic and deterministic environment, which suggests that the model is able to identify genuine patterns in the policy.</li>
+<li>Errors the system makes are probably caused by the splitting order induced by APG Gen’s greedy splitting strategy.</li>
 </ul>
 </li>
 <li><strong>Some Notes</strong><ul>
-<li>Very naive method to predict the consequence of a policy/trajectory: in some more complicated domains with many features and complex world dynamic, such transition model is hard to learn. Thus, methods based on simulation might be not applicable to such complex domains.</li>
-<li>Problem: they need to learn a new query q-function $Q_I$ each time using simulation.</li>
-<li>It only shows the positive effects and native effects, but doesn’t show why the optimal policy is preferable than the foil policy.</li>
-<li>One possible direction is to make use of the RL experiences rather than to do simulation.</li>
+<li><strong>This algorithm provides an explanation incorporating expected future actions</strong></li>
+<li>This algorithm is compatible with most existing RL systems that learn Q-function (<strong>Probably not compatible with RL systems use deep network</strong> since this method only uses binary features)</li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>No user study</li>
+<li>Only presents an MDP of human-designed binary features to the user (not a clear explanation). When the state space is large due to a large number of features, the MDP can be large and make it hard for human to understand the policy behind.</li>
+<li>It only considers <strong>binary boolean features</strong>.</li>
+<li>When generating the abstract state, they use binary features to split the set of states into two parts repeatedly until all features have low importance. However, when making a decision, the humans probably won’t just take one factor (feature) into consideration (In their experiment, one action only changes one feature/factor).</li>
 </ul>
 </li>
 </ul>
-<h2 id="Explainable-Reinforcement-Learning-Through-a-Causal-Lens"><a href="#Explainable-Reinforcement-Learning-Through-a-Causal-Lens" class="headerlink" title="Explainable Reinforcement Learning Through a Causal Lens"></a>Explainable Reinforcement Learning Through a Causal Lens</h2><ul>
+<h3 id="Madumal-Prashan-et-al-“Explainable-Reinforcement-Learning-Through-a-Causal-Lens-”-Proceedings-of-the-Workshop-on-Explainable-AI-on-the-IJCAI-conference-2019"><a href="#Madumal-Prashan-et-al-“Explainable-Reinforcement-Learning-Through-a-Causal-Lens-”-Proceedings-of-the-Workshop-on-Explainable-AI-on-the-IJCAI-conference-2019" class="headerlink" title="Madumal, Prashan, et al. “Explainable Reinforcement Learning Through a Causal Lens.” Proceedings of the Workshop on Explainable AI on the IJCAI conference (2019)"></a>Madumal, Prashan, et al. “Explainable Reinforcement Learning Through a Causal Lens.” <em>Proceedings of the Workshop on Explainable AI on the IJCAI conference</em> (2019)</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>In making sense of the world, they build a causal model to encode casual-effect relations of events and use these to explain why new events happen.</li>
+</ul>
+</li>
 <li><p><strong>Methods</strong></p>
 <ul>
-<li>Learn a high-level DAG to represent causal models which encodes cause-effect relations of events and use these to explain why new events happen</li>
+<li>Learn a high-level DAG to represent causal models which encodes cause-effect relations of events and use these to explain why new events happen (in DAG, reward is only assigned at the sink states)</li>
 <li>Use causal models to generate contrastive explanations for why and why not problem </li>
 <li>To construct counterfactual explanations:<ul>
-<li>choose “optimal” states under which the action B (counterfactual action) will be choosed</li>
-<li>get the path (all the successors and presuccessors) to the “optimal” states</li>
+<li>choose “optimal” states under which the action B (counterfactual action) will be choosen</li>
+<li>get the path (all the successors and pre-successors) to the “optimal” states</li>
 <li>compare the differences of states in the actual optimal path and the foil “optimal” path</li>
 </ul>
 </li>
-<li>When there are several available explanations, they choose the “best” explanation: the 3-tuple that has the highest combined difference of the current variable values against the optimal variable values of the head,reward and predecessor node is selected.</li>
+<li>When there are several available explanations, they choose the “best” explanation: the 3-tuple that has the highest combined difference of the current variable values against the optimal variable values of the head, reward and predecessor node is selected.</li>
 </ul>
 </li>
 <li><p><strong>Generated Explanation</strong></p>
@@ -413,12 +314,230 @@ Graying the black box" title="graying the black box"></li>
 </li>
 <li><strong>Some Notes</strong><ul>
 <li>As humans, we view the world through a causal lens, where we associate observed events and mechanisms to causal relationships [Sloman, 2005].</li>
-<li>Problem: how to learn a high level DAG (state representation）</li>
-<li>Might be useful: “Our method of selecting the ‘best’ explanation is based on notion of resolving the cognitive dissonance of the explainee [Yuan et al., 2011], in that the explanation with the <strong>most surprising</strong> fact will be selected.”</li>
+<li>Might be useful: “Our method of selecting the ‘best’ explanation is based on the notion of resolving the cognitive dissonance of the explainee [Yuan et al., 2011], in that the explanation with the <strong>most surprising</strong> fact will be selected.”</li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>Problem: how to learn a high-level DAG (state representation). The quality of generated explanations highly depends on the DAG. If DAG fails to capture the causality then the generated explanations become meaningless. However, in this paper, they only assume there is a generated DAG and didn’t mention how this DAG was learned.</li>
 </ul>
 </li>
 </ul>
-<h2 id="Rationalization-A-Neural-Machine-Translation-Approach-to-Generating-Natural-Language-Explanations"><a href="#Rationalization-A-Neural-Machine-Translation-Approach-to-Generating-Natural-Language-Explanations" class="headerlink" title="Rationalization: A Neural Machine Translation Approach to Generating Natural Language Explanations"></a>Rationalization: A Neural Machine Translation Approach to Generating Natural Language Explanations</h2><ul>
+<h2 id="Feature-Based-Explanations"><a href="#Feature-Based-Explanations" class="headerlink" title="Feature-Based Explanations"></a>Feature-Based Explanations</h2><p>Feature-based methods usually use the features related to an action as explanation. The most common ways to extract relevant features are through the activations in the last layer or through Q-values.</p>
+<h3 id="Coppens-Youri-et-al-“Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees-”-Proceedings-of-the-Workshop-on-Explainable-AI-on-the-IJCAI-conference-2019"><a href="#Coppens-Youri-et-al-“Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees-”-Proceedings-of-the-Workshop-on-Explainable-AI-on-the-IJCAI-conference-2019" class="headerlink" title="Coppens, Youri, et al. “Distilling Deep Reinforcement Learning Policies in Soft Decision Trees.” Proceedings of the Workshop on Explainable AI on the IJCAI conference (2019)"></a>Coppens, Youri, et al. “Distilling Deep Reinforcement Learning Policies in Soft Decision Trees.” <em>Proceedings of the Workshop on Explainable AI on the IJCAI conference</em> (2019)</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>They illustrate how Soft Decision Tree (SDT) distillation can be used to make policies that are learned through RL more interpretable.</li>
+</ul>
+</li>
+<li><p><strong>Methods</strong></p>
+<ul>
+<li>Soft Decision Trees (SDTs), which proposed by Frosst and Hinton in 2017, are a hybrid classification model of binary decision trees with a predetermined depth and neural networks.</li>
+<li>Distill the policy learned by a deep reinforcement learning into soft decision trees.</li>
+<li>By examining the learned filters along the traversed path from the root to leaf, one can thus understand which features the soft decision tree considers to assign a particular action distribution to a particular state.</li>
+</ul>
+</li>
+<li><p><strong>Generated Explanations</strong><br>  <img src="https://lh3.googleusercontent.com/7HfIW3dewA8HsNdU7--H_J7_8JGBZjrVEvYrkHW7NFZWPj2Psu44wC2H27xwCfLkcQaERGPfIS78" alt="Generated Explanation" title="Generated Explanation"></p>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li>Simply apply the SDT introduced by Hinton to DQN</li>
+<li>The essence of soft decision trees is that this kind of model does not rely on hierarchical features to classify data, but <strong>instead relies on hierarchical decisions</strong>.</li>
+<li>Understanding why a particular state observation leads to a certain action distribution can be realized by examining how the input state itself is filtered along the path between the root and the chosen leaf node in the soft decision tree model</li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>Problem: there is a discrepancy between Q-values and the tree, which means the SDT fails to perfectly represent the learned policy. (Common problem in the global surrogate methods)</li>
+<li>Still require the prior-knowledge of human to understand the association among selected features. Still need human to figure out the consequence/intent/motivation of an action given the saliency map (This can be a problem when the domain is complex)</li>
+<li>The depth of the tree is a parameter that needs to be tuned (tradeoff between accuracy and space/time efficiency).</li>
+</ul>
+</li>
+</ul>
+<h3 id="Iyer-Rahul-et-al-“Transparency-and-explanation-in-deep-reinforcement-learning-neural-networks-”-Proceedings-of-the-2018-AAAI-ACM-Conference-on-AI-Ethics-and-Society-ACM-2018"><a href="#Iyer-Rahul-et-al-“Transparency-and-explanation-in-deep-reinforcement-learning-neural-networks-”-Proceedings-of-the-2018-AAAI-ACM-Conference-on-AI-Ethics-and-Society-ACM-2018" class="headerlink" title="Iyer, Rahul, et al. “Transparency and explanation in deep reinforcement learning neural networks.” Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society. ACM, 2018"></a>Iyer, Rahul, et al. “Transparency and explanation in deep reinforcement learning neural networks.” <em>Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society</em>. ACM, 2018</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>Use object saliency maps to visualize the internal state of a DQN to increase transparency.</li>
+</ul>
+</li>
+<li><strong>Assumptions</strong><ul>
+<li>Q(s, a) can be approximated with a linear function $Q(s,a) = w^{T}s + b$ where w is the derivation of Q(s,a) with respect to the state image.</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>Use object channels to incorporate features of objects<br><img src="https://lh3.googleusercontent.com/nFKeEzTumD3jeKuckcVidvjUFwr9SdnjwHd_whe3IxRRc0SPjRP2exhNPJuZeZ1OrLpnbHZHdLKm" alt="architecture"></li>
+<li>To calculate the derivation w of Q(s,a) with respect to the state image: $w = Q(s, a)-Q(s_o, a)$, $s_o$ is the state in which we mask an object with background color</li>
+</ul>
+</li>
+<li><strong>Generated Explanations</strong><ul>
+<li><img src="https://lh3.googleusercontent.com/-BY00PkI5jIaiM8NE5PKX3s1tSgEvZviyq93zESRCyJoLxfO_Lg3BPeuQV7A7erHj0FB_Mwt7Sya" alt="Object Saliency Map"></li>
+</ul>
+</li>
+<li><strong>Some Notes</strong>:<ul>
+<li><strong>Agent transparency</strong> is the quality of an interface (e.g. visual, linguistic) pertaining to its abilities to afford an operators comprehension about an intelligent agent’s intent, performance, future plans, and reasoning process</li>
+<li>Ease of transparency seems to be inversely proportional to agent sophistication</li>
+</ul>
+</li>
+<li><strong>Limitation</strong>:<ul>
+<li>“(Iyer et al. 2018) leverage these pixel-level explanations and use an object detector to produce <strong>object saliency maps</strong>, which are explanations for the behavior of deep RL agents in terms of objects. Unlike our method, their method explains a single decision without the context of potential future decisions.”</li>
+</ul>
+</li>
+</ul>
+<h3 id="Liu-Guiliang-et-al-“Toward-interpretable-deep-reinforcement-learning-with-linear-model-u-trees-”-Joint-European-Conference-on-Machine-Learning-and-Knowledge-Discovery-in-Databases-Springer-Cham-2018"><a href="#Liu-Guiliang-et-al-“Toward-interpretable-deep-reinforcement-learning-with-linear-model-u-trees-”-Joint-European-Conference-on-Machine-Learning-and-Knowledge-Discovery-in-Databases-Springer-Cham-2018" class="headerlink" title="Liu, Guiliang, et al. “Toward interpretable deep reinforcement learning with linear model u-trees.” Joint European Conference on Machine Learning and Knowledge Discovery in Databases. Springer, Cham, 2018."></a>Liu, Guiliang, et al. “Toward interpretable deep reinforcement learning with linear model u-trees.” <em>Joint European Conference on Machine Learning and Knowledge Discovery in Databases</em>. Springer, Cham, 2018.</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>The first mimic learning framework for Q functions in DRL: trains an interpretable (simpler) mimic model to match the predictions of a highly accurate model</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>U-tree is a classic online reinforcement learning method which represents a Q function using a tree structure. LMUT is a U-Tree with a linear model to each leaf node</li>
+<li>Use feature influence to split the tree: evaluate the influence of a splitting feature by the total variance reduction of the Q values</li>
+</ul>
+</li>
+<li><strong>Generated Explanations</strong><ul>
+<li>Example in the mountain car: when velocity in [-0.003, -0.001] and position in [-0.42, 0.13], then Q = &lt;-31.2, -29.6, -29.4&gt;</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li>It learns a U-Tree representing the Q-function and the MDP model</li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>Very Interesting finding: <strong>The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process</strong>. Example here, the first image is often used to locate the pipes (obstacles) and the bird, while the remaining three images provide further information about the bird’s location and velocity. (<strong>As the same, explanation generated by a single state/image is not enough to represent the entire reasoning process. The first images at each row carry most information</strong>)<br><img src="https://lh3.googleusercontent.com/cccrGoFz-2JAkLCtv2YNtrd9GsgrkNjJVbYIH8bwj-1MWmwKapgNhNkLn55N4ifwtcdcuw9qcyMC" alt="The attention of DNN would change with time, so a single saliency map is not enough to explain the entire reasoning process"></li>
+</ul>
+</li>
+</ul>
+<h2 id="Rule-Based-Explanations"><a href="#Rule-Based-Explanations" class="headerlink" title="Rule-Based Explanations"></a>Rule-Based Explanations</h2><p>Rule-Based explanations usually extract rules from the model. The strength of rule-based method is that is extremely easy to understand since it clearly lists the precondition and the result.</p>
+<h3 id="Hein-Daniel-et-al-“Particle-swarm-optimization-for-generating-interpretable-fuzzy-reinforcement-learning-policies-”-Engineering-Applications-of-Artificial-Intelligence-65-2017"><a href="#Hein-Daniel-et-al-“Particle-swarm-optimization-for-generating-interpretable-fuzzy-reinforcement-learning-policies-”-Engineering-Applications-of-Artificial-Intelligence-65-2017" class="headerlink" title="Hein, Daniel, et al. “Particle swarm optimization for generating interpretable fuzzy reinforcement learning policies.” Engineering Applications of Artificial Intelligence 65 (2017)"></a>Hein, Daniel, et al. “Particle swarm optimization for generating interpretable fuzzy reinforcement learning policies.” <em>Engineering Applications of Artificial Intelligence</em> 65 (2017)</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>To solve problems in domains where online learning are prohibited, system dynamics are relatively easy to model from previously generated default policy transition samples, and it is expected that a relatively easily interpretable control policy exists.</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>Learn a world dynamic model $g$ with dataset $D$ that contains the state transitions</li>
+<li>During optimization, each particle’s position x in the PSO represents a parameterization fo the fuzzy policy $\pi [x]$</li>
+<li>Search for optimal parameters for (one half of) the fuzzy policy rule</li>
+<li>Use PSO because the population-based optimizer does not require any gradient information </li>
+</ul>
+</li>
+<li><strong>Generated Explanations</strong><ul>
+<li>Fuzzy rules: one example can be IF cart=right slope AND speed= high right THEN accelerate=positive</li>
+</ul>
+</li>
+<li><strong>Limitation</strong>:<ul>
+<li>Need to model the world dynamic</li>
+<li>Need to tune the number of rules (not self-adjustable)</li>
+<li>It learns a rule-representation of the policy but can’t apply to any RL method based on Q-functions. Besides, it does not show the potential consequence of an action (it does not reflect an intelligent agent’s intent, performance, future plans, and reasoning process)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Hayes-Bradley-and-Julie-A-Shah-“Improving-robot-controller-transparency-through-autonomous-policy-explanation-”-2017-12th-ACM-IEEE-International-Conference-on-Human-Robot-Interaction-HRI-IEEE-2017"><a href="#Hayes-Bradley-and-Julie-A-Shah-“Improving-robot-controller-transparency-through-autonomous-policy-explanation-”-2017-12th-ACM-IEEE-International-Conference-on-Human-Robot-Interaction-HRI-IEEE-2017" class="headerlink" title="Hayes, Bradley, and Julie A. Shah. “Improving robot controller transparency through autonomous policy explanation.” 2017 12th ACM/IEEE International Conference on Human-Robot Interaction (HRI). IEEE, 2017."></a>Hayes, Bradley, and Julie A. Shah. “Improving robot controller transparency through autonomous policy explanation.” <em>2017 12th ACM/IEEE International Conference on Human-Robot Interaction (HRI)</em>. IEEE, 2017.</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>Increase the transparency of control software at both code level and policy level.</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>Simultaneously learn a domain model and the policy</li>
+<li>Use code-level heuristic (self-modifying code) to inspect state-related variables and reduce the number of unnecessary program variables/functions included (which constitute the elements of the feature vectors of the MDP) </li>
+<li>Grounding State Region: use communicable predicates (boolean logic) that precisely cover the target states to describe states and use Quine-McCluskey algorithm to minimize the size of disjunctive normal form (DNF) clauses. One example is “The robot is idle and the widget is not present or the robot is active”</li>
+<li>Identifying Conditions for Actions (answer “when will you do” questions): identify Dominant-action State Region (find states in which most frequent action executed is $a$) and then compute the relevant state region.</li>
+<li>Explaining Differences in Expectation (answer “why don’t you”): it is answered using this template “I didn’t {action} because {difference between current state and states where action is executed}. I {action} when {action region description}”</li>
+<li>Situational Behavior: can return “I perform no action under those conditions”</li>
+</ul>
+</li>
+<li><strong>Generated Explanation</strong><ul>
+<li>CartPole: “I move left when the cart is not at the far left and the pole is falling left. I move right when the cart is at the far left or when the cart is in the middle and the pole is falling right or when the cart is in the far right and the pole is stabilizing left.”</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li><strong>Evaluation metrics</strong>: faithfulness to the underlying model, succinctness/minimization fo information transferred, legibility/ability to be interpreted by a human</li>
+<li>Three primary predicate types may be necessary for expressing knowledge related to behavioral inquiries: general, robot-specific and domain-specific</li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>Problem in identifying dominant-action state region: it has to iterate through the entire state space, which can be a problem when the state space is large.</li>
+<li>The predicate used to describe the states are hand-crafted, which means it requires human to have prior-knowledge of this domain and it might not be applicable to some domains that can’t be described by predicate easily (for example, in the Pacman, we can’t say “IF there is a ghost” or “IF there is a ghost within d steps” because the first one is too general and $d$ is hard to specify in the second one)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Example-Based-Explanations"><a href="#Example-Based-Explanations" class="headerlink" title="Example-Based Explanations"></a>Example-Based Explanations</h2><p>Example-based explanation methods select particular instances of the dataset to explain the behavior of machine learning models or to explain the underlying data distribution. Example-based explanation not only can be past experiences from which the agent learns the skill, but also can be counterfactual instances.</p>
+<h3 id="Khan-Omar-Zia-Pascal-Poupart-and-James-P-Black-“Minimal-sufficient-explanations-for-factored-Markov-decision-processes-”-Nineteenth-ICAPS-2009"><a href="#Khan-Omar-Zia-Pascal-Poupart-and-James-P-Black-“Minimal-sufficient-explanations-for-factored-Markov-decision-processes-”-Nineteenth-ICAPS-2009" class="headerlink" title="Khan, Omar Zia, Pascal Poupart, and James P. Black. “Minimal sufficient explanations for factored Markov decision processes.” Nineteenth ICAPS. 2009"></a>Khan, Omar Zia, Pascal Poupart, and James P. Black. “Minimal sufficient explanations for factored Markov decision processes.” <em>Nineteenth ICAPS</em>. 2009</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>Try to generate a minimal set of templates that, viewed together, completely justify a policy.</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms: <script type="math/tex">t(s, \pi^{\star},s_o) = \lambda_{s_o}^{\pi^{\star}}  
+\rho(s, \pi^{\star}(s))</script> where $\rho$ is the reward function, $\lambda$ is the discounted frequency that visit state s starting from $s_o$ following the policy</li>
+<li>$V^{\pi^{\star}} \ge V_{MSE} \ge Q^{\pi^{\star}}(s_0, a)$<br>  for any action a not equals the optimal action.</li>
+<li>Use factored MDPs to compute $V^{\pi^{\star}}$ so that this method can be adapted to large state space.</li>
+</ul>
+</li>
+<li><strong>Some Notes</strong><ul>
+<li>The format of explanation is interesting, since it indicates the potential outcome of an action (with “probability” comparing to other actions). One example is Action TakeCS343&amp;CS448 is the best action because it is likely to take you to CoursesCompleted = 6, TermNumber = Final about 0.86 times, which is as high as any other action.</li>
+<li>“Might extend the work to partially observable MDPs in which explanations is to cater for the observation function rather than having a single known current state for which the optimal policy has been computed”</li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>Produce contrastive explanations which compare the agent’s action to a proposed alternative, but require a known factored MDP (Learning model of the environment may be more complicated than the learned policy)</li>
+<li>It only uses a fixed set (3) of templates to generate explanation</li>
+<li>Need the MDP designer to provide reward functions and transition model, which will be used to generate the optimal policy using value-iteration. (Injecting domain-specific information requires additional efforts)</li>
+<li>Doubt that it’s actually applicable to the domains with large state space, since in the worst case it will need to include all the terms in the MSE (it depends on how substantially the optimal action is different from the other actions)</li>
+<li>“While our approach does not explicitly indicate whether an action is chosen because it leads to a dead-end or is optimal because it is the only action that avoids a dead-end, this information is implicit in the MSE since a dead-end would be a scenario with low reward, and the optimal action would have a low frequency of reaching it.” (it only tells you why, but not “why not” since it is unaware of how bad the other actions are.)</li>
+<li>Might have problem when there is only 1 goal state with reward</li>
+</ul>
+</li>
+</ul>
+<h3 id="Waa-J-et-al-“Contrastive-Explanations-for-Reinforcement-Learning-in-terms-of-Expected-Consequences-”-Proceedings-of-the-Workshop-on-Explainable-AI-on-the-IJCAI-conference-Stockholm-Sweden-37-2018"><a href="#Waa-J-et-al-“Contrastive-Explanations-for-Reinforcement-Learning-in-terms-of-Expected-Consequences-”-Proceedings-of-the-Workshop-on-Explainable-AI-on-the-IJCAI-conference-Stockholm-Sweden-37-2018" class="headerlink" title="Waa, J., et al. “Contrastive Explanations for Reinforcement Learning in terms of Expected Consequences.” Proceedings of the Workshop on Explainable AI on the IJCAI conference, Stockholm, Sweden., 37. 2018"></a>Waa, J., et al. “Contrastive Explanations for Reinforcement Learning in terms of Expected Consequences.” <em>Proceedings of the Workshop on Explainable AI on the IJCAI conference, Stockholm, Sweden., 37</em>. 2018</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>To enable a RL agent to explain its behavior in terms of the expected consequences of state transitions and outcomes.</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>The world dynamic (transition function) must be learned first</li>
+<li>Given the learned policy and the foil policy from the user’s question, then through the simulation of future states with T, information can be gathered about state consequences.</li>
+<li>To show the consequence of the foil policy, it increases the values of the Q values at some specific states (by training a foil Q-function and add it to the original Q function) and the do the simulation based on the transition model.</li>
+<li>Use state transformation k to transform a state to a set of explainable boolean variables</li>
+</ul>
+</li>
+<li><strong>Generated Explanation</strong><ul>
+<li>“For the next n actions, I will mostly perform $a$. During these actions, I will come across situations with any $c$ in the path. This will cause me [positive effects] but also [negative effects]” </li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>Very naive method to predict the consequence of a policy/trajectory: in some more complicated domains with many features and complex world dynamic, such transition model is hard to learn. Thus, methods based on simulation might be not applicable to such complex domains.</li>
+<li>Efficiency issue: they need to learn a new query q-function $Q_I$ each time using simulation.</li>
+<li>It only shows the positive effects and native effects, but doesn’t show why the optimal policy is preferable than the foil policy.</li>
+<li>One possible direction is to make use of the RL experiences rather than to do simulation.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Amir-Dan-and-Ofra-Amir-“Highlights-Summarizing-agent-behavior-to-people-”-Proceedings-of-the-17th-International-Conference-on-Autonomous-Agents-and-MultiAgent-Systems-AAMAS-International-Foundation-for-Autonomous-Agents-and-Multiagent-Systems-2018"><a href="#Amir-Dan-and-Ofra-Amir-“Highlights-Summarizing-agent-behavior-to-people-”-Proceedings-of-the-17th-International-Conference-on-Autonomous-Agents-and-MultiAgent-Systems-AAMAS-International-Foundation-for-Autonomous-Agents-and-Multiagent-Systems-2018" class="headerlink" title="Amir, Dan, and Ofra Amir. “Highlights: Summarizing agent behavior to people.” Proceedings of the 17th International Conference on Autonomous Agents and MultiAgent Systems (AAMAS). International Foundation for Autonomous Agents and Multiagent Systems, 2018."></a>Amir, Dan, and Ofra Amir. “Highlights: Summarizing agent behavior to people.” <em>Proceedings of the 17th International Conference on Autonomous Agents and MultiAgent Systems</em> (AAMAS). International Foundation for Autonomous Agents and Multiagent Systems, 2018.</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>To produce a summary of an agent’s behavior by extracting important trajectories from simulations of the agent</li>
+</ul>
+</li>
+<li><strong>Methods</strong><ul>
+<li>In contrast with prior approaches which developed methods for explaining a single decision made by an agent, our approach aims to provide users with a summary that describes the agent’s behavior in different situations.</li>
+<li>Define <strong>important states</strong>: a state is important if different actions in that states can lead to substantially different outcomes for the agent.</li>
+<li>Choose states to be included in the summary with the following 2 criteria: <ul>
+<li>Importance: <script type="math/tex">I(s) = max_a (Q^{\pi}_{s,a} )- min_a (Q^{\pi}_{s,a})</script></li>
+<li>Diversity: to convey more information to users, when adding trajectory to summary, they replace the trajectory with similar but less important states</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Generated Explanation</strong><ul>
+<li><strong>Summary</strong> : a set of trajectories (use trajectory rather than a single state-action pair)</li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>Do not learn from past experiences but rely on new simulation</li>
+<li>Problem of the Q-value-based importance metric: sensitivity to the number of possible actions and continuation of the states</li>
+<li>Only present trajectories to human which requires human knowledge to understand the behaviors</li>
+</ul>
+</li>
+</ul>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><p>These papers use methods that don’t fall into any categories listed above. Some papers in this section are from other fields like image recognition but some ideas behind their methods might be helpful in explainable RL.</p>
+<h3 id="Ehsan-Upol-et-al-“Rationalization-A-neural-machine-translation-approach-to-generating-natural-language-explanations-”-Proceedings-of-the-2018-AAAI-ACM-Conference-on-AI-Ethics-and-Society-ACM-2018"><a href="#Ehsan-Upol-et-al-“Rationalization-A-neural-machine-translation-approach-to-generating-natural-language-explanations-”-Proceedings-of-the-2018-AAAI-ACM-Conference-on-AI-Ethics-and-Society-ACM-2018" class="headerlink" title="Ehsan, Upol, et al. “Rationalization: A neural machine translation approach to generating natural language explanations.” Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society. ACM, 2018"></a>Ehsan, Upol, et al. “Rationalization: A neural machine translation approach to generating natural language explanations.” <em>Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society</em>. ACM, 2018</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>Introduce a rationalization technique that uses neural machine translation to translate internal state-action representations of an autonomous agent into natural language</li>
+</ul>
+</li>
 <li><strong>Assumptions</strong><ul>
 <li>The generated rationalizations do not need to be truly representative of the algorithm’s decision-making process</li>
 <li>Hypothesize that rationalizations will be more accessible to humans that lack the significant amount of background knowledge necessary to interpret explanations and that the use of rationalizations will result in a greater sense of trust or satisfaction on the part of the user.</li>
@@ -432,53 +551,52 @@ Graying the black box" title="graying the black box"></li>
 </li>
 <li><p><strong>Some Notes</strong></p>
 <ul>
-<li>Problem of current explanation methods in RL:  explanations of decisions could range from “the action had the highest Q value given this state” to “I have explored numerous possible future state-action trajectories from this point and deemed this action to be the most likely to achieve the highest expected reward”</li>
-<li>Very brute-force method to generate explanation: simply feed state-action pair into the Nerual Network and get natrual-language explanation.</li>
+<li>“Explanations of decisions could range from ‘the action had the highest Q value given this state’ to ‘I have explored numerous possible future state-action trajectories from this point and deemed this action to be the most likely to achieve the highest expected reward’”</li>
+</ul>
+</li>
+<li><strong>Limitation</strong><ul>
+<li>Very brute-force method to generate explanation: simply feed state-action pair into the Neural Network and get natrual-language explanation.</li>
 <li>Only generate natural language explanations based on single transition (doesn’t make use of any information of the learned policy, like using the Q-values)</li>
 </ul>
 </li>
 </ul>
-<h2 id="HIGHLIGHTS-Summarizing-Agent-Behavior-to-People"><a href="#HIGHLIGHTS-Summarizing-Agent-Behavior-to-People" class="headerlink" title="HIGHLIGHTS: Summarizing Agent Behavior to People"></a>HIGHLIGHTS: Summarizing Agent Behavior to People</h2><ul>
-<li><strong>Methods</strong><ul>
-<li>In contrast with prior approaches which developed methods for explaining a single decision made by an agent, our approach aims to provide users with a summary that describes the agent’s behavior in diferent situations.</li>
-<li>Define <strong>important states</strong>: a state is important if diferent actions in that states can lead to substantially diferent outcomes for the agent.</li>
-<li>Choose states to be included in the summary with the following 2 criteria: <ul>
-<li>Importance: <script type="math/tex">I(s) = max_a (Q^{\pi}_{s,a} )- min_a (Q^{\pi}_{s,a})</script></li>
-<li>Diversity: to convey more information to users, when adding trajectory to summary, they replace the trajectory with similar but less important states</li>
+<h3 id="Kim-Been-Rajiv-Khanna-and-Oluwasanmi-O-Koyejo-“Examples-are-not-enough-learn-to-criticize-criticism-for-interpretability-”-Advances-in-Neural-Information-Processing-Systems-2016"><a href="#Kim-Been-Rajiv-Khanna-and-Oluwasanmi-O-Koyejo-“Examples-are-not-enough-learn-to-criticize-criticism-for-interpretability-”-Advances-in-Neural-Information-Processing-Systems-2016" class="headerlink" title="Kim, Been, Rajiv Khanna, and Oluwasanmi O. Koyejo. “Examples are not enough, learn to criticize! criticism for interpretability.” Advances in Neural Information Processing Systems. 2016."></a>Kim, Been, Rajiv Khanna, and Oluwasanmi O. Koyejo. “Examples are not enough, learn to criticize! criticism for interpretability.” <em>Advances in Neural Information Processing Systems</em>. 2016.</h3><ul>
+<li><strong>Motivation</strong><ul>
+<li>Prototypes (examples) in example-based explanations alone are rarely sufficient to represent the gist of the complexity. In order for users to construct better mental models and understand complex data distributions, we also need criticism to explain what is not captured by prototypes.</li>
+<li>One example is that regularization adds bias to the model to improve generalization which can be a conflict with some examples from the data.</li>
 </ul>
 </li>
+<li><strong>Methods</strong><ul>
+<li>Definition of <strong>criticsism</strong>: data points that do not quite fit the model</li>
+<li>Bayesian model criticism (BMC) is a framework for evaluating fitted Bayesian models, and was developed to aid model development and selection by helping to identify where and how a particular model may fail to explain the data.</li>
+<li>Lloyd and Ghahramani (2015) recently proposed an exploratory approach for statistical model criticism using the maximum mean discrepancy (MMD) two sample test, and explored the use of the witness function to identify the <strong>portions of the input space</strong> the model most misrepresents the data. </li>
+<li><strong>MMD-critic</strong> in this paper uses the <strong>MMD statistic</strong> as a measure of similarity between points and potential prototypes, and efficiently selects prototypes that maximize the statistic.</li>
+<li>In addition to prototypes, <strong>MMD-critic</strong> selects criticism samples i.e. samples that are not well-explained by the prototypes using a regularized witness function score.</li>
 </ul>
 </li>
 <li><strong>Generated Explanation</strong><ul>
-<li><strong>Summary</strong> : a set of trajectories (use trajectory rather than a single state-action pair)</li>
+<li>The prototypes capture many of the common ways of writing digits, while the criticism clearly capture outliers.<br><img src="https://lh3.googleusercontent.com/iKX5Su-PjumXpWc0fAoj8V8jQJYQopKVjzLuMo4hYI1kD1V1Cm1rGtdBodRqKc0zXSct_fKZHACS" alt="Prototypes vs Criticisms"></li>
 </ul>
 </li>
 <li><strong>Some Notes</strong><ul>
-<li>Do not learn from the past experiences but rely on new simulation</li>
-<li>Problem of the Q-value-based importance metric: sensitivity to number of possible actions and continuation of the states</li>
-<li>Only present trajectories to human which requires human knowledge to understand the behaviors</li>
+<li>What if we do something like self-criticize where we use the criticisms again to improve the model?</li>
 </ul>
 </li>
 </ul>
-<h2 id="Improving-Robot-Controller-Transparency-Through-Autonomous-Policy-Explanation"><a href="#Improving-Robot-Controller-Transparency-Through-Autonomous-Policy-Explanation" class="headerlink" title="Improving Robot Controller Transparency Through Autonomous Policy Explanation"></a>Improving Robot Controller Transparency Through Autonomous Policy Explanation</h2><ul>
+<h2 id="Mitchell-Tom-M-and-Sebastian-B-Thrun-“Explanation-based-neural-network-learning-for-robot-control-”-Advances-in-neural-information-processing-systems-1993"><a href="#Mitchell-Tom-M-and-Sebastian-B-Thrun-“Explanation-based-neural-network-learning-for-robot-control-”-Advances-in-neural-information-processing-systems-1993" class="headerlink" title="Mitchell, Tom M., and Sebastian B. Thrun. “Explanation-based neural network learning for robot control.” Advances in neural information processing systems. 1993."></a>Mitchell, Tom M., and Sebastian B. Thrun. “Explanation-based neural network learning for robot control.” <em>Advances in neural information processing systems</em>. 1993.</h2><ul>
+<li><strong>Motivation</strong><ul>
+<li>To make the neural network learns faster using less samples, they introduce a learning method that generalizes rationally from many fewer data points, relying instead on prior knowledge encoded in previously learned neural networks. For example.  in the task of learning general rules for robot control, EBL can use prior knowledge about the effects of robot actions to analytically generalize from specific training examples of successful control actions.</li>
+</ul>
+</li>
 <li><strong>Methods</strong><ul>
-<li>Simultaneously learn a domain model and the policy</li>
-<li>Use code-level heuristic (self-modifying code) to inspect state-related variables and reduce the amount of unnecessary program variables/functions included (which constitue the elements of the feature vectors of the MDP) </li>
-<li>Grounding State Region: use communicable predicates (boolean logic) that precisely cover the target states to decribe states and use Quine-McCluskey algorithm to minimize the size of disjunctive normal form (DNF) clauses. One example is “The robot is idle and the widget is not present or the robot is active”</li>
-<li>Identifying Conditions for Actions (answer “when will you do” questions): identify Dominant-action State Region (find states in which most frequent action executed is $a$) and then compute the  relevant state region.</li>
-<li>Explaining Differences in Expectation (answer “why don’t you”): it is answered using this template “I didn’t {action} because {difference between current state and states where action is executed}. I {action} when {action region description}”</li>
-<li>Situational Behavior: can return “I perform no action under those conditions”</li>
-</ul>
-</li>
-<li><strong>Generated Explanation</strong><ul>
-<li>CartPole: “I move left when the cart is not at the far left and the pole is falling left. I move right when the cart is at the far left or when the cart is in the middle and the pole is falling right or when the cart is in the far right and the pole is stabilizing left.”</li>
+<li>observe a sequence of states and actions leading to some goal $\Rightarrow$ explaining the outcome of this sequence using the domain theory $\Rightarrow$ analyze the explanation in order to determine which features of the initial state are relevant to achieving the goal of the sequence.</li>
+<li>In this paper, the domain theory is a collection of transition functions $s \times a \rightarrow s \prime$ denoted by $M_i: s  \rightarrow s \prime$, one for each action i</li>
+<li>Explain-Analyze: estimate the slope of the target function for each observed state-action pair (extract the derivative of the final reward R with respect to the features of the states)<br><img src="https://lh3.googleusercontent.com/RFKwLfkpXRDXLJDxbN8fFAcDgf8xdk2vHjJIjmStEUREGLp8tiS7fFBZiZFonj9d75tN3wIsrCkh" alt="drivative"></li>
+<li>In the end, update the learned target function to better fit both the target values and target slopes.<br><img src="https://lh3.googleusercontent.com/bHoSMt51UIDl9Ne6aYkVnmLeSYX6Beney8E1XtTFl4JBwg1MuUQV1qvYy_jgBRpv9xZ18DPv-FKp" alt="h better than g"></li>
 </ul>
 </li>
 <li><strong>Some Notes</strong><ul>
-<li>Evaluation metrics: faithfulness to the underlying model, succinctness/minimization fo information transferred, legibility/ability to be interpreted by a human</li>
-<li>Three primary predicate types may be necessary for expressing knowledge related to behavioral inquiries: general, robot-specific and domain-specific</li>
-<li>Problem in identifying dominant-action state region: it has to iterate thorugh the entire state space, which can be a problem when the state space is large.</li>
-<li>The predicate used to describe the states are human crafted, which means it requires human to have prior-knowledge of this domain and it might not be applicable to some domains that can’t be described by predicate easily (for example, in the pacman, we can’t say “IF there is a ghost” or “IF there is a ghost within d steps” because the first one is too general and $d$ is hard to specify in the second one)</li>
+<li>The explanation here is not the interpretable explanation in common sense. But it shows some way to boost learning with prior knowledge.</li>
 </ul>
 </li>
 </ul>
@@ -548,7 +666,7 @@ Graying the black box" title="graying the black box"></li>
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning"><span class="toc-number">1.</span> <span class="toc-text">Generation of Policy-Level Explanations for Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Graying-the-black-box-Understanding-DQNs"><span class="toc-number">2.</span> <span class="toc-text">Graying the black box: Understanding DQNs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees"><span class="toc-number">3.</span> <span class="toc-text">Distilling Deep Reinforcement Learning Policies in Soft Decision Trees</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Particle-Swarm-Optimization-for-Generating-Interpretable-Fuzzy-Reinforcement-Learning"><span class="toc-number">4.</span> <span class="toc-text">Particle Swarm Optimization for Generating Interpretable Fuzzy Reinforcement Learning</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transparency-and-Explanation-in-Deep-Reinforcement-Learning-Neural-Networks"><span class="toc-number">5.</span> <span class="toc-text">Transparency and Explanation in Deep Reinforcement Learning Neural Networks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Minimal-sufficient-explanations-for-factored-markov-decision-processes"><span class="toc-number">6.</span> <span class="toc-text">Minimal sufficient explanations for factored markov decision processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Toward-Interpretable-Deep-Reinforcement-Learning-with-Linear-Model-U-Trees"><span class="toc-number">7.</span> <span class="toc-text">Toward Interpretable Deep Reinforcement Learning with Linear Model U-Trees</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Contrastive-explanations-for-reinforcement-learning-in-terms-of-expected-consequences"><span class="toc-number">8.</span> <span class="toc-text">Contrastive explanations for reinforcement learning in terms of expected consequences</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Explainable-Reinforcement-Learning-Through-a-Causal-Lens"><span class="toc-number">9.</span> <span class="toc-text">Explainable Reinforcement Learning Through a Causal Lens</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rationalization-A-Neural-Machine-Translation-Approach-to-Generating-Natural-Language-Explanations"><span class="toc-number">10.</span> <span class="toc-text">Rationalization: A Neural Machine Translation Approach to Generating Natural Language Explanations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HIGHLIGHTS-Summarizing-Agent-Behavior-to-People"><span class="toc-number">11.</span> <span class="toc-text">HIGHLIGHTS: Summarizing Agent Behavior to People</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Improving-Robot-Controller-Transparency-Through-Autonomous-Policy-Explanation"><span class="toc-number">12.</span> <span class="toc-text">Improving Robot Controller Transparency Through Autonomous Policy Explanation</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Explainable-RL-Papers-Summary"><span class="toc-number">1.</span> <span class="toc-text">Explainable RL Papers Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Graph-Based-Explanations"><span class="toc-number">1.1.</span> <span class="toc-text">Graph-Based Explanations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Zahavy-Tom-Nir-Ben-Zrihem-and-Shie-Mannor-“Graying-the-black-box-Understanding-DQNs-”-International-Conference-on-Machine-Learning-2016"><span class="toc-number">1.1.1.</span> <span class="toc-text">Zahavy, Tom, Nir Ben-Zrihem, and Shie Mannor. “Graying the black box: Understanding DQNs.” International Conference on Machine Learning. 2016</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Topin-Nicholay-and-Manuela-Veloso-“Generation-of-Policy-Level-Explanations-for-Reinforcement-Learning-”-AAAI-2019"><span class="toc-number">1.1.2.</span> <span class="toc-text">Topin, Nicholay, and Manuela Veloso. “Generation of Policy-Level Explanations for Reinforcement Learning.” AAAI (2019)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Madumal-Prashan-et-al-“Explainable-Reinforcement-Learning-Through-a-Causal-Lens-”-Proceedings-of-the-Workshop-on-Explainable-AI-on-the-IJCAI-conference-2019"><span class="toc-number">1.1.3.</span> <span class="toc-text">Madumal, Prashan, et al. “Explainable Reinforcement Learning Through a Causal Lens.” Proceedings of the Workshop on Explainable AI on the IJCAI conference (2019)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Feature-Based-Explanations"><span class="toc-number">1.2.</span> <span class="toc-text">Feature-Based Explanations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Coppens-Youri-et-al-“Distilling-Deep-Reinforcement-Learning-Policies-in-Soft-Decision-Trees-”-Proceedings-of-the-Workshop-on-Explainable-AI-on-the-IJCAI-conference-2019"><span class="toc-number">1.2.1.</span> <span class="toc-text">Coppens, Youri, et al. “Distilling Deep Reinforcement Learning Policies in Soft Decision Trees.” Proceedings of the Workshop on Explainable AI on the IJCAI conference (2019)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Iyer-Rahul-et-al-“Transparency-and-explanation-in-deep-reinforcement-learning-neural-networks-”-Proceedings-of-the-2018-AAAI-ACM-Conference-on-AI-Ethics-and-Society-ACM-2018"><span class="toc-number">1.2.2.</span> <span class="toc-text">Iyer, Rahul, et al. “Transparency and explanation in deep reinforcement learning neural networks.” Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society. ACM, 2018</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Liu-Guiliang-et-al-“Toward-interpretable-deep-reinforcement-learning-with-linear-model-u-trees-”-Joint-European-Conference-on-Machine-Learning-and-Knowledge-Discovery-in-Databases-Springer-Cham-2018"><span class="toc-number">1.2.3.</span> <span class="toc-text">Liu, Guiliang, et al. “Toward interpretable deep reinforcement learning with linear model u-trees.” Joint European Conference on Machine Learning and Knowledge Discovery in Databases. Springer, Cham, 2018.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rule-Based-Explanations"><span class="toc-number">1.3.</span> <span class="toc-text">Rule-Based Explanations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hein-Daniel-et-al-“Particle-swarm-optimization-for-generating-interpretable-fuzzy-reinforcement-learning-policies-”-Engineering-Applications-of-Artificial-Intelligence-65-2017"><span class="toc-number">1.3.1.</span> <span class="toc-text">Hein, Daniel, et al. “Particle swarm optimization for generating interpretable fuzzy reinforcement learning policies.” Engineering Applications of Artificial Intelligence 65 (2017)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hayes-Bradley-and-Julie-A-Shah-“Improving-robot-controller-transparency-through-autonomous-policy-explanation-”-2017-12th-ACM-IEEE-International-Conference-on-Human-Robot-Interaction-HRI-IEEE-2017"><span class="toc-number">1.3.2.</span> <span class="toc-text">Hayes, Bradley, and Julie A. Shah. “Improving robot controller transparency through autonomous policy explanation.” 2017 12th ACM/IEEE International Conference on Human-Robot Interaction (HRI). IEEE, 2017.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-Based-Explanations"><span class="toc-number">1.4.</span> <span class="toc-text">Example-Based Explanations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Khan-Omar-Zia-Pascal-Poupart-and-James-P-Black-“Minimal-sufficient-explanations-for-factored-Markov-decision-processes-”-Nineteenth-ICAPS-2009"><span class="toc-number">1.4.1.</span> <span class="toc-text">Khan, Omar Zia, Pascal Poupart, and James P. Black. “Minimal sufficient explanations for factored Markov decision processes.” Nineteenth ICAPS. 2009</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Waa-J-et-al-“Contrastive-Explanations-for-Reinforcement-Learning-in-terms-of-Expected-Consequences-”-Proceedings-of-the-Workshop-on-Explainable-AI-on-the-IJCAI-conference-Stockholm-Sweden-37-2018"><span class="toc-number">1.4.2.</span> <span class="toc-text">Waa, J., et al. “Contrastive Explanations for Reinforcement Learning in terms of Expected Consequences.” Proceedings of the Workshop on Explainable AI on the IJCAI conference, Stockholm, Sweden., 37. 2018</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amir-Dan-and-Ofra-Amir-“Highlights-Summarizing-agent-behavior-to-people-”-Proceedings-of-the-17th-International-Conference-on-Autonomous-Agents-and-MultiAgent-Systems-AAMAS-International-Foundation-for-Autonomous-Agents-and-Multiagent-Systems-2018"><span class="toc-number">1.4.3.</span> <span class="toc-text">Amir, Dan, and Ofra Amir. “Highlights: Summarizing agent behavior to people.” Proceedings of the 17th International Conference on Autonomous Agents and MultiAgent Systems (AAMAS). International Foundation for Autonomous Agents and Multiagent Systems, 2018.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Others"><span class="toc-number">1.5.</span> <span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ehsan-Upol-et-al-“Rationalization-A-neural-machine-translation-approach-to-generating-natural-language-explanations-”-Proceedings-of-the-2018-AAAI-ACM-Conference-on-AI-Ethics-and-Society-ACM-2018"><span class="toc-number">1.5.1.</span> <span class="toc-text">Ehsan, Upol, et al. “Rationalization: A neural machine translation approach to generating natural language explanations.” Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society. ACM, 2018</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kim-Been-Rajiv-Khanna-and-Oluwasanmi-O-Koyejo-“Examples-are-not-enough-learn-to-criticize-criticism-for-interpretability-”-Advances-in-Neural-Information-Processing-Systems-2016"><span class="toc-number">1.5.2.</span> <span class="toc-text">Kim, Been, Rajiv Khanna, and Oluwasanmi O. Koyejo. “Examples are not enough, learn to criticize! criticism for interpretability.” Advances in Neural Information Processing Systems. 2016.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mitchell-Tom-M-and-Sebastian-B-Thrun-“Explanation-based-neural-network-learning-for-robot-control-”-Advances-in-neural-information-processing-systems-1993"><span class="toc-number">1.6.</span> <span class="toc-text">Mitchell, Tom M., and Sebastian B. Thrun. “Explanation-based neural network learning for robot control.” Advances in neural information processing systems. 1993.</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -562,6 +680,8 @@ Graying the black box" title="graying the black box"></li>
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
