@@ -215,7 +215,7 @@
 <li>Visualize (explain) the policy learned by DQN by aggregating the state space in a hierarchical fashion with features using Semi Aggregated Markov Decision Process (SAMDP)</li>
 </ul>
 </li>
-<li><p><strong>Methods</strong></p>
+<li><p><strong>Approaches</strong></p>
 <ul>
 <li><strong>Feature extraction</strong>: statistics from the game such as Q values estimates, generation time, the termination signal, reward and played action; also use hand-crafted features (useful)</li>
 <li><strong>t-SNE</strong>: Apply the t-SNE algorithm directly on the collected <strong>neural activations</strong>.</li>
@@ -260,7 +260,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>Agent behaves similarly in a state from the set (abstract states) in a similar fashion</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>Use the Feature Importance Ranking Measure (FIRM) to group states from an original MDP into abstract states (with <strong>Interchangeability</strong>):  $I_f(c)$  represents the importance of feature f; If $f$ takes on the same value for all states $s$ in $c$ or its value does not influence the system’s output, then f is not important.</li>
 <li>Each abstract state represents a set of grounded states from the original MDP.</li>
 <li>Generate explanation: create a local explanation consisting of the set of features which are important in that state</li>
@@ -293,7 +293,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>In making sense of the world, they build a causal model to encode casual-effect relations of events and use these to explain why new events happen.</li>
 </ul>
 </li>
-<li><p><strong>Methods</strong></p>
+<li><p><strong>Approaches</strong></p>
 <ul>
 <li>Learn a high-level DAG to represent causal models which encodes cause-effect relations of events and use these to explain why new events happen (in DAG, reward is only assigned at the sink states)</li>
 <li>Use causal models to generate contrastive explanations for why and why not problem </li>
@@ -328,7 +328,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>They illustrate how Soft Decision Tree (SDT) distillation can be used to make policies that are learned through RL more interpretable.</li>
 </ul>
 </li>
-<li><p><strong>Methods</strong></p>
+<li><p><strong>Approaches</strong></p>
 <ul>
 <li>Soft Decision Trees (SDTs), which proposed by Frosst and Hinton in 2017, are a hybrid classification model of binary decision trees with a predetermined depth and neural networks.</li>
 <li>Distill the policy learned by a deep reinforcement learning into soft decision trees.</li>
@@ -359,7 +359,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>Q(s, a) can be approximated with a linear function $Q(s,a) = w^{T}s + b$ where w is the derivation of Q(s,a) with respect to the state image.</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>Use object channels to incorporate features of objects<br><img src="https://lh3.googleusercontent.com/nFKeEzTumD3jeKuckcVidvjUFwr9SdnjwHd_whe3IxRRc0SPjRP2exhNPJuZeZ1OrLpnbHZHdLKm" alt="architecture"></li>
 <li>To calculate the derivation w of Q(s,a) with respect to the state image: $w = Q(s, a)-Q(s_o, a)$, $s_o$ is the state in which we mask an object with background color</li>
 </ul>
@@ -383,7 +383,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>The first mimic learning framework for Q functions in DRL: trains an interpretable (simpler) mimic model to match the predictions of a highly accurate model</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>U-tree is a classic online reinforcement learning method which represents a Q function using a tree structure. LMUT is a U-Tree with a linear model to each leaf node</li>
 <li>Use feature influence to split the tree: evaluate the influence of a splitting feature by the total variance reduction of the Q values</li>
 </ul>
@@ -407,7 +407,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>To solve problems in domains where online learning are prohibited, system dynamics are relatively easy to model from previously generated default policy transition samples, and it is expected that a relatively easily interpretable control policy exists.</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>Learn a world dynamic model $g$ with dataset $D$ that contains the state transitions</li>
 <li>During optimization, each particle’s position x in the PSO represents a parameterization fo the fuzzy policy $\pi [x]$</li>
 <li>Search for optimal parameters for (one half of) the fuzzy policy rule</li>
@@ -430,7 +430,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>Increase the transparency of control software at both code level and policy level.</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>Simultaneously learn a domain model and the policy</li>
 <li>Use code-level heuristic (self-modifying code) to inspect state-related variables and reduce the number of unnecessary program variables/functions included (which constitute the elements of the feature vectors of the MDP) </li>
 <li>Grounding State Region: use communicable predicates (boolean logic) that precisely cover the target states to describe states and use Quine-McCluskey algorithm to minimize the size of disjunctive normal form (DNF) clauses. One example is “The robot is idle and the widget is not present or the robot is active”</li>
@@ -460,7 +460,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>Try to generate a minimal set of templates that, viewed together, completely justify a policy.</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>Introduced the concept of a minimal sufficient explanation through which an action can be explained using the fewest possible terms: <script type="math/tex">t(s, \pi^{\star},s_o) = \lambda_{s_o}^{\pi^{\star}}  
 \rho(s, \pi^{\star}(s))</script> where $\rho$ is the reward function, $\lambda$ is the discounted frequency that visit state s starting from $s_o$ following the policy</li>
 <li>$V^{\pi^{\star}} \ge V_{MSE} \ge Q^{\pi^{\star}}(s_0, a)$<br>  for any action a not equals the optimal action.</li>
@@ -487,7 +487,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>To enable a RL agent to explain its behavior in terms of the expected consequences of state transitions and outcomes.</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>The world dynamic (transition function) must be learned first</li>
 <li>Given the learned policy and the foil policy from the user’s question, then through the simulation of future states with T, information can be gathered about state consequences.</li>
 <li>To show the consequence of the foil policy, it increases the values of the Q values at some specific states (by training a foil Q-function and add it to the original Q function) and the do the simulation based on the transition model.</li>
@@ -511,7 +511,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>To produce a summary of an agent’s behavior by extracting important trajectories from simulations of the agent</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>In contrast with prior approaches which developed methods for explaining a single decision made by an agent, our approach aims to provide users with a summary that describes the agent’s behavior in different situations.</li>
 <li>Define <strong>important states</strong>: a state is important if different actions in that states can lead to substantially different outcomes for the agent.</li>
 <li>Choose states to be included in the summary with the following 2 criteria: <ul>
@@ -543,7 +543,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>Hypothesize that rationalizations will be more accessible to humans that lack the significant amount of background knowledge necessary to interpret explanations and that the use of rationalizations will result in a greater sense of trust or satisfaction on the part of the user.</li>
 </ul>
 </li>
-<li><p><strong>Methods</strong></p>
+<li><p><strong>Approaches</strong></p>
 <ul>
 <li>Rationalization is a form of explanation that attempts to justify or explain an action or behavior based on how a human would explain a similar behavior.</li>
 <li>Use an encoder-decoder neural network to translate between ad-hoc representations of states and actions in an autonomous system’s environment and natural language<br><img src="https://lh3.googleusercontent.com/7ej5V_9sE-Wpfg5GAmQLPeo3KJQXmjblDCKZVvo-7PldZiYQXhGGyB7ot8u3xylfW03qXuHTBCtr" alt="method"></li>
@@ -566,7 +566,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>One example is that regularization adds bias to the model to improve generalization which can be a conflict with some examples from the data.</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>Definition of <strong>criticsism</strong>: data points that do not quite fit the model</li>
 <li>Bayesian model criticism (BMC) is a framework for evaluating fitted Bayesian models, and was developed to aid model development and selection by helping to identify where and how a particular model may fail to explain the data.</li>
 <li>Lloyd and Ghahramani (2015) recently proposed an exploratory approach for statistical model criticism using the maximum mean discrepancy (MMD) two sample test, and explored the use of the witness function to identify the <strong>portions of the input space</strong> the model most misrepresents the data. </li>
@@ -588,7 +588,7 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
 <li>To make the neural network learns faster using less samples, they introduce a learning method that generalizes rationally from many fewer data points, relying instead on prior knowledge encoded in previously learned neural networks. For example.  in the task of learning general rules for robot control, EBL can use prior knowledge about the effects of robot actions to analytically generalize from specific training examples of successful control actions.</li>
 </ul>
 </li>
-<li><strong>Methods</strong><ul>
+<li><strong>Approaches</strong><ul>
 <li>observe a sequence of states and actions leading to some goal $\Rightarrow$ explaining the outcome of this sequence using the domain theory $\Rightarrow$ analyze the explanation in order to determine which features of the initial state are relevant to achieving the goal of the sequence.</li>
 <li>In this paper, the domain theory is a collection of transition functions $s \times a \rightarrow s \prime$ denoted by $M_i: s  \rightarrow s \prime$, one for each action i</li>
 <li>Explain-Analyze: estimate the slope of the target function for each observed state-action pair (extract the derivative of the final reward R with respect to the features of the states)<br><img src="https://lh3.googleusercontent.com/RFKwLfkpXRDXLJDxbN8fFAcDgf8xdk2vHjJIjmStEUREGLp8tiS7fFBZiZFonj9d75tN3wIsrCkh" alt="drivative"></li>
@@ -680,10 +680,6 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
     
     
     
@@ -1204,11 +1200,11 @@ Graying the black box" title="graying the black box"><br><img src="https://lh3.g
     
         <span class="sidebar-tag-name"><a href= "#">Preferences Learning</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">Human-in-the-Loop</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">IJCAI Survey 2019</a></span>
-    
-        <span class="sidebar-tag-name"><a href= "#">Human Feedback</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">COACH</a></span>
     
