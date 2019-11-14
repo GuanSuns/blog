@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        About Me · Lin Guan&#39;s Personal Website
+        RL Reading Note: Dueling DQN · Lin Guan&#39;s Personal Website
         
     </title>
     <link rel="icon" href= https://image-1252075188.cos.na-toronto.myqcloud.com/favicon.ico>
@@ -58,7 +58,7 @@
 </head>
 
     
-        <body class="about-body">
+        <body class="post-body">
     
     
 <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
@@ -66,6 +66,15 @@
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/blog/" >Lin Guan&#39;s Personal Website</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">RL Reading Note: Dueling DQN</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/blog/>Lin Guan's Personal Website</a>
 </header>
@@ -75,23 +84,56 @@
     <!-- 主页  -->
     
     
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/blog/intro/about-page.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/blog/intro/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            About Me
+            RL Reading Note: Dueling DQN
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Deep Learning>Deep Learning</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Reinforcement Learning>Reinforcement Learning</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/blog/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/07/21</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -159,16 +201,106 @@
             }
         </script>
         <div class="container container-unloaded">
-            <!-- 不可以删除，否则会调用post的layout  -->
-<main class="main about-page">
+            <main class="main post-page">
     <article class="article-entry">
-        <p><img width="250" height="315" align="left" src="https://s3.us-east-2.amazonaws.com/research-report/photo.jpeg" style="margin-right:30px"></p>
-<p>Hey, I am <strong>Lin Guan</strong>. Welcome to my website!</p>
-<p>I’m an undergraduate student in Department of Computer Science, The University of Texas at Austin. I am working as a research assistant in the <a href="https://www.cs.utexas.edu/~dana/vrlab/index.html" target="_blank" rel="noopener">Vision, Cognition, and Action Lab</a> of <a href="http://www.cs.utexas.edu/~ai-lab/" target="_blank" rel="noopener">Artificial Intelligence Research Group</a> at UT Austin, under the supervision of <a href="https://www.cs.utexas.edu/~dana/" target="_blank" rel="noopener">Prof. Dana Ballard</a>. I am also working as a software engineer in <a href="https://www.cs.utexas.edu/~lili/" target="_blank" rel="noopener">Prof. Lili Qiu</a>‘s startup company <a href="https://www.hauoli.co/" target="_blank" rel="noopener">Hauoli</a>.</p>
-<p>My research interests are human-robot interaction, reinforcement learning from human feedback, and motion planning. Currently, I am working on using human evaluative feedback (good, neutral, bad) feedback to facilitate agent learning. You can read the research report of my on-going project here: <a href="https://s3.us-east-2.amazonaws.com/research-report/Research-Report.pdf" target="_blank" rel="noopener">Policy Editing - Leveraging Human Evaluative Feedback to Facilitate Reinforcement Learning</a>.</p>
-<p>Email: guanlin@utexas.edu<br>You might be interested in my <a href="https://s3.us-east-2.amazonaws.com/research-report/CV.pdf" target="_blank" rel="noopener">CV</a>.</p>
+        <h1 id="RL-Reading-Note-Dueling-Network-Architectures-for-Deep-Reinforcement-Learning"><a href="#RL-Reading-Note-Dueling-Network-Architectures-for-Deep-Reinforcement-Learning" class="headerlink" title="RL Reading Note: Dueling Network Architectures for Deep Reinforcement Learning"></a>RL Reading Note: Dueling Network Architectures for Deep Reinforcement Learning</h1><h2 id="1-Motivation"><a href="#1-Motivation" class="headerlink" title="1. Motivation"></a>1. Motivation</h2><p>For many states, it is unnecessary to estimate the value of each action choice, while for bootstrapping based algorithms, the estimation of state values is of great importance for every state. </p>
+<h2 id="2-Network-StructureL-Dueling-DQN-DDQN"><a href="#2-Network-StructureL-Dueling-DQN-DDQN" class="headerlink" title="2. Network StructureL Dueling DQN (DDQN)"></a>2. Network StructureL Dueling DQN (DDQN)</h2><p><img src="figure1.png" alt="
+network-structure"></p>
+<ul>
+<li>Structure<ul>
+<li>Two streams are combined via a special aggregating layer to produce an estimate fo the state-action value function Q: replace the traditional single-stream Q network in DQN with two streams</li>
+<li>The lower layers stay the same as DQN while instead use two sequences of fully connected layers</li>
+<li>Output: same as DQN, a set of Q values, one for each action</li>
+</ul>
+</li>
+<li>Properties<ul>
+<li>Produce separate estimates of state value function and advantage function</li>
+<li>The dueling architecture can learn which states are (or are not) valuable , without having to learn the effect of each action for each state</li>
+<li>Dueling architecture can more quickly identify the correct action during policy evaluation as redundant or similar actions are added to the learning problems</li>
+<li>Use <strong>prioritized experience replay</strong> to increase the replay probabiliy of experience tuples that have a high expected learning progress (measured via TD-error)</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-Update-Rules"><a href="#4-Update-Rules" class="headerlink" title="4. Update Rules"></a>4. Update Rules</h2><ul>
+<li><strong>Advantage function</strong>: <script type="math/tex">A^{\pi}(s, a) = Q^{\pi} (s, a) - V^{\pi} (s)</script> <script type="math/tex">V^{\pi} (s) = E_{a \sim \pi(s)} [Q^{\pi} (s, a)]</script> <script type="math/tex">E_{a \sim \pi(s)} [A^{\pi} (s, a)] = 0</script></li>
+<li>Intuitively, the ad vantage function subtracts the value of the state from the Q function to obtain a relative measure of the importance of each action.</li>
+<li><strong>Update DDQN</strong>: <script type="math/tex">L_i(\theta _i) = E_{s,a,r,s \prime}[(y_i ^{DDQN} - Q(s,a; \theta  _i)^2]</script> with <script type="math/tex">y_i ^{DDQN} = r + \gamma Q(s \prime , arg max_{a \prime} Q (s \prime, a \prime; \theta _i); \theta ^{-})</script></li>
+<li>Combine Advantage function and alue funtion as well as address the <strong>Issue of identifiability</strong> (force the advantage function estimator to have zero advantage at chosen action):<script type="math/tex; mode=display">Q(s, a; \theta, \alpha, \beta) = V(s; \theta, \beta) + (A(s, a; \theta, \alpha) - \frac{1}{|A|} \sum _{a \prime \in |A|} A(s, a \prime ; \theta, \alpha)</script></li>
+</ul>
+<h2 id="5-Understand-dueling-network-architecture"><a href="#5-Understand-dueling-network-architecture" class="headerlink" title="5. Understand dueling network architecture"></a>5. Understand dueling network architecture</h2><p><img src="figure2.png" alt="figure-2
+"></p>
+<ul>
+<li>Dueling architecture is particularly useful in states where its actions do not affect the environment in any (or much) relevant way : figure 2 (top) shows that the value network strea pays attention to the road and the score while the advantage stream does not pay much attention to the visual input because its action choice is practically irrelevant when there are no cars in front. </li>
+<li>Use average operator instead of max in formula (9) stabilize the optimization, even though it becomes off-target by a constant, but the advantages now only need to change as fast as the mean instead of having to compensate any change to the optimal action in (8).</li>
+<li>The advantage of the dueling architecture lies partly in its ability to learn the state-value function efficiently. With every update of the Q-values, the value stream V is updated (while in DQN, only a specific Q value is updated everytime).</li>
+</ul>
+<h2 id="6-Comparison-to-DQN"><a href="#6-Comparison-to-DQN" class="headerlink" title="6. Comparison to DQN"></a>6. Comparison to DQN</h2><ul>
+<li>DQN uses single-stream Q network</li>
+<li>DQN takes the state representation as a single input, and generates the weights of different action as output.</li>
+<li>In Q-learning and DQN, the ma operator uses the same values to both select and evaluate an action, which can lead to <strong>overoptimistic value estimates</strong></li>
+<li>DDQN has more frequent updates on state values, thus allows for better approximation of state values.</li>
+<li>In DQN, in some states, the average action is roughly 0.4, whereas the average state value across those states is about 15. This <strong>difference in scales</strong> can lead to small amounts of noise in the updates can lead to great reorderings of the actions. DDQN is more robust in this case.</li>
+</ul>
+<h2 id="7-Inplementations-and-Experiments"><a href="#7-Inplementations-and-Experiments" class="headerlink" title="7. Inplementations and Experiments"></a>7. Inplementations and Experiments</h2><ul>
+<li><strong>Corridor Environment</strong><ul>
+<li>Behavior policy: $\epsilon$ - greedy with $\epsilon$ = 0.001</li>
+<li>Three layers: first hidden layer of 50 units, two layer MLP with 25 hidden units</li>
+<li>When we increase the number of actions, DDQN works better</li>
+<li>The stream $V(s; \theta, \beta)$ learns a general value that is shared across many similar actions at s, hence leading to <strong>faster convergence</strong>.</li>
+</ul>
+</li>
+<li><strong>Atari Game</strong><ul>
+<li>Same low-level convolutional structure as DQN: 3 convolutional layers followed by 2 fully-connected layer.</li>
+<li>Three convolutional layers: first convolutional layer: 32 $8 \times 8$ filters with stride 4; second: 64 $4 \times 4$ filters with stride 2; third: 64 $3 \times 3$ filters with stride 1.</li>
+<li>Value and advantage streams both have a fully connected layer with 512 units.</li>
+<li>Combine value and advantage streams using equation (9).</li>
+<li><strong>Slightly lower the learning rate</strong> since it can deteriorate the performance.</li>
+<li><strong>Rescale the combined gradient</strong> entering the last convolutional layer by $1 / \sqrt 2$ , which <strong>increases stability</strong>.</li>
+<li><strong>Clip the gradients</strong> to have their norm less than or equal to 10.</li>
+<li><strong>Single Clip</strong> as comparison (isolate the contributions of the dueling architecture.</li>
+<li>Random starting position.</li>
+<li><strong>Evaluation</strong>: improvement in percentage in score over the better of human and baseline agent scores</li>
+<li><strong>Human Starts Evaluation</strong>: prevent the agent from simply remebering a sequence of actions</li>
+<li>To avoid <strong>adverse interactions</strong> , use $6.25 * 10^{-5}$ for the learning rate and 10 for the gradient clipping norm.</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-Algorithm"><a href="#8-Algorithm" class="headerlink" title="8. Algorithm"></a>8. Algorithm</h2><p><img src="figure3.png" alt="figure-3
+"></p>
 
     </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/blog/22/Deep-RL-from-Human-Preferences/" title= RL Reading Note: Deep RL from Human Preferences >
+                    <span>Next Post</span>
+                    <span>RL Reading Note: Deep RL from Human Preferences</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/blog/11/RL-Reading-Note-Deep-COACH/" title= RL Reading Note: Deep COACH >
+                    <span>Previous Post</span>
+                    <span>RL Reading Note: Deep COACH</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -203,6 +335,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RL-Reading-Note-Dueling-Network-Architectures-for-Deep-Reinforcement-Learning"><span class="toc-number">1.</span> <span class="toc-text">RL Reading Note: Dueling Network Architectures for Deep Reinforcement Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Motivation"><span class="toc-number">1.1.</span> <span class="toc-text">1. Motivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Network-StructureL-Dueling-DQN-DDQN"><span class="toc-number">1.2.</span> <span class="toc-text">2. Network StructureL Dueling DQN (DDQN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Update-Rules"><span class="toc-number">1.3.</span> <span class="toc-text">4. Update Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Understand-dueling-network-architecture"><span class="toc-number">1.4.</span> <span class="toc-text">5. Understand dueling network architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Comparison-to-DQN"><span class="toc-number">1.5.</span> <span class="toc-text">6. Comparison to DQN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Inplementations-and-Experiments"><span class="toc-number">1.6.</span> <span class="toc-text">7. Inplementations and Experiments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Algorithm"><span class="toc-number">1.7.</span> <span class="toc-text">8. Algorithm</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
