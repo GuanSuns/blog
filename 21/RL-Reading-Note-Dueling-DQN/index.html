@@ -221,27 +221,27 @@ network-structure"></p>
 </ul>
 </li>
 </ul>
-<h2 id="4-Update-Rules"><a href="#4-Update-Rules" class="headerlink" title="4. Update Rules"></a>4. Update Rules</h2><ul>
+<h2 id="3-Update-Rules"><a href="#3-Update-Rules" class="headerlink" title="3. Update Rules"></a>3. Update Rules</h2><ul>
 <li><strong>Advantage function</strong>: <script type="math/tex">A^{\pi}(s, a) = Q^{\pi} (s, a) - V^{\pi} (s)</script> <script type="math/tex">V^{\pi} (s) = E_{a \sim \pi(s)} [Q^{\pi} (s, a)]</script> <script type="math/tex">E_{a \sim \pi(s)} [A^{\pi} (s, a)] = 0</script></li>
 <li>Intuitively, the ad vantage function subtracts the value of the state from the Q function to obtain a relative measure of the importance of each action.</li>
 <li><strong>Update DDQN</strong>: <script type="math/tex">L_i(\theta _i) = E_{s,a,r,s \prime}[(y_i ^{DDQN} - Q(s,a; \theta  _i)^2]</script> with <script type="math/tex">y_i ^{DDQN} = r + \gamma Q(s \prime , arg max_{a \prime} Q (s \prime, a \prime; \theta _i); \theta ^{-})</script></li>
 <li>Combine Advantage function and alue funtion as well as address the <strong>Issue of identifiability</strong> (force the advantage function estimator to have zero advantage at chosen action):<script type="math/tex; mode=display">Q(s, a; \theta, \alpha, \beta) = V(s; \theta, \beta) + (A(s, a; \theta, \alpha) - \frac{1}{|A|} \sum _{a \prime \in |A|} A(s, a \prime ; \theta, \alpha)</script></li>
 </ul>
-<h2 id="5-Understand-dueling-network-architecture"><a href="#5-Understand-dueling-network-architecture" class="headerlink" title="5. Understand dueling network architecture"></a>5. Understand dueling network architecture</h2><p><img src="figure2.png" alt="figure-2
+<h2 id="4-Understand-dueling-network-architecture"><a href="#4-Understand-dueling-network-architecture" class="headerlink" title="4. Understand dueling network architecture"></a>4. Understand dueling network architecture</h2><p><img src="figure2.png" alt="figure-2
 "></p>
 <ul>
 <li>Dueling architecture is particularly useful in states where its actions do not affect the environment in any (or much) relevant way : figure 2 (top) shows that the value network strea pays attention to the road and the score while the advantage stream does not pay much attention to the visual input because its action choice is practically irrelevant when there are no cars in front. </li>
 <li>Use average operator instead of max in formula (9) stabilize the optimization, even though it becomes off-target by a constant, but the advantages now only need to change as fast as the mean instead of having to compensate any change to the optimal action in (8).</li>
 <li>The advantage of the dueling architecture lies partly in its ability to learn the state-value function efficiently. With every update of the Q-values, the value stream V is updated (while in DQN, only a specific Q value is updated everytime).</li>
 </ul>
-<h2 id="6-Comparison-to-DQN"><a href="#6-Comparison-to-DQN" class="headerlink" title="6. Comparison to DQN"></a>6. Comparison to DQN</h2><ul>
+<h2 id="5-Comparison-to-DQN"><a href="#5-Comparison-to-DQN" class="headerlink" title="5. Comparison to DQN"></a>5. Comparison to DQN</h2><ul>
 <li>DQN uses single-stream Q network</li>
 <li>DQN takes the state representation as a single input, and generates the weights of different action as output.</li>
 <li>In Q-learning and DQN, the ma operator uses the same values to both select and evaluate an action, which can lead to <strong>overoptimistic value estimates</strong></li>
 <li>DDQN has more frequent updates on state values, thus allows for better approximation of state values.</li>
 <li>In DQN, in some states, the average action is roughly 0.4, whereas the average state value across those states is about 15. This <strong>difference in scales</strong> can lead to small amounts of noise in the updates can lead to great reorderings of the actions. DDQN is more robust in this case.</li>
 </ul>
-<h2 id="7-Inplementations-and-Experiments"><a href="#7-Inplementations-and-Experiments" class="headerlink" title="7. Inplementations and Experiments"></a>7. Inplementations and Experiments</h2><ul>
+<h2 id="6-Inplementations-and-Experiments"><a href="#6-Inplementations-and-Experiments" class="headerlink" title="6. Inplementations and Experiments"></a>6. Inplementations and Experiments</h2><ul>
 <li><strong>Corridor Environment</strong><ul>
 <li>Behavior policy: $\epsilon$ - greedy with $\epsilon$ = 0.001</li>
 <li>Three layers: first hidden layer of 50 units, two layer MLP with 25 hidden units</li>
@@ -265,7 +265,7 @@ network-structure"></p>
 </ul>
 </li>
 </ul>
-<h2 id="8-Algorithm"><a href="#8-Algorithm" class="headerlink" title="8. Algorithm"></a>8. Algorithm</h2><p><img src="figure3.png" alt="figure-3
+<h2 id="7-Algorithm"><a href="#7-Algorithm" class="headerlink" title="7. Algorithm"></a>7. Algorithm</h2><p><img src="figure3.png" alt="figure-3
 "></p>
 
     </article>
@@ -340,7 +340,7 @@ network-structure"></p>
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RL-Reading-Note-Dueling-Network-Architectures-for-Deep-Reinforcement-Learning"><span class="toc-number">1.</span> <span class="toc-text">RL Reading Note: Dueling Network Architectures for Deep Reinforcement Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Motivation"><span class="toc-number">1.1.</span> <span class="toc-text">1. Motivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Network-StructureL-Dueling-DQN-DDQN"><span class="toc-number">1.2.</span> <span class="toc-text">2. Network StructureL Dueling DQN (DDQN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Update-Rules"><span class="toc-number">1.3.</span> <span class="toc-text">4. Update Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Understand-dueling-network-architecture"><span class="toc-number">1.4.</span> <span class="toc-text">5. Understand dueling network architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Comparison-to-DQN"><span class="toc-number">1.5.</span> <span class="toc-text">6. Comparison to DQN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Inplementations-and-Experiments"><span class="toc-number">1.6.</span> <span class="toc-text">7. Inplementations and Experiments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Algorithm"><span class="toc-number">1.7.</span> <span class="toc-text">8. Algorithm</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RL-Reading-Note-Dueling-Network-Architectures-for-Deep-Reinforcement-Learning"><span class="toc-number">1.</span> <span class="toc-text">RL Reading Note: Dueling Network Architectures for Deep Reinforcement Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Motivation"><span class="toc-number">1.1.</span> <span class="toc-text">1. Motivation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Network-StructureL-Dueling-DQN-DDQN"><span class="toc-number">1.2.</span> <span class="toc-text">2. Network StructureL Dueling DQN (DDQN)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Update-Rules"><span class="toc-number">1.3.</span> <span class="toc-text">3. Update Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Understand-dueling-network-architecture"><span class="toc-number">1.4.</span> <span class="toc-text">4. Understand dueling network architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Comparison-to-DQN"><span class="toc-number">1.5.</span> <span class="toc-text">5. Comparison to DQN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Inplementations-and-Experiments"><span class="toc-number">1.6.</span> <span class="toc-text">6. Inplementations and Experiments</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Algorithm"><span class="toc-number">1.7.</span> <span class="toc-text">7. Algorithm</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -354,20 +354,6 @@ network-structure"></p>
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
